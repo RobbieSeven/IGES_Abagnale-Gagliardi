@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<document>
+
+	<category name="Accelerometer" icon="R.drawable.accelerometer48" keywords="acceleration position direction">	
+		<function name="InterceptorAccelerometer" id="ACCELEROMETER_INTERCEPTOR" states="visible/progress">
+		    <description>Watch the acceleration</description> 
+			<outputs>
+				<output type="OBJECT" name="acceleration" />			
+			</outputs>
+		</function>	    
+	</category>    
+    
+	<category name="Admob" icon="R.drawable.admob48" keywords="advertising marketing money">	
+		<function name="Advertising" id="ADMOB_ADVIEW" view="false" states="hidden/visible">
+		    <description>Add an advertising widget</description> 
+			<inputs>
+				<userinput type="STRING" name="adunitid" input="string" fixed="true"/>
+			</inputs>			
+		</function>	    
+	</category>   	
+	
+ 	<category name="Calendar" icon="R.drawable.calendar48" keywords="date year day month">
+		<function name="Date" id="CALENDAR_DATE" states="visible">
+			<description>Take the date</description>    
+			<outputs>
+				<output type="STRING" name="date"/>
+			</outputs>
+		</function>
+		
+		<function name="StaticDate" id="CALENDAR_STATICDATE" states="hidden">
+		    <description>Take the date and store it</description>  
+			<inputs>
+				<userinput type="STRING" name="date" input="date"/>
+			</inputs>			    
+			<outputs>
+				<output type="STRING" name="date"/>
+			</outputs>
+		</function>		
+		
+		<function name="CurrentDate" id="CALENDAR_CURRENTDATE" states="hidden">
+		    <description>Take the current date</description>  
+			<inputs>
+			</inputs>			    
+			<outputs>
+				<output type="STRING" name="date"/>
+			</outputs>
+		</function>				
+		
+	</category>
+	   
+	<category name="Camera" icon="R.drawable.camera48" keywords="camera photo picture image">
+
+		<function name="Take" id="CAMERA_TAKE" states="visible">
+		    <description>Take a photo by using the camera</description>  
+			<outputs>
+				<output type="IMAGE" name="photo"/>
+			</outputs>
+		</function>
+
+		<function name="Preview" id="CAMERA_PREVIEW" states="visible/hidden">
+		    <description>Preview the selected photo</description>  
+			<inputs>
+				<input type="IMAGE" name="photo"/>
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="photo"/>
+			</outputs>
+		</function>
+
+		<function name="Fixed" id="CAMERA_FIXED" states="hidden">
+		    <description>Take a photo and store it</description>  
+			<inputs>
+				<userinput type="IMAGE" name="imageid" input="image"/>
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="photo"/>
+			</outputs>
+		</function>
+
+		<function name="Save" id="CAMERA_SAVE" states="visible/hidden/progress">
+		    <description>Save the photo in the default directory</description>  
+			<inputs>
+				<input type="IMAGE" multi="true" name="photos"/>
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="photos"/>
+			</outputs>
+		</function>	
+	</category>
+
+	<category name="Condition" icon="R.drawable.condition48" keywords="condition">
+		<function name="Condition" id="CONDITION" states="visible/progress">
+			<description>Condition</description>
+			<inputs>
+				<input type="CONDITION" name="conditionid" />
+				<userinput type="CONDITION" name="conditionid" input="CONDITION"/>
+			</inputs>
+			<outputs>
+				<output type="CONDITION" name="conditionidfirst" />
+				<output type="CONDITION" name="conditionidsecond" />
+			</outputs>
+		</function>
+
+		<function name="Conditiondyn" id="CONDITIONDYN" states="visible/progress">
+			<description>Dynamic Condition</description>
+			<inputs>
+				<input type="CONDITION" name="conditionid" />
+				<input type="CONDITION" name="conditionid" />
+			</inputs>
+			<outputs>
+				<output type="CONDITION" name="conditionidfirst" />
+				<output type="CONDITION" name="conditionidsecond" />
+			</outputs>
+		</function>
+	</category>
+
+
+	<category name="Contacts" icon="R.drawable.contact48" keywords="contact person communication people">
+
+		<function name="Static" id="CONTACTS_STATIC" states="hidden">
+		    <description>Select and store a contact from a contact list</description>  
+			<inputs>
+				<userinput type="CONTACT" name="contactid" input="contact"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>
+
+		<function name="Select" id="CONTACTS_SELECT" states="visible">
+		    <description>Select a contact from a contact list</description>  
+			<outputs>
+				<output type="CONTACT" name="contactid" />
+			</outputs>
+		</function>
+
+		<function name="Preview" id="CONTACTS_PREVIEW" states="visible/hidden">
+		    <description>Preview the contact information</description>  
+			<inputs>
+				<input type="CONTACT" name="contactid"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>
+
+		<function name="Join" id="CONTACTS_JOIN" states="visible/progress">
+		    <description>Perform a join between the input contacts and the contact list</description>  
+			<inputs>
+				<input type="CONTACT" name="contactid"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>		
+		
+		<function name="Update" id="CONTACTS_UPDATE" states="visible">
+		    <description>Update the contact info</description>  
+			<inputs>
+				<input type="CONTACT" name="contactid"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>		
+		
+		<function name="Create" id="CONTACTS_CREATE" states="visible">
+		    <description>Create a new contact</description>  
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>			
+		
+		<function name="Emergency" id="CONTACTS_EMERGENCY_STATIC" states="hidden" icon="R.drawable.emergency48">
+		    <description>Store the phone number for an emergency call</description>  
+			<inputs>
+				<userinput type="STRING" name="number" input="phonenumber"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>	
+		
+	</category>
+
+	<category name="Domotic" icon="R.drawable.domotic48" keywords="smart home domotics">
+	</category>
+    	
+	
+	<category name="Face" icon="R.drawable.face48" keywords="face detection recognition eyes mounth">
+		<function name="Detect" id="FACE_DETECT" states="visible">
+		    <description>Detect</description>  
+			<inputs>
+				<input type="IMAGE" name="photo"/>
+			</inputs>
+			<outputs>
+				<output type="IMAGE" multi="true" name="faces"/>
+			</outputs>
+		</function>		
+	
+	</category>
+	    		
+	<category name="Facebook" icon="R.drawable.facebook48" keywords="facebook social community">
+
+		<function name="Upload" id="FACEBOOK_UPLOAD" states="visible/hidden/progress">
+		    <description>Upload a post on facebook</description>  
+			<inputs>
+				<userinput type="STRING" name="password" input="password"/>
+			    <userinput type="STRING" name="username" input="string"/>
+				<input type="OBJECT" name="post" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" name="post" />
+			</outputs>
+		</function>
+	
+		<function name="Friends" id="FACEBOOK_FRIENDS" states="visible/hidden/progress">
+		    <description>Get the list of facebook friends</description>  
+			<inputs>
+				<userinput type="STRING" name="password" input="password"/>
+			    <userinput type="STRING" name="username" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid" />
+			</outputs>
+		</function>		
+			
+		<function name="Group" id="FACEBOOK_GROUPS" states="visible/hidden/progress">
+		    <description>Get the list of facebook friends</description>  
+			<inputs>
+				<userinput type="STRING" name="group" input="string"/>
+				<userinput type="STRING" name="password" input="password"/>
+			    <userinput type="STRING" name="username" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid" />
+			</outputs>
+		</function>			
+		
+	</category>
+
+	<category name="Gps" icon="R.drawable.gps48" keywords="global position location latitude longitude altitude coordinate place">
+
+		<function name="Location" id="GPS_LOCATION" states="visible">
+		    <description>Get the gps location</description>  
+			<outputs>
+				<output type="LOCATION" name="location"/>
+			</outputs>
+		</function>
+
+		<function name="StaticLocation" id="GPS_STATICLOCATION" states="hidden/visible">
+		    <description>Set a predetermined location</description>  
+			<inputs>
+				<userinput type="LOCATION" name="location" input="location"/>
+			</inputs>
+		    <outputs>
+				<output type="LOCATION" name="location"/>
+			</outputs>
+		</function>			    
+		    			
+		<function name="InterceptorLocation" id="LOCATION_INTERCEPTOR" states="visible/progress">
+		    <description>Watch for changes to position</description> 
+			<outputs>
+				<output type="LOCATION" name="location" />			
+			</outputs>
+		</function>		
+		
+		<function name="InterceptorProximity" id="PROXIMITY_INTERCEPTOR" states="visible/progress">
+		    <description>Watch the proximity (radius) to a position</description> 
+			<inputs>
+				<userinput type="STRING" name="radius" input="number"/>
+				<input type="LOCATION" name="center" />
+			</inputs>			
+			<outputs>
+				<output type="LOCATION" name="location" />			
+			</outputs>
+		</function>			
+	</category>
+
+	<category name="Image" icon="R.drawable.image48" keywords="image picture drawable scale rotate flip paint">
+		<description>Scale an image</description>  
+		<function name="Scale" id="IMAGE_SCALE" states="visible/progress">
+		    <inputs>
+				<input type="IMAGE"  name="image" />
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="scaled_image"/>
+			</outputs>
+		</function>
+		
+		<function name="Rotate" id="IMAGE_ROTATE" states="visible/progress">
+		    <description>Rotate an image</description>  
+		    <inputs>
+				<input type="IMAGE"  name="image" />
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="rotated_image"/>
+			</outputs>
+		</function>
+		
+		<function name="Flip" id="IMAGE_FLIP" states="visible/progress">
+		    <description>Flip an image</description>  
+		    <inputs>
+				<input type="IMAGE"  name="image" />
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="flip_image"/>
+			</outputs>
+		</function>
+		
+		<function name="Paint" id="IMAGE_PAINT" states="visible">
+		    <description>Allow painting an image</description>  
+		    <inputs>
+				<input type="IMAGE"  name="image" />
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="paint_image"/>
+			</outputs>
+		</function>
+
+	</category>
+
+	<category name="Information" icon="R.drawable.info48" keywords="information info news notice report article prompt beep vibrate">
+	
+		<function name="Prompt" id="INFORMATION_PROMPT" states="visible/hidden">
+		    <description>Show a message prompt</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="info"/>
+			</outputs>
+		</function>
+		
+		<function name="Vibrate" id="INFORMATION_VIBRATE" states="visible/hidden">
+		    <description>Vibrate</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="info"/>
+			</outputs>
+		</function>		
+			    
+		<function name="Beep" id="INFORMATION_BEEP" states="visible/hidden">
+		    <description>Beep</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="info"/>
+			</outputs>
+		</function>			
+		
+		<function name="Info" id="INFORMATION_INFO" states="visible/hidden">
+		    <description>Show a dialog info</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info" />
+				<userinput type="STRING" name="text" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="info"/>
+			</outputs>
+		</function>
+
+		<function name="Error" id="INFORMATION_ERROR" states="visible/hidden">
+		    <description>Show an error dialog</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info">
+				</input>
+				<userinput type="STRING" name="text" input="string"/>
+			</inputs>
+		</function>
+		
+		<function name="PrintResult" id="INFORMATION_PRINT" states="visible/hidden">
+		    <description>Print the result of a web service</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info"/>
+		</inputs>
+		</function>
+
+		<function name="PreviewResult" id="INFORMATION_PREVIEW" states="visible/hidden">
+		    <description>Preview the result of a web service</description>  
+			<inputs>
+				<input type="OBJECT" multi="true" name="info"/>
+		</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="info"/>
+			</outputs>		
+		</function>
+	</category>
+
+	<category name="Maps" icon="R.drawable.maps48" keywords="map country city state continent area geo geographic">
+
+		<function name="Map" id="MAPS_MAP" states="visible/progress">
+		    <description>Get the image map from a location</description>  
+			<inputs>
+				<input type="LOCATION" name="location"/>
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="imagemap" />
+			</outputs>
+		</function>
+
+		<function name="Geolocation" id="MAPS_GEOLOCATION" states="visible/progress">
+			<description>Return the map and the address of a location</description>  
+			<inputs>
+				<input type="LOCATION" name="location" />
+			</inputs>
+			<outputs>
+				<output type="IMAGE" name="imagemap"/>
+				<output type="STRING" name="address"/>
+			</outputs>
+		</function>
+	
+		<function name="AddressGeolocation" id="MAPS_GEOADDRESS" states="visible/hidden/progress">
+			<description>Return the address of a location</description> 
+			<inputs>
+				<input type="LOCATION" name="location" />
+			</inputs>
+			<outputs>
+				<output type="STRING" name="address">
+				</output>
+			</outputs>
+		</function>		
+		
+		<function name="MapLocation" id="MAPS_LOCATION" states="visible">
+		    <description>Get the location from a map</description>  
+			<outputs>
+				<output type="LOCATION" name="location" />
+			</outputs>
+		</function>		
+				
+	</category>
+
+	<category name="Media" icon="R.drawable.media48" keywords="media multimedia play sound record">	
+		<function name="SelectAudio" id="MEDIA_SELECTAUDIO" states="visible">
+		    <description>Select an audio</description>  
+			<outputs>
+				<output type="URI" name="audio"/>
+			</outputs>
+		</function>	
+	    
+		<function name="RecAudio" id="MEDIA_RECAUDIO" states="visible/progress">
+		    <description>Rec an audio</description>  
+			<outputs>
+				<output type="URI" name="audio"/>
+			</outputs>
+		</function>
+
+		<function name="PlayAudio" id="MEDIA_PLAYAUDIO" states="visible">
+		    <description>Play an audio</description>  
+			<inputs>
+				<input type="URI" name="audio" />
+			</inputs> 
+			<outputs>
+				<output type="URI" name="audio"/>
+			</outputs>
+		</function>
+		
+		<function name="StaticAudio" id="MEDIA_STATICAUDIO" states="visible">
+		    <description>Input a static audio</description>  
+			<inputs>
+				<userinput type="URI" name="audio" input="audio"/>
+			</inputs>
+			<outputs>
+				<output type="URI" name="audio"/>
+			</outputs>
+		</function>		
+		
+		<function name="SelectVideo" id="MEDIA_SELECTVIDEO" states="visible">
+		    <description>Select a video</description>  
+			<outputs>
+				<output type="URI" name="video"/>
+			</outputs>
+		</function>	
+					
+		<function name="RecVideo" id="MEDIA_RECVIDEO" keywords="camera rec video" states="visible/progress">
+		    <description>Rec a video</description>  
+			<outputs>
+				<output type="URI" name="video"/>
+			</outputs>
+		</function>	
+		
+		<function name="PlayVideo" id="MEDIA_PLAYVIDEO" states="visible">
+		    <description>Play a video</description>  
+			<inputs>
+				<input type="URI" name="video" />
+			</inputs>	
+			<outputs>
+				<output type="URI" name="video"/>
+			</outputs>
+		</function>	
+		
+		<function name="StaticVideo" id="MEDIA_STATICVIDEO" states="visible">
+		    <description>Input a static video</description>  
+			<inputs>
+				<userinput type="URI" name="video" input="video"/>
+			</inputs>
+			<outputs>
+				<output type="URI" name="video"/>
+			</outputs>
+		</function>		
+		
+		<function name="PlaySound" id="MEDIA_PLAYSOUND" states="visible">
+		    <description>Play a sound</description>  
+		   	<outputs>
+			 	<output type="OBJECT" name="sound"/> 
+			</outputs>
+		</function>
+		
+	</category>	
+	
+	<category name="Network" icon="R.drawable.network48" keywords="network link site wervice web">	
+		<function name="InterceptorNet" id="NET_INTERCEPTOR" states="visible/progress">
+		    <description>Intercept the presence of a network</description> 
+			<outputs>
+				<output type="OBJECT" name="net" />			
+			</outputs>
+		</function>	    
+	</category>
+	    	
+	<category name="Number" icon="R.drawable.number48" keywords="number numeric integer double float decimal">	
+		<function name="Number" id="NUMBER_NUMBER" states="visible">
+		    <description>Get a numeric value</description> 
+			<outputs>
+				<output type="STRING" name="number">
+				</output>
+			</outputs>
+		</function>	
+	    
+	    <function name="Number" id="NUMBER_STATIC" states="hidden">
+	    	<description>Get and store a numeric value</description> 
+			<inputs>
+				<userinput type="STRING" name="number" input="number"/>
+			</inputs>			
+			<outputs>
+				<output type="STRING" name="number">
+				</output>
+			</outputs>
+		</function>	
+		
+	    <function name="NumberBetween" id="NUMBER_BETWEEN" states="visible">
+	    	<description>Get anumeric value in a range and store it</description> 
+			<inputs>
+				<userinput type="STRING" name="upper" input="number"/>
+			    <userinput type="STRING" name="lower" input="number"/>
+			</inputs>			
+			<outputs>
+				<output type="STRING" name="number">
+				</output>
+			</outputs>
+		</function>		    
+	</category>		
+	
+	
+	<category name="Phone" icon="R.drawable.phone48" keywords="phone telephone call">
+
+		<function name="InterceptorCall" id="CALL_INTERCEPTOR" states="visible/progress">
+		    <description>Intercept a receiving phone call</description> 
+			<outputs>
+				<output type="CONTACT" name="contactid">
+				</output>
+			</outputs>
+		</function>
+
+		<function name="Call" id="PHONE_CALL" states="visible">
+		    <description>Perform a phone call</description> 
+			<inputs>
+				<input type="CONTACT" name="contactid" />
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid" />
+			</outputs>
+		</function>
+
+		<function name="Call" id="PHONE_CALLS" states="visible">
+		    <description>Perform a phone call</description> 
+			<inputs>
+				<input type="CONTACT" multi="true" name="contactid" />
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid" />
+			</outputs>
+		</function>		
+		
+	</category>
+
+	<category name="Save" icon="R.drawable.save48" keywords="save">
+
+		<function name="Save" id="SAVE_SAVE" states="visible/hidden/progress">
+		    <description>Save the data</description> 
+			<inputs>
+				<input type="OBJECT" multi="true" name="objects" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="objects" />
+			</outputs>
+		</function>
+
+	</category>
+
+	<category name="Send" icon="R.drawable.mail48" keywords="send sms email message">
+	
+		<function name="Mail" id="SEND_MAIL" states="visible/hidden/progress">
+		    <description>Send an email</description> 
+			<inputs>
+				<input type="OBJECT" multi="true" name="attach"/>
+				<input type="CONTACT" name="contactid" />
+				<input type="STRING" name="subject"/>
+				<input type="STRING" name="body"/>
+			</inputs>
+			<outputs>
+				<output type="MAIL" multi="false" name="mail">
+				</output>
+			</outputs>
+		</function>
+
+		<function name="StaticMail" id="SEND_STATICMAIL" states="visible/hidden/progress">
+		    <description>Send an email with static body and subject</description> 
+			<inputs>
+				<input type="OBJECT" multi="true" name="attach"/>
+				<input type="CONTACT" name="contactid"/>
+				<userinput type="STRING" name="subject" input="string"/>
+				<userinput type="STRING" name="body" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="MAIL" multi="false" name="mail">
+				</output>
+			</outputs>
+		</function>
+
+		<function name="Sms" id="SEND_STATICTEXTSMS" states="visible/progress">
+		    <description>Send a sms with static text</description> 
+			<inputs>
+				<input type="CONTACT" name="contactid" />
+				<userinput type="STRING" name="message" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>
+
+		<function name="TextSms" id="SEND_TEXTSMS" states="visible/progress">
+		    <description>Send a sms</description> 
+			<inputs>
+				<input type="CONTACT" name="contactid"/>
+				<input type="STRING" name="message" multi="true"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>		
+		
+		<function name="TextSmsOut" id="SEND_TEXTSMS" states="visible/progress">
+		    <description>Send a sms</description> 
+			<inputs>
+				<input type="CONTACT" name="contactid"/>
+				<input type="STRING" name="message" multi="true"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+				<output type="STRING" name="message"/>
+			</outputs>
+		</function>	
+		
+		<function name="TakeAndSend" id="TAKE_AND_SEND2" states="visible">
+		    <description>Take photos and send to email</description> 
+			<inputs>
+				<input type="OBJECT" multi="false" name="attach" />
+				<userinput type="CONTACT" name="contactid" input="contact"/>
+				<userinput type="STRING" name="subject" input="string"/>
+				<userinput type="STRING" name="body" input="string"/>
+				</inputs>
+			<outputs>
+				<output type="MAIL" multi="true" name="mail"/>
+			</outputs>
+		</function>			
+							
+	</category>
+
+	<category name="Speech" icon="R.drawable.speech48" keywords="text speech voice recognition">
+	
+		<function name="SpeechToText" id="SPEECH_SPEECHTOTEXT" states="visible/progress">
+		    <description>Speech a text</description> 
+			<inputs>
+			</inputs>
+			<outputs>
+				<output type="STRING" name="speechedtext"/>
+			</outputs>
+		</function>	
+		
+		<function name="TextToSpeech" id="SPEECH_TEXTTOSPEECH" states="visible/progress">
+		    <description>Talk a text</description> 
+			<inputs>
+				<input type="STRING" name="texttospeech"/>
+			</inputs>
+			<outputs>
+				<output type="STRING" name="speechedtext"/>
+			</outputs>
+		</function>		
+		
+		<function name="StaticTextToSpeech" id="SPEECH_STATICTEXTTOSPEECH" states="visible/progress">
+		    <description>Talk a text</description> 
+			<inputs>
+				<input type="OBJECT" multi="true" name="objects" />
+				<userinput type="STRING" input="string" name="texttospeech"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="objects" />
+			</outputs>
+		</function>				    
+	</category>
+					
+	<category name="Text" icon="R.drawable.text48" keywords="text word verse phrase quote quotation">
+
+		<function name="Text" id="TEXT_TEXT" states="visible">
+		    <description>Get a text</description> 
+			<outputs>
+				<output type="STRING" name="text"/>
+			</outputs>
+		</function>
+
+		<function name="TextStatic" id="TEXT_STATIC" states="hidden/visible">
+		    <description>Get and store a text</description> 
+			<inputs>
+				<userinput type="STRING" name="text" input="string"/>
+			</inputs>			
+			<outputs>
+				<output type="STRING" name="text" />
+			</outputs>
+		</function>		
+		
+		<function name="TextPassword" id="TEXT_PASSWORD" states="visible">
+		    <description>Get a password</description> 
+			<outputs>
+				<output type="STRING" name="text"/>
+			</outputs>
+		</function>			
+	</category>
+		
+	<category name="WebService" icon="R.drawable.webservice48" keywords="web service">
+		
+		<function name="HillChipher" id="WEBSERVICE_HILL_CHIPHER" wsdl="http://www.quisque.com/fr/chasses/crypto/hill.asmx?WSDL"
+		operation="Cipher" tns="http://www.quisque.com/fr/chasses/crypto/" uri="http://www.quisque.com/fr/chasses/crypto/hill.asmx" states="visible/progress">
+		<context>
+		<time></time>
+		<location latitude="0" longitude="0" altitude="0"/>
+		</context>
+			<outputs>
+				<output type="STRING" name="chiper"/>
+			</outputs>
+		</function>
+		
+		<function name="WebServiceStatic" id="WEBSERVICE_STATIC" states="visible/progress">
+		<context>
+		<time></time>
+		<location latitude="0" longitude="0" altitude="0"/>
+		</context>
+			<inputs>
+				<userinput name="wsdlUri" type="STRING" input="string"/>
+				<userinput name="operation" type="STRING" input="string"/>
+				<userinput name="port" type="STRING" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="object"/>
+			</outputs>
+		</function>
+		
+		<function name="AirConditioner" id="WEBSERVICE_AIRCONDITIONER" states="visible/progress">
+		<context>
+		<time></time>
+		<location latitude="0" longitude="0" altitude="0"/>
+		</context>
+			<inputs>
+				<input type="STRING" name="temperature" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="object" />
+			</outputs>
+		</function>		
+		
+		<function name="StockQuotes" id="WEBSERVICE_STOCKQUOTES" states="visible/progress">
+		<context>
+		<time></time>
+		<location latitude="0" longitude="0" altitude="0"/>
+		</context>
+			<inputs>
+				<input type="STRING" name="quote" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="object" />
+			</outputs>
+		</function>			
+		
+		<function name="YellowPages" id="WEBSERVICE_YELLOWPAGES" states="visible/progress">
+		<context>
+		<time></time>
+		<location latitude="0" longitude="0" altitude="0"/>
+		</context>
+			<inputs>
+				<input type="STRING" name="what" />
+				<input type="STRING" name="where" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="object" />
+			</outputs>
+		</function>	
+		
+		<function name="Encrypt" id="WEBSERVICE_ENCRYPT" states="visible/progress">
+		<context>
+		<time></time>
+		<location latitude="0" longitude="0" altitude="0"/>
+		</context>
+			<inputs>
+				<input type="OBJECT" name="image" />
+				<userinput name="password" type="STRING" input="password"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="image" />
+			</outputs>
+		</function>			
+							
+	</category>	
+	
+	<category name="Gear" icon="R.drawable.gear48" keywords="component function parameter">
+
+		<function name="Encrypt" id="ENCRYPT" states="visible/progress">
+			<inputs>
+				<input type="OBJECT" name="image" />
+				<userinput name="password" type="STRING" input="password"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="image" />
+			</outputs>
+		</function>		    
+	    
+		<function name="Speeched_SMS" id="SPEECHED_SMS" states="visible">
+		    <description>Speech a text and send it to a contact</description> 
+			<inputs>
+				<input type="CONTACT" name="contactid" />
+				<input type="LOCATION" name="center" />
+			</inputs>			
+			<outputs>
+				<output type="CONTACT" name="contactId" />
+				<output type="STRING" name="message" />
+			</outputs>
+		</function>		
+				
+	</category>	
+	
+	<category name="Notebook" icon="R.drawable.notebook48" keywords="agenda event info">
+	    
+		<function name="StoreEvent" id="SAVE_EVENT" states="visible">
+		    <description>Save an event into the notebook</description> 
+			<inputs>
+				<input type="OBJECT" multi="true" name="info" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="info"/>
+			</outputs>
+		</function>		
+				
+	</category>		
+	
+	<category name="Components" icon="R.drawable.component48" keywords="agenda event info">
+	    
+		<function name="Encrypt" id="ENCRYPT" states="visible/progress" icon="R.drawable.gear48">
+		    <description>Take photos and send to email</description> 
+			<inputs>
+				<input type="OBJECT" multi="false" name="document" />
+				<userinput type="STRING" name="key" input="string"/>
+				</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="crypt"/>
+			</outputs>
+		</function>		    
+	    
+	    
+		<function name="TakeAndSend" id="TAKE_AND_SEND" states="visible" icon="R.drawable.send48">
+		    <description>Take photos and send to email</description> 
+			<inputs>
+				<input type="OBJECT" multi="false" name="attach" />
+				<userinput type="CONTACT" name="contactid" input="contact"/>
+				<userinput type="STRING" name="subject" input="string"/>
+				<userinput type="STRING" name="body" input="string"/>
+				</inputs>
+			<outputs>
+				<output type="MAIL" multi="true" name="mail"/>
+			</outputs>
+		</function>		
+						
+		<function name="AccidentReport" id="RESTFUL_AR" states="visible" icon="R.drawable.restful48">
+		    <description>Accident report</description>  
+			<inputs>
+				<input type="STRING" name="road" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="report"/>
+			</outputs>
+		</function>			
+		
+		<function name="Translation" id="RESTFUL_TR" states="visible" icon="R.drawable.restful48">
+		    <description>This MicroApp uses the Google Translate service using the RESTful calling style</description>  
+			<inputs>
+				<input type="STRING" name="q" />
+				<userinput type="STRING" name="target" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="report"/>
+				<output type="STRING" name="translatedText"/>
+			</outputs>
+		</function>	
+				
+	</category>		
+	
+	<category name="Emergency" icon="R.drawable.emergency48" keywords="emergency">
+		
+		<function name="Emergency" id="CONTACTS_EMERGENCY_STATIC2" states="visible">
+		    <description>Store the phone number for an emergency call</description>  
+			<inputs>
+				<userinput type="STRING" name="number" input="phonenumber"/>
+			</inputs>
+			<outputs>
+				<output type="CONTACT" name="contactid"/>
+			</outputs>
+		</function>	
+	</category>	
+	
+	<category name="Restful" icon="R.drawable.restful48" keywords="rest">
+		
+		<function name="AccidentReport" id="RESTFUL_AR" states="visible">
+		    <description>Accident report</description>  
+			<inputs>
+				<input type="STRING" name="road" />
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="report"/>
+			</outputs>
+		</function>	
+		
+		<function name="Translation" id="RESTFUL_TR" states="visible" icon="R.drawable.restful48">
+		    <description>This MicroApp uses the Google Translate service using the RESTful calling style</description>  
+			<inputs>
+				<input type="STRING" name="q" />
+				<userinput type="STRING" name="target" input="string"/>
+			</inputs>
+			<outputs>
+				<output type="OBJECT" multi="true" name="report"/>
+				<output type="STRING" name="translatedText"/>
+			</outputs>
+		</function>			
+		
+	</category>
+
+	<category name="Pulse" icon="R.drawable.pulse48" keywords="heart_rate">
+
+		<function name="Rate" id="HEART_RATE" states="visible" icon="R.drawable.pulse48">
+			<description>Heart Rate</description>
+			<outputs>
+				<output type="STRING" multi="true" name="rate"/>
+			</outputs>
+		</function>
+
+	</category>
+
+	<category name="Viewer" icon="R.drawable.viewer48" keywords="xyplot_button">
+
+		<function name="Viewer" id="VIEWER" states="visible" icon="R.drawable.viewer48">
+			<description>Viewer</description>
+			<inputs>
+				<userinput type="STRING" name="xyplot_button" input="sensor"/>
+			</inputs>
+		</function>
+
+	</category>
+
+
+
+	<!--<category name="M-Health Glycaemia" icon="R.drawable.icogoccia" keywords="health">-->
+
+		<!--<function name="View" id="G_VIEW" states="visible" icon="R.drawable.icogoccia">-->
+			<!--<description>Glycaemia View</description>-->
+			<!--<outputs>-->
+				<!--<output type="STRING" multi="true" name="health"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+		<!--<function name="Add and save" id="G_SAVE" states="visible" icon="R.drawable.icogoccia">-->
+			<!--<description>Add and Save</description>-->
+			<!--<outputs>-->
+				<!--<output type="OBJECT" multi="true" name="add_save"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+		<!--<function name="Search" id="G_SEARCH" states="visible" icon="R.drawable.icogoccia">-->
+			<!--<description>Search</description>-->
+			<!--<outputs>-->
+				<!--<output type="OBJECT" multi="true" name="search"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+	<!--</category>-->
+
+
+	<!--<category name="M-Health Insulin" icon="R.drawable.icosiringa" keywords="health">-->
+
+		<!--<function name="View" id="I_VIEW" states="visible" icon="R.drawable.icosiringa">-->
+			<!--<description>Insulin View</description>-->
+			<!--<outputs>-->
+				<!--<output type="STRING" multi="true" name="health"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+		<!--<function name="Add and save" id="I_SAVE" states="visible" icon="R.drawable.icosiringa">-->
+			<!--<description>Add and Save</description>-->
+			<!--<outputs>-->
+				<!--<output type="OBJECT" multi="true" name="add_save"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+		<!--<function name="Search" id="I_SEARCH" states="visible" icon="R.drawable.icosiringa">-->
+			<!--<description>Search</description>-->
+			<!--<outputs>-->
+				<!--<output type="OBJECT" multi="true" name="search"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+	<!--</category>-->
+
+
+
+	<!--<category name="M-Health Weight" icon="R.drawable.icopeso" keywords="health">-->
+
+		<!--<function name="View" id="W_VIEW" states="visible" icon="R.drawable.icopeso">-->
+			<!--<description>Weight View</description>-->
+			<!--<outputs>-->
+				<!--<output type="STRING" multi="true" name="health"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+		<!--<function name="Add and save" id="W_SAVE" states="visible" icon="R.drawable.icopeso">-->
+			<!--<description>Add and Save</description>-->
+			<!--<outputs>-->
+				<!--<output type="OBJECT" multi="true" name="add_save"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+		<!--<function name="Search" id="W_SEARCH" states="visible" icon="R.drawable.icopeso">-->
+			<!--<description>Search</description>-->
+			<!--<outputs>-->
+				<!--<output type="OBJECT" multi="true" name="search"/>-->
+			<!--</outputs>-->
+		<!--</function>-->
+
+	<!--</category>-->
+
+
+</document>
