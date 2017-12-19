@@ -1,244 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="app_name">MicroApp 2.0</string>
+    <string name="app_name">MicroApp3.0</string>
 
-        <string name="language">English</string>
-        <string name="label_language">Language</string>
-        <string name="welcome_app_name">Welcome in MicroApp Generator</string>
-        <string name="version">Version</string>
-        <string name="yes">Yes</string>
-        <string name="no">No</string>
-        <string name="ok">OK</string>
-        <string name="empty">-blank-</string>
-        <string name="editor">Editor</string>
-        <string name="discovery">Service Discovery</string>
-        <string name="on">On</string>
-        <string name="off">Off</string>
-        <string name="activator">Activator</string>
-        <string name="description">Description</string>
-        <string name="icon">Icon</string>
-        <string name="name">Name</string>
-        <string name="describe">describe the MicroApp</string>
-        <string name="test">Test</string>
-        <string name="text">Text</string>
-        <string name="error">Error</string>
-        <string name="next">Next</string>
-        <string name="back">Back</string>
-        <string name="email">Email</string>
-        <string name="password">Password</string>
-        <string name="submit">Submit</string>
-        <string name="get">Get</string>
-        <string name="shift">Shift</string>
-        <string name="previous">Previous</string>
-        <string name="insert">insert the MicroApp name</string>
-        <string name="insertvalue">insert a value</string>
-        <string name="value">value</string>
-        <string name="searchkey">search service</string>
-        <string name="latitude">Latitude</string>
-        <string name="longitude">Longitude</string>
-        <string name="accuracy">Accuracy</string>
-        <string name="browse">Browse</string>
-        <string name="delete">Delete</string>
-        <string name="add">Add</string>
-        <string name="cancel">Cancel</string>
-        <string name="close">Close</string>
-        <string name="set">Set</string>
-        <string name="unset">Remove</string>
-        <string name="edit">Edit</string>
-        <string name="_new">New</string>
-        <string name="run">Run</string>
-        <string name="ttry">Try</string>
-        <string name="setting">Options</string>
-        <string name="info">Info</string>
-        <string name="exit">Exit</string>
-        <string name="about">About</string>
-        <string name="load">Load</string>
-        <string name="save">Save</string>
-        <string name="saveAs">Save As Component</string>
-        <string name="download">Download</string>
-        <string name="upload">Upload</string>
-        <string name="findService">Find Service</string>
-        <string name="findDomoService">Find Domotic Service</string>
-        <string name="insertport">port number</string>
-        <string name="server">server</string>
-        <string name="deploy">Deploy</string>
-        <string name="reset">Reset</string>
-        <string name="undo">Undo</string>
-        <string name="demo">Demo</string>
-        <string name="button">Button</string>
-        <string name="location">Location</string>
-        <string name="state">State</string>
-        <string name="address">Address</string>
-        <string name="zipcode">Zip code</string>
-        <string name="attachment">Attachment</string>
-        <string name="image">Image</string>
-        <string name="content">Content</string>
-        <string name="mandatory">Mandatory</string>
-        <string name="capture">Capture</string>
-        <string name="velocity">Velocity</string>
-        <string name="altitude">Altitude</string>
-        <string name="gpsLocation">Location GPS</string>
-        <string name="gps">GPS</string>
-        <string name="network">Network</string>
-        <string name="normal">Normal</string>
-        <string name="satellite">Satellite</string>
-        <string name="traffic">Traffic</string>
-        <string name="precondition">Pre-condition</string>
-        <string name="sendmail">Send Mail</string>
-        <string name="send">Send</string>
-        <string name="subject">Subject</string>
-        <string name="body">Body</string>
-        <string name="to">To</string>
-        <string name="attach">Attach</string>
-        <string name="loading">Loading&#8230;</string>
-        <string name="previewMap">Maps v2</string>
-        <string name="legal">Legal Notices</string>
-        <string name="flash">Flash</string>
-        <string name="noflash">No flash</string>
-        <string name="autoflash">Auto</string>
-        <string name="prompt">Prompt</string>
-        <string name="type">Type</string>
-        <string name="multi">Multi</string>
-        <string name="multiple">Multiple</string>
-        <string name="number">Number</string>
-        <string name="details">Details</string>
-        <string name="update">Update</string>
-        <string name="newcomponent">New Component</string>
-        <string name="component">Component</string>
-        <string name="newrestful">New Restful Component</string>
-        <string name="project">New project</string>
-        <string name="run_project">Run project</string>
-        <string name="search_project">Search project</string>
-        <string name="editor_project">Editor project</string>
-        <string name="select_service">Select the components of the project</string>
-        <string name="accelerometer">Accelerometer</string>
-        <string name="temperature">Temperature</string>
-        <string name="pressure">Pressure</string>
-        <string name="stop_service">Stop service</string>
-        <string name="new_sensor">New sensor</string>
-        <string name="editor_sensor">Editor sensor</string>
-        <string name="sensor">Sensor</string>
-        <string name="proj">Project</string>
-        <string name="stop_serv">Stop service: </string>
+    <string name="language">English</string>
+    <string name="label_language">Language</string>
+    <string name="welcome_app_name">Welcome in MicroApp Generator</string>
+    <string name="version">Version</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="empty">-blank-</string>
+    <string name="editor">Editor</string>
+    <string name="discovery">Service Discovery</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="activator">Activator</string>
+    <string name="description">Description</string>
+    <string name="icon">Icon</string>
+    <string name="name">Name</string>
+    <string name="describe">describe the MicroApp</string>
+    <string name="test">Test</string>
+    <string name="text">Text</string>
+    <string name="error">Error</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="get">Get</string>
+    <string name="shift">Shift</string>
+    <string name="previous">Previous</string>
+    <string name="insert">insert the MicroApp name</string>
+    <string name="insertvalue">insert a value</string>
+    <string name="value">value</string>
+    <string name="searchkey">search service</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="browse">Browse</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="set">Set</string>
+    <string name="unset">Remove</string>
+    <string name="edit">Edit</string>
+    <string name="_new">New</string>
+    <string name="run">Run</string>
+    <string name="ttry">Try</string>
+    <string name="setting">Options</string>
+    <string name="info">Info</string>
+    <string name="exit">Exit</string>
+    <string name="about">About</string>
+    <string name="load">Load</string>
+    <string name="save">Save</string>
+    <string name="saveAs">Save As Component</string>
+    <string name="download">Download</string>
+    <string name="upload">Upload</string>
+    <string name="findService">Find Service</string>
+    <string name="findDomoService">Find Domotic Service</string>
+    <string name="insertport">port number</string>
+    <string name="server">server</string>
+    <string name="deploy">Deploy</string>
+    <string name="reset">Reset</string>
+    <string name="undo">Undo</string>
+    <string name="demo">Demo</string>
+    <string name="button">Button</string>
+    <string name="location">Location</string>
+    <string name="state">State</string>
+    <string name="address">Address</string>
+    <string name="zipcode">Zip code</string>
+    <string name="attachment">Attachment</string>
+    <string name="image">Image</string>
+    <string name="content">Content</string>
+    <string name="mandatory">Mandatory</string>
+    <string name="capture">Capture</string>
+    <string name="velocity">Velocity</string>
+    <string name="altitude">Altitude</string>
+    <string name="gpsLocation">Location GPS</string>
+    <string name="gps">GPS</string>
+    <string name="network">Network</string>
+    <string name="normal">Normal</string>
+    <string name="satellite">Satellite</string>
+    <string name="traffic">Traffic</string>
+    <string name="precondition">Pre-condition</string>
+    <string name="sendmail">Send Mail</string>
+    <string name="send">Send</string>
+    <string name="subject">Subject</string>
+    <string name="body">Body</string>
+    <string name="to">To</string>
+    <string name="attach">Attach</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="previewMap">Maps v2</string>
+    <string name="legal">Legal Notices</string>
+    <string name="flash">Flash</string>
+    <string name="noflash">No flash</string>
+    <string name="autoflash">Auto</string>
+    <string name="prompt">Prompt</string>
+    <string name="type">Type</string>
+    <string name="multi">Multi</string>
+    <string name="multiple">Multiple</string>
+    <string name="number">Number</string>
+    <string name="details">Details</string>
+    <string name="update">Update</string>
+    <string name="newcomponent">New Component</string>
+    <string name="component">Component</string>
+    <string name="newrestful">New Restful Component</string>
+    <string name="project">New project</string>
+    <string name="run_project">Run project</string>
+    <string name="search_project">Search project</string>
+    <string name="editor_project">Editor project</string>
+    <string name="select_service">Select the components of the project</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="temperature">Temperature</string>
+    <string name="pressure">Pressure</string>
+    <string name="stop_service">Stop service</string>
+    <string name="new_sensor">New sensor</string>
+    <string name="editor_sensor">Editor sensor</string>
+    <string name="sensor">Sensor</string>
+    <string name="proj">Project</string>
+    <string name="stop_serv">Stop service: </string>
 
 
-        <!-- messages -->
-        <string name="noImplemented">Not yet implemented</string>
-        <string name="noData">No data</string>
-        <string name="notRunnable">Component not runnable</string>
-        <string name="notRegistered">Device id mismtatch.\nThe device is not registered for this application.\nPlease contact the developers.</string>
-        <string name="notExists">The directory does not exists</string>
-        <string name="noXml">No file .xml is present</string>
-        <string name="typeMismatch">Type mismatch</string>
-        <string name="loaded">Loaded</string>
-        <string name="saved">Saved correctly</string>
-        <string name="deployed">Deployed correctly</string>
-        <string name="opening">Opening&#8230;</string>
-        <string name="dataSaved">Data saved correctly</string>
-        <string name="pleaseWait">Please wait</string>
-        <string name="debugMode">Debug mode</string>
-        <string name="emailProvider">Email provider</string>
-        <string name="emailPassword">Email password</string>
-        <string name="sendEmail">Send email</string>
-        <string name="playSound">Play sound</string>
-        <string name="whiteBackground">White background</string>
-        <string name="play">Play</string>
-        <string name="stop">Stop</string>
-        <string name="rec">Rec</string>
-        <string name="waitingForCall">Waiting for call</string>
-        <string name="useEmailProvider">Use the email provider</string>
-        <string name="visiblePassword">Make the password visible</string>
-        <string name="setCondition">Set Condition</string>
-        <string name="changeState">Change State</string>
-        <string name="imageTook">The image that you took</string>
-        <string name="stockQuoteService">Stock Quote Service</string>
-        <string name="stockQuoteWebService">web service stock quote</string>
-        <string name="sendingSms">Sending an SMS to</string>
-        <string name="facesDetected">Detected faces</string>
-        <string name="activeAdmob">Admob preview</string>
-        <string name="activeSpeech">Speech mode</string>
-        <string name="virtualSms">Send virtual Sms</string>
+    <!-- messages -->
+    <string name="noImplemented">Not yet implemented</string>
+    <string name="noData">No data</string>
+    <string name="notRunnable">Component not runnable</string>
+    <string name="notRegistered">Device id mismtatch.\nThe device is not registered for this application.\nPlease contact the developers.</string>
+    <string name="notExists">The directory does not exists</string>
+    <string name="noXml">No file .xml is present</string>
+    <string name="typeMismatch">Type mismatch</string>
+    <string name="loaded">Loaded</string>
+    <string name="saved">Saved correctly</string>
+    <string name="deployed">Deployed correctly</string>
+    <string name="opening">Opening&#8230;</string>
+    <string name="dataSaved">Data saved correctly</string>
+    <string name="pleaseWait">Please wait</string>
+    <string name="debugMode">Debug mode</string>
+    <string name="emailProvider">Email provider</string>
+    <string name="emailPassword">Email password</string>
+    <string name="sendEmail">Send email</string>
+    <string name="playSound">Play sound</string>
+    <string name="whiteBackground">White background</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="rec">Rec</string>
+    <string name="waitingForCall">Waiting for call</string>
+    <string name="useEmailProvider">Use the email provider</string>
+    <string name="visiblePassword">Make the password visible</string>
+    <string name="setCondition">Set Condition</string>
+    <string name="changeState">Change State</string>
+    <string name="imageTook">The image that you took</string>
+    <string name="stockQuoteService">Stock Quote Service</string>
+    <string name="stockQuoteWebService">web service stock quote</string>
+    <string name="sendingSms">Sending an SMS to</string>
+    <string name="facesDetected">Detected faces</string>
+    <string name="activeAdmob">Admob preview</string>
+    <string name="activeSpeech">Speech mode</string>
+    <string name="virtualSms">Send virtual Sms</string>
 
-        <string name="descrizione">Description</string>
-        <string name="title">Title</string>
-        <string name="appname">Nome App</string>
-        <string name="nickname">Nickname</string>
-        <string name="menu">Menu</string>
-        <string name="screenshot">Screenshot</string>
-        <string name="autore">Autore:</string>
-        <string name="vote">Vote</string>
-        <string name="nome">Nome</string>
-        <string name="voto">Voto:</string>
+    <string name="descrizione">Description</string>
+    <string name="title">Title</string>
+    <string name="appname">Nome App</string>
+    <string name="nickname">Nickname</string>
+    <string name="menu">Menu</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="autore">Autore:</string>
+    <string name="vote">Vote</string>
+    <string name="nome">Nome</string>
+    <string name="voto">Voto:</string>
 
-        <!-- Buttons -->
-        <string name="button_add">Add gesture</string>
-        <string name="button_reload">Reload</string>
-        <string name="button_discard">Discard</string>
-        <string name="button_done">Done</string>
-        <string name="edit_gestures">Gestures</string>
-        <string name="run_gestures">Run gestures</string>
+    <!-- Buttons -->
+    <string name="button_add">Add gesture</string>
+    <string name="button_reload">Reload</string>
+    <string name="button_discard">Discard</string>
+    <string name="button_done">Done</string>
+    <string name="edit_gestures">Gestures</string>
+    <string name="run_gestures">Run gestures</string>
 
-        <!-- Gestures -->
-        <string name="prompt_gesture_name">Name</string>
-        <string name="error_missing_name">You must enter a name</string>
-        <string name="save_success">Gesture saved in %s</string>
-        <string name="cancel_action">Cancel</string>
-        <string name="gestures_loading">Loading gestures&#8230;</string>
-        <string name="gestures_empty">No gestures</string>
-        <string name="gestures_activity">Gestures</string>
-        <string name="gestures_rename">Rename</string>
-        <string name="gestures_delete">Delete</string>
-        <string name="gestures_delete_success">Gesture deleted</string>
-        <string name="gestures_rename_title">Rename gesture</string>
-        <string name="gestures_rename_label">Gesture name</string>
-        <string name="gestures_error_loading">Could not load %s. Make sure you have storage available.</string>
-        <string name="draw_gesture">Draw under the gesture</string>
-        <string name="pickvalue">Pick a value</string>
-        <string name="yourVideo">Video that you took</string>
+    <!-- Gestures -->
+    <string name="prompt_gesture_name">Name</string>
+    <string name="error_missing_name">You must enter a name</string>
+    <string name="save_success">Gesture saved in %s</string>
+    <string name="cancel_action">Cancel</string>
+    <string name="gestures_loading">Loading gestures&#8230;</string>
+    <string name="gestures_empty">No gestures</string>
+    <string name="gestures_activity">Gestures</string>
+    <string name="gestures_rename">Rename</string>
+    <string name="gestures_delete">Delete</string>
+    <string name="gestures_delete_success">Gesture deleted</string>
+    <string name="gestures_rename_title">Rename gesture</string>
+    <string name="gestures_rename_label">Gesture name</string>
+    <string name="gestures_error_loading">Could not load %s. Make sure you have storage available.</string>
+    <string name="draw_gesture">Draw under the gesture</string>
+    <string name="pickvalue">Pick a value</string>
+    <string name="yourVideo">Video that you took</string>
 
-        <string name="choose_a_state">Choose a state</string>
-        <string name="hides_this_component_during_myapp_execution">Hides this component during MyApp execution</string>
-        <string name="starts_this_component_with_a_progress_bar">Starts this component with a progress bar</string>
-        <string name="default_state">Default state</string>
-        <string name="select_the_possibles_states">Select the possibles states</string>
-        <string name="visible">visible</string>
-        <string name="hidden">hidden</string>
-        <string name="progress">progress</string>
-        <string name="select_the_possible_states">Select the possible states</string>
+    <string name="choose_a_state">Choose a state</string>
+    <string name="hides_this_component_during_myapp_execution">Hides this component during MyApp execution</string>
+    <string name="starts_this_component_with_a_progress_bar">Starts this component with a progress bar</string>
+    <string name="default_state">Default state</string>
+    <string name="select_the_possibles_states">Select the possibles states</string>
+    <string name="visible">visible</string>
+    <string name="hidden">hidden</string>
+    <string name="progress">progress</string>
+    <string name="select_the_possible_states">Select the possible states</string>
 
-        <string name="type_user_input">Type of userinput</string>
-        <string name="restore">Restore default settings</string>
+    <string name="type_user_input">Type of userinput</string>
+    <string name="restore">Restore default settings</string>
 
-        <string name="reverse">Reverse</string>
+    <string name="reverse">Reverse</string>
 
-        <!-- conditions -->
-        <string-array name="conditions">
-            <item>Temperature</item>
-            <item>Proximity</item>
-            <item>Brightness</item>
-            <item>Network</item>
-        </string-array>
+    <!-- conditions -->
+    <string-array name="conditions">
+        <item>Temperature</item>
+        <item>Proximity</item>
+        <item>Brightness</item>
+        <item>Network</item>
+    </string-array>
 
-        <string-array name="operators">
-            <item>equal</item>
-            <item>not equal</item>
-            <item>less than</item>
-            <item>less equal</item>
-            <item>greater than</item>
-            <item>greater equal</item>
-        </string-array>
+    <string-array name="operators">
+        <item>equal</item>
+        <item>not equal</item>
+        <item>less than</item>
+        <item>less equal</item>
+        <item>greater than</item>
+        <item>greater equal</item>
+    </string-array>
 
-        <string-array name="operatorsNetwork">
-            <item>is</item>
-            <item>not is</item>
-        </string-array>
+    <string-array name="operatorsNetwork">
+        <item>is</item>
+        <item>not is</item>
+    </string-array>
 
-        <string-array name="operatorsBrightness">
-            <item>0</item>
-            <item>10</item>
-            <item>100</item>
-            <item>1000</item>
-            <item>10000</item>
-        </string-array>
+    <string-array name="operatorsBrightness">
+        <item>0</item>
+        <item>10</item>
+        <item>100</item>
+        <item>1000</item>
+        <item>10000</item>
+    </string-array>
 </resources>

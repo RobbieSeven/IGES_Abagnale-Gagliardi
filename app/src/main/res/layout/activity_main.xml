@@ -1,18 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.utente.microapp20.MainActivity">
+    android:gravity="center"
+    android:orientation="vertical" 
+    android:id="@+id/linearLayoutRoot">
+
+    <LinearLayout
+        android:id="@+id/linearLayout0"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|center" >
+
+        <TextView
+            android:id="@+id/benv"
+            android:layout_width="0dip"
+            android:layout_height="30dp"
+            android:layout_weight="0.02"
+            android:clickable="false"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:text="@string/welcome_app_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/benvv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="0.02"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="benvenuto"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        />
+            
+    <ImageView
+        android:id="@+id/logoapp"
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:contentDescription="@string/image"
+        android:src="@drawable/attach" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/namefile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center"
+        android:textColor="#234567"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/descfile"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.16"
+        android:lines="5"
+        android:textIsSelectable="false" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom|center|clip_vertical" >
+
+        <Button
+            android:id="@+id/sfoglia"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="105dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.45"
+            android:onClick="browseOnClick"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:state_enabled="true"
+            android:text="@string/browse" />
+
+        <Button
+            android:id="@+id/avvia"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:onClick="runOnClick"
+            android:drawableLeft="@android:drawable/ic_media_play"
+            android:state_enabled="false"
+            android:text="@string/run" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
