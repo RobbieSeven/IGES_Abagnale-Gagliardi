@@ -1,4 +1,4 @@
-package com.example.giordanogiammaria.microapp30;
+package com.giordanogiammaria.microapp30;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
     private TextView nameFile;

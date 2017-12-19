@@ -1,26 +1,26 @@
-package com.example.giordanogiammaria.microapp30;
+package com.giordanogiammaria.microapp30;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
-
+import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class ListFile extends AppCompatActivity {
+public class ListFile extends AppCompatActivity implements MaterialSearchView.SearchViewSearchListener /*,MaterialSearchView.SearchViewVoiceListener*/ {
 
     private ArrayAdapter<String> adapter;
+    MaterialSearchView materialSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,7 @@ public class ListFile extends AppCompatActivity {
         setContentView(R.layout.listfile);
         ListView listFile;
         listFile = findViewById(R.id.list);
-        EditText searchEditText = findViewById(R.id.search_edit_text);
-
+        materialSearchView=findViewById(R.id.material_search_view);
         String path = createDir();
         ArrayList<String> namesOfFile = ReadFileXML(path);
         adapter = new ArrayAdapter<>(this,
@@ -43,23 +42,19 @@ public class ListFile extends AppCompatActivity {
                 setData(result);
             }
         });
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                adapter.getFilter().filter(charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        materialSearchView.addListener(this);
+    }
+    @Override
+    public void onBackPressed() {
+        if (!materialSearchView.onBackPressed()) {
+            super.onBackPressed();
+        }
+    }
+
 
     private void setData(String result) {
         Intent returnIntent = new Intent(result);
@@ -90,6 +85,11 @@ public class ListFile extends AppCompatActivity {
                 namesOfFile.add(inFile.getName());
             }
         return namesOfFile;
+    }
+
+    @Override
+    public void onSearch(@NonNull String searchTerm) {
+        adapter.getFilter().filter(searchTerm);
     }
 
 }
