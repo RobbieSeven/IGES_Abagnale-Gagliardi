@@ -17,7 +17,7 @@ import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 import java.io.File;
 import java.util.ArrayList;
 
-public class ListFile extends AppCompatActivity implements MaterialSearchView.SearchViewSearchListener /*,MaterialSearchView.SearchViewVoiceListener*/ {
+public class ListFile extends AppCompatActivity implements MaterialSearchView.SearchViewSearchListener  {
 
     private ArrayAdapter<String> adapter;
     MaterialSearchView materialSearchView;
@@ -54,7 +54,6 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         if (!materialSearchView.onBackPressed()) {
             super.onBackPressed();
         }
-
     }
 
 
