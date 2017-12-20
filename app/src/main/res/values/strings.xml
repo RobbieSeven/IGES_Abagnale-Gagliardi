@@ -132,6 +132,7 @@
     <string name="noXml">No file .xml is present</string>
     <string name="typeMismatch">Type mismatch</string>
     <string name="loaded">Loaded</string>
+    <string name="search">search</string >
     <string name="saved">Saved correctly</string>
     <string name="deployed">Deployed correctly</string>
     <string name="opening">Opening&#8230;</string>
