@@ -30,7 +30,8 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         ListView listFile;
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
-        String path = createDir();
+        File localPath=getLocalPath();
+        String path = createDir(localPath);//fix
         ArrayList<String> namesOfFile = ReadFileXML(path);
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, namesOfFile);
@@ -62,17 +63,19 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
     }
+    private File getLocalPath(){
+       String nameApp= (String) getApplicationContext().getApplicationInfo().loadLabel(getApplicationContext().getPackageManager());
+        return new File(Environment.getExternalStorageDirectory() +
+                File.separator +nameApp);
+    }
 
-    private String createDir() {
+    private String createDir(File path) {
         //create the folder microApp
         boolean isNotCreated;
-        String nameApp = (String) getApplicationContext().getApplicationInfo().loadLabel(getApplicationContext().getPackageManager());
-        File dir= new File(Environment.getExternalStorageDirectory() +
-                File.separator +nameApp);
-        isNotCreated = dir.mkdir();
+        isNotCreated = path.mkdir();
         if (isNotCreated)
             System.exit(-1);//memory end
-        return dir.getPath();
+        return path.getPath();
     }
 
     private ArrayList<String> ReadFileXML(String path) {
