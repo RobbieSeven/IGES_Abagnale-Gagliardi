@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 public class SplashScreen extends AppCompatActivity {
     /*splashscreen */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
