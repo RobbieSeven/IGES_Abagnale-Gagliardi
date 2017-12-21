@@ -18,14 +18,13 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class ListFile extends AppCompatActivity implements MaterialSearchView.SearchViewSearchListener  {
-
+    /*la classe mostra la lista  dei file xml*/
     private ArrayAdapter<String> adapter;
     MaterialSearchView materialSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.listfile);
         ListView listFile;
         listFile = findViewById(R.id.list);
