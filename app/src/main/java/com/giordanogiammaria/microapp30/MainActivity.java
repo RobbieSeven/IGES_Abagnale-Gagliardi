@@ -46,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void runOnClick(View view) {
-        Toast.makeText(getApplicationContext(),"TODO",Toast.LENGTH_LONG).show();
-
-    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[], @NonNull int[] grantResults) {

@@ -76,17 +76,7 @@
             android:onClick="browseOnClick"
             android:drawableLeft="@android:drawable/ic_menu_search"
             android:state_enabled="true"
-            android:text="@string/browse" />
-
-        <Button
-            android:id="@+id/avvia"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:onClick="runOnClick"
-            android:drawableLeft="@android:drawable/ic_media_play"
-            android:state_enabled="false"
-            android:text="@string/run" />
+            android:text="@string/run_from_XML" />
 
 
     </LinearLayout>
