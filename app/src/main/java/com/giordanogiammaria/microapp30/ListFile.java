@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.Facade.Facade;
-import com.giordanogiammaria.microapp30.Facade.IFacade;
 import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     /*la classe mostra la lista  dei file xml*/
     private ArrayAdapter<String> adapter;
     MaterialSearchView materialSearchView;
-    IFacade facade;
+    Facade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,14 +11,14 @@ import java.util.ArrayList;
  * Created by Giordano Giammaria on 08/01/2018.
  */
 
-public class Facade implements IFacade{
+public class Facade {
     private Context context;
 
     public Facade(Context context){
         this.context=context;
     }
 
-    @Override
+
     public ArrayList<String>getListFile(){
         ArrayList<String>toReturn;
         ArrayList<File>app;
