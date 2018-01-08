@@ -5,6 +5,7 @@ import android.os.Environment;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Giordano Giammaria on 08/01/2018.
@@ -23,23 +24,34 @@ public class ManageFile {
             System.exit(-1);//memory end
         return path.getPath();
     }
-    public ArrayList<String> ReadFileXML(String path) {
-        String ext;
-        ArrayList<String> namesOfFile;
-        namesOfFile = new ArrayList<>();
+    public ArrayList<File> ReadDir(String path) {
+        ArrayList<File> listOfFile;
+        listOfFile= new ArrayList<>();
         File f = new File(path);
         File[] files = f.listFiles();
         if (files != null)
-            for (File inFile : files) {
-                ext = android.webkit.MimeTypeMap.getFileExtensionFromUrl(inFile.getName());
-                if (ext.equalsIgnoreCase("xml"))
-                    namesOfFile.add(inFile.getName());
-            }
-        return namesOfFile;
+            listOfFile.addAll(Arrays.asList(files));
+        return listOfFile;
     }
+
+    public boolean compareExt(File file,String ext){
+        String currentExt = android.webkit.MimeTypeMap.getFileExtensionFromUrl(file.getName());
+        return currentExt.equalsIgnoreCase(ext);
+    }
+
     public File getLocalPath(Context context){
-        String nameApp= (String) context.getApplicationContext().getApplicationInfo().loadLabel(context.getApplicationContext().getPackageManager());
+        String nameApp= (String) context.getApplicationContext().getApplicationInfo().
+                loadLabel(context.getApplicationContext().getPackageManager());
         return new File(Environment.getExternalStorageDirectory() +
                 File.separator +nameApp);
+    }
+
+    public ArrayList<String> filter(ArrayList<File> listFile, String ext) {
+        ArrayList<String>toReturn=new ArrayList<>();
+        for (File file:listFile){
+            if (compareExt(file,ext))
+                toReturn.add(file.getName());
+        }
+        return toReturn;
     }
 }

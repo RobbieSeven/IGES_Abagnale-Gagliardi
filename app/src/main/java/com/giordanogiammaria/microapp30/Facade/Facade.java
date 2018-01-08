@@ -21,10 +21,12 @@ public class Facade implements IFacade{
     @Override
     public ArrayList<String>getListFile(){
         ArrayList<String>toReturn;
+        ArrayList<File>app;
         ManageFile manageFile=new ManageFile();
         File localPath=manageFile.getLocalPath(context);
         String path= manageFile.createDir(localPath);
-        toReturn=manageFile.ReadFileXML(path);
+        app=manageFile.ReadDir(path);
+        toReturn=manageFile.filter(app,"xml");
         return toReturn;
     }
 }
