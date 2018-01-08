@@ -12,9 +12,7 @@ import java.util.Arrays;
  */
 
 public class ManageFile {
-    public ManageFile(){
 
-    }
 
     public String createDir(File path) {
         //create the folder microApp
