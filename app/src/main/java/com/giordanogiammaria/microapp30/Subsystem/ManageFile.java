@@ -34,7 +34,7 @@ public class ManageFile {
         return listOfFile;
     }
 
-    public boolean compareExt(File file,String ext){
+    private boolean compareExt(File file,String ext){
         String currentExt = android.webkit.MimeTypeMap.getFileExtensionFromUrl(file.getName());
         return currentExt.equalsIgnoreCase(ext);
     }
