@@ -1,8 +1,6 @@
 package com.giordanogiammaria.microapp30;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.Facade.Facade;
 import com.giordanogiammaria.microapp30.Facade.IFacade;
 import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class ListFile extends AppCompatActivity implements MaterialSearchView.SearchViewSearchListener  {
@@ -33,7 +31,6 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         ListView listFile;
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
-
         facade= new Facade(getApplicationContext());
         ArrayList<String> namesOfFile = facade.getListFile();
         adapter = new ArrayAdapter<>(this,
@@ -59,12 +56,10 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         }
     }
 
-
     private void setData(String result) {
         Intent returnIntent = new Intent(result);
         returnIntent.putExtra("result",result);
-        setResult(Activity.RESULT_OK,returnIntent);
-        finish();
+        Toast.makeText(getApplicationContext(),"call class ",Toast.LENGTH_LONG).show();
     }
 
     @Override
