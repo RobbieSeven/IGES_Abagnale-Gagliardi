@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.giordanogiammaria.microapp30.Facade.Facade;
+import com.giordanogiammaria.microapp30.Facade.IFacade;
 import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 
 import java.io.File;
@@ -21,6 +23,7 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     /*la classe mostra la lista  dei file xml*/
     private ArrayAdapter<String> adapter;
     MaterialSearchView materialSearchView;
+    IFacade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,9 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         ListView listFile;
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
-        File localPath=getLocalPath();
-        String path = createDir(localPath);//fix
-        ArrayList<String> namesOfFile = ReadFileXML(path);
+
+        facade= new Facade(getApplicationContext());
+        ArrayList<String> namesOfFile = facade.getListFile();
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, namesOfFile);
         listFile.setAdapter(adapter);
@@ -63,35 +66,7 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
     }
-    private File getLocalPath(){
-       String nameApp= (String) getApplicationContext().getApplicationInfo().loadLabel(getApplicationContext().getPackageManager());
-        return new File(Environment.getExternalStorageDirectory() +
-                File.separator +nameApp);
-    }
 
-    private String createDir(File path) {
-        //create the folder microApp
-        boolean isNotCreated;
-        isNotCreated = path.mkdir();
-        if (isNotCreated)
-            System.exit(-1);//memory end
-        return path.getPath();
-    }
-
-    private ArrayList<String> ReadFileXML(String path) {
-        String ext;
-        ArrayList<String> namesOfFile;
-        namesOfFile = new ArrayList<>();
-        File f = new File(path);
-        File[] files = f.listFiles();
-        if (files != null)
-            for (File inFile : files) {
-                ext = android.webkit.MimeTypeMap.getFileExtensionFromUrl(inFile.getName());
-                if (ext.equalsIgnoreCase("xml"))
-                    namesOfFile.add(inFile.getName());
-            }
-        return namesOfFile;
-    }
     @Override
     public void onSearch(@NonNull String searchTerm) {
         adapter.getFilter().filter(searchTerm);
