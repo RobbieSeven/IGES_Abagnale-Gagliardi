@@ -38,7 +38,7 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="accuracy">Accuracy</string>
-    <string name="browse">Browse</string>
+    <string name="run_from_XML">run from XML</string>
     <string name="delete">Delete</string>
     <string name="add">Add</string>
     <string name="cancel">Cancel</string>

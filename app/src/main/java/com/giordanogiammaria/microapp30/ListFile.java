@@ -79,13 +79,16 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     }
 
     private ArrayList<String> ReadFileXML(String path) {
+        String ext;
         ArrayList<String> namesOfFile;
         namesOfFile =new ArrayList<>();
         File f = new File(path);
         File[] files = f.listFiles();
         if (files!=null)
             for (File inFile : files) {
-                namesOfFile.add(inFile.getName());
+             ext = android.webkit.MimeTypeMap.getFileExtensionFromUrl(inFile.getName());
+                if (ext.equalsIgnoreCase("xml"))
+                     namesOfFile.add(inFile.getName());
             }
         return namesOfFile;
     }
