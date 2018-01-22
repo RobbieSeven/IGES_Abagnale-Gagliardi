@@ -41,6 +41,14 @@ public class Component {
         return compActivity.getOutputTypes();
     }
 
+    public HashMap<String, ArrayList<String>> getInputSenders() {
+        return inputSenders;
+    }
+
+    public ArrayList<String> getOutputReceivers() {
+        return outputReceivers;
+    }
+
     public void addInputSender(String compId, String dataName) {
         if (inputSenders.containsKey(compId)) {
             inputSenders.get(compId).add(dataName);
