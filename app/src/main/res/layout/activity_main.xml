@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="160dp"
         android:contentDescription="@string/image"
-        android:src="@drawable/attach" />
+        android:src="@drawable/logo_micro_app" />
 
     <TextView
         android:id="@+id/namefile"
