@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.logo_micro_app)
                 .setTitle("Closing Activity")
                 .setMessage("Are you sure you want to close this activity?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
