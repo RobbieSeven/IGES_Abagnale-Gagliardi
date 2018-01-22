@@ -20,7 +20,7 @@ import com.giordanogiammaria.microapp30.Activity.TakePhotoActivity;
 
 public class ComponentCreator {
 
-    static ComponentActivity getComponentActivity(ComponentType type){
+    static ComponentFragment getComponentActivity(ComponentType type){
 
         switch (type) {
             case TAKEPHOTO:

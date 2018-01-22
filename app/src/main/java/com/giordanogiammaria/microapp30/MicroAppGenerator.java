@@ -1,5 +1,7 @@
 package com.giordanogiammaria.microapp30;
 
+import com.giordanogiammaria.microapp30.Activity.CallContactActivity;
+
 import java.net.URL;
 import java.util.ArrayList;
 

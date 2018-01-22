@@ -1,6 +1,5 @@
 package com.giordanogiammaria.microapp30;
 
-import android.app.Activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,14 +11,14 @@ import java.util.HashMap;
 public class Component {
 
     private String id;
-    private ComponentActivity compActivity;
+    private ComponentFragment componentFragment;
     private HashMap<String, GenericData> inputData;
     private HashMap<String, ArrayList<String>> inputSenders;
     private ArrayList<String> outputReceivers;
 
-    public Component(String id, ComponentType type) {
+    public Component(String id, ComponentType type) throws ClassNotFoundException {
         this.id = id;
-        compActivity = new Activity();  // istanzia l'activity in base al tipo della componente
+        componentFragment = ComponentCreator.getComponentActivity(type);  // istanzia il fragment in base al tipo della componente
         inputData = new HashMap<>();
         inputSenders = new HashMap<>();
         outputReceivers = new ArrayList<>();
@@ -29,16 +28,16 @@ public class Component {
         return id;
     }
 
-    public ComponentActivity getActivity() {
-        return compActivity;
+    public ComponentFragment getFragment() {
+        return componentFragment;
     }
 
     public HashMap<String, DataType> getInputTypes() {
-        return compActivity.getInputTypes();
+        return componentFragment.getInputTypes();
     }
 
     public ArrayList<DataType> getOutputTypes() {
-        return compActivity.getOutputTypes();
+        return componentFragment.getOutputTypes();
     }
 
     public void addInputSender(String compId, String dataName) {
@@ -57,8 +56,8 @@ public class Component {
 
     public void putData(HashMap<DataType, GenericData> outputData, String sendId) {
         for (String dataName : inputSenders.get(sendId))
-            if (compActivity.getInputTypes().containsKey(dataName)) {
-                DataType dataType = compActivity.getInputTypes().get(dataName);
+            if (componentFragment.getInputTypes().containsKey(dataName)) {
+                DataType dataType = componentFragment.getInputTypes().get(dataName);
                 if (outputData.containsKey(dataType)) {
                     GenericData data = outputData.get(dataType);
                     inputData.put(sendId, data);
@@ -67,19 +66,19 @@ public class Component {
     }
 
     public void setInputs() {
-        for (String dataName : compActivity.getInputTypes().keySet())
+        for (String dataName : componentFragment.getInputTypes().keySet())
             if (!inputData.containsKey(dataName))
                 return; // error
-        compActivity.setInputsData(inputData);
+        componentFragment.setInputsData(inputData);
     }
 
     public HashMap<DataType, GenericData> getOutput() {
-        HashMap<DataType, GenericData> dataCollection = compActivity.getOutputsData();
+        HashMap<DataType, GenericData> dataCollection = componentFragment.getOutputsData();
         if (dataCollection != null)
-            for (DataType dataType : compActivity.getOutputTypes())
+            for (DataType dataType : componentFragment.getOutputTypes())
                 if (!dataCollection.containsKey(dataType))
                     return null; // error
-        return compActivity.getOutputsData();
+        return componentFragment.getOutputsData();
     }
 
 }

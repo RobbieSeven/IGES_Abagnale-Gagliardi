@@ -20,7 +20,5 @@
         android:src="@android:drawable/ic_menu_camera" 
         android:contentDescription="@string/image"/>
 
-    <include
-        layout="@layout/microapp" />
 
 </LinearLayout>

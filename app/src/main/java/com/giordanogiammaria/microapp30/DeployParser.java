@@ -6,6 +6,6 @@ package com.giordanogiammaria.microapp30;
 
 public class DeployParser {
 
-    DirectedGraph graph;
+   // DirectedGraph graph;
 
 }
