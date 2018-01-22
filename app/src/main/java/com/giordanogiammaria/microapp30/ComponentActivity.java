@@ -1,5 +1,7 @@
 package com.giordanogiammaria.microapp30;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +9,7 @@ import java.util.HashMap;
  * Created by Roberto on 15/01/2018.
  */
 
-public abstract class ComponentActivity {
+public abstract class ComponentActivity extends Activity{
 
     private ComponentType type;
     private HashMap<String, DataType> inputTypes;
