@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Component {
 
     private String id;
-    private IComponentActivity compActivity;
+    private ComponentActivity compActivity;
     private HashMap<String, GenericData> inputData;
     private HashMap<String, ArrayList<String>> inputSenders;
     private ArrayList<String> outputReceivers;
@@ -29,7 +29,7 @@ public class Component {
         return id;
     }
 
-    public IComponentActivity getActivity() {
+    public ComponentActivity getActivity() {
         return compActivity;
     }
 
@@ -41,7 +41,7 @@ public class Component {
         return compActivity.getOutputTypes();
     }
 
-    public addInputSender(String compId, String dataName) {
+    public void addInputSender(String compId, String dataName) {
         if (inputSenders.containsKey(compId)) {
             inputSenders.get(compId).add(dataName);
         } else {
@@ -51,11 +51,11 @@ public class Component {
         }
     }
 
-    public addOutputReceiver(String compId) {
+    public void addOutputReceiver(String compId) {
         outputReceivers.add(compId);
     }
 
-    public putData(HashMap<DataType, GenericData> outputData, String sendId) {
+    public void putData(HashMap<DataType, GenericData> outputData, String sendId) {
         for (String dataName : inputSenders.get(sendId))
             if (compActivity.getInputTypes().containsKey(dataName)) {
                 DataType dataType = compActivity.getInputTypes().get(dataName);
