@@ -1,5 +1,7 @@
 package com.giordanogiammaria.microapp30;
 
+import android.app.Activity;
+
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -13,5 +15,13 @@ public class MicroAppGenerator {
     DeployParser parser;
     int currentIndex;
     URL filePath;
+
+    public Activity nextComponentActivity(){
+        return null;
+    }
+
+    public Activity prevComponentActivity(){
+        return null;
+    }
 
 }
