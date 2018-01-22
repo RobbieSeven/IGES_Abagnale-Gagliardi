@@ -11,15 +11,15 @@ import java.util.HashMap;
 
 public class Component {
 
-    String id;
-    IComponentActivity compActivity;
-    HashMap<String, GenericData> inputData;
-    HashMap<String, ArrayList<String>> inputSenders;
-    ArrayList<String> outputReceivers;
+    private String id;
+    private IComponentActivity compActivity;
+    private HashMap<String, GenericData> inputData;
+    private HashMap<String, ArrayList<String>> inputSenders;
+    private ArrayList<String> outputReceivers;
 
     public Component(String id, ComponentType type) {
         this.id = id;
-        compActivity = new Activity();
+        compActivity = new Activity();  // istanzia l'activity in base al tipo della componente
         inputData = new HashMap<>();
         inputSenders = new HashMap<>();
         outputReceivers = new ArrayList<>();
