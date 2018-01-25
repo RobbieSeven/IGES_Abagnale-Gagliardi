@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 /**
  * Created by Roberto on 15/01/2018.
@@ -22,7 +27,11 @@ public class DeployParser {
     private Document document;
 
     public DeployParser(String filePath) {
-        File file = new File(filePath);
+        File file;
+        if (filePath != null)
+            file = new File(filePath);
+        else
+            file = createXMLFile();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -59,7 +68,109 @@ public class DeployParser {
                 component.addOutputReceiver(destId);
             }
         }
+        printComponents(components);
         return components;
+    }
+
+    private static File createXMLFile() {
+        File file = new File("C:\\file.xml");
+        try {
+
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            // root elements
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("xml");
+            doc.appendChild(rootElement);
+
+            Element comp1 = doc.createElement("component");
+            rootElement.appendChild(comp1);
+            comp1.setAttribute("id", "1");
+            comp1.setAttribute("type", "BLANK");
+
+            Element output1 = doc.createElement("output");
+            output1.setAttribute("id", "2");
+            comp1.appendChild(output1);
+
+
+            Element comp2 = doc.createElement("component");
+            rootElement.appendChild(comp2);
+            comp2.setAttribute("id", "2");
+            comp2.setAttribute("type", "BLANK");
+
+            Element input2 = doc.createElement("input");
+            input2.setAttribute("id", "1");
+            input2.setAttribute("dataname", "STRING");
+            comp2.appendChild(input2);
+
+            Element output2 = doc.createElement("output");
+            output2.setAttribute("id", "3");
+            output2.setAttribute("id", "4");
+            comp2.appendChild(output2);
+
+
+            Element comp3 = doc.createElement("component");
+            comp3.setAttribute("id", "3");
+            comp3.setAttribute("type", "BLANK");
+            rootElement.appendChild(comp3);
+
+            Element input3 = doc.createElement("input");
+            input3.setAttribute("id", "2");
+            input3.setAttribute("dataname", "STRING");
+            comp3.appendChild(input3);
+
+
+            Element comp4 = doc.createElement("component");
+            comp4.setAttribute("id", "4");
+            comp4.setAttribute("type", "BLANK");
+            rootElement.appendChild(comp4);
+
+            Element input4 = doc.createElement("input");
+            input4.setAttribute("id", "2");
+            input4.setAttribute("dataname", "STRING");
+            comp4.appendChild(input4);
+
+            Element output4 = doc.createElement("output");
+            output4.setAttribute("id", "5");
+            comp4.appendChild(output4);
+
+
+            Element comp5 = doc.createElement("component");
+            comp5.setAttribute("id", "5");
+            comp5.setAttribute("type", "BLANK");
+            rootElement.appendChild(comp5);
+
+            Element input5 = doc.createElement("input");
+            input5.setAttribute("id", "4");
+            input5.setAttribute("dataname", "STRING");
+            comp5.appendChild(input5);
+
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(file);
+
+            // Output to console for testing
+            // StreamResult result = new StreamResult(System.out);
+
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+
+        return file;
+    }
+
+    private static void printComponents(ArrayList<Component> components) {
+        System.out.println("Componenti:");
+        for (Component c : components)
+            System.out.print(c.toString() + " --- ");
+        System.out.println();
     }
 
 }

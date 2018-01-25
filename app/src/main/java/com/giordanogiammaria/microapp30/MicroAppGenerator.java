@@ -15,11 +15,11 @@ public class MicroAppGenerator {
     private ArrayList<Component> components;
     private DeployParser parser;
     private int currentIndex;
-    private URL filePath;
+    private String filePath;
 
-    public MicroAppGenerator(URL filePath) {
+    public MicroAppGenerator(String filePath) {
         this.filePath = filePath;
-        parser = new DeployParser(filePath.getPath());
+        parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;
     }
@@ -48,6 +48,10 @@ public class MicroAppGenerator {
             return nextComp.getFragment();
         } else      // se non ci sono altre componenti, restituisce null
             return null;
+    }
+
+    public static void main(String[] args) {
+        new MicroAppGenerator(null);
     }
 
 }

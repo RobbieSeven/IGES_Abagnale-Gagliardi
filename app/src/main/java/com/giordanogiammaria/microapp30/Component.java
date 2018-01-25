@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class Component {
 
     private String id;
+    private ComponentType type;
     private ComponentFragment compFragment;
     private HashMap<String, GenericData> inputData;
     private HashMap<String, ArrayList<String>> inputSenders;
@@ -17,6 +18,7 @@ public class Component {
 
     public Component(String id, ComponentType type) {
         this.id = id;
+        this.type = type;
         compFragment = ComponentFragmentCreator.getComponentFragment(type);  // istanzia l'activity in base al tipo della componente
         inputData = new HashMap<>();
         inputSenders = new HashMap<>();
@@ -45,6 +47,10 @@ public class Component {
 
     public ArrayList<String> getOutputReceivers() {
         return outputReceivers;
+    }
+
+    public String toString() {
+        return "Componente " + id + " di tipo " + type;
     }
 
     public void addInputSender(String compId, String dataName) {
