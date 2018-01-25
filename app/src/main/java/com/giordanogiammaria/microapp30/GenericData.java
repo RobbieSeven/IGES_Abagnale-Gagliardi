@@ -20,10 +20,11 @@ public class GenericData<T> {
 
     public T addData(T newData) {
         data.add(newData);
+        return newData;
     }
 
-    public boolean contains(T data) {
-
+    public boolean contains(T singleData) {
+        return data.contains(singleData);
     }
 
 }
