@@ -1,8 +1,7 @@
 package com.giordanogiammaria.microapp30;
 
 /**
-<<<<<<< HEAD
- * Created by Utente on 15/01/2018.
+ * Created by Giuseppe Abagnale on 15/01/2018.
  */
 
 
