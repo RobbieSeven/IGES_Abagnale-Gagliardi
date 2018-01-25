@@ -16,7 +16,7 @@ import com.giordanogiammaria.microapp30.Activity.TakePhotoFragment;
  * Created by Giuseppe Abagnale on 22/01/2018.
  */
 
-public class FragmentCreator {
+public class ComponentFragmentCreator {
 
     public static ComponentFragment getComponentFragment(ComponentType type) {
         switch (type) {

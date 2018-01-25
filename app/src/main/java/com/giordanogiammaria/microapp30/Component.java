@@ -17,7 +17,7 @@ public class Component {
 
     public Component(String id, ComponentType type) {
         this.id = id;
-        compFragment = FragmentCreator.getComponentFragment(type);  // istanzia l'activity in base al tipo della componente
+        compFragment = ComponentFragmentCreator.getComponentFragment(type);  // istanzia l'activity in base al tipo della componente
         inputData = new HashMap<>();
         inputSenders = new HashMap<>();
         outputReceivers = new ArrayList<>();
