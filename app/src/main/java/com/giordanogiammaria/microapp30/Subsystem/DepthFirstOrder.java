@@ -1,7 +1,5 @@
 package com.giordanogiammaria.microapp30.Subsystem;
 
-import com.giordanogiammaria.microapp30.Component;
-
 import org.jgrapht.DirectedGraph;
 
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ public class DepthFirstOrder<V> {
 
     private DirectedGraph<V, DirEdge> graph;
     private ArrayList<V> sortedVertices;
-    private ArrayList<Node<V>> nodes;
+    private ArrayList<DFSNode<V>> nodes;
     private boolean notDAG;
 
     public DepthFirstOrder(DirectedGraph<V, DirEdge> graph) {
@@ -26,41 +24,41 @@ public class DepthFirstOrder<V> {
 
     public ArrayList<V> sort() {
         for (V v : graph.vertexSet())
-            nodes.add(new Node<>(v, NodeColor.WHITE));
-        for (Node<V> n : nodes)
-            if (n.color == NodeColor.WHITE)
+            nodes.add(new DFSNode<>(v, DFSNodeColor.WHITE));
+        for (DFSNode<V> n : nodes)
+            if (n.color == DFSNodeColor.WHITE)
                 visit(n);
         if (notDAG)
             return null;
         return sortedVertices;
     }
 
-    private void visit(Node<V> node) {
-        if (node.color == NodeColor.GREY)
+    private void visit(DFSNode<V> node) {
+        if (node.color == DFSNodeColor.GREY)
             notDAG = true;
-        else if (node.color == NodeColor.WHITE) {
-            node.color = NodeColor.GREY;
+        else if (node.color == DFSNodeColor.WHITE) {
+            node.color = DFSNodeColor.GREY;
             ArrayList<V> neighbors = new ArrayList<>();
             for (DirEdge e : graph.outgoingEdgesOf(node.vertex))
                 neighbors.add((V) e.getTarget());
-            for (Node n : nodes)
+            for (DFSNode n : nodes)
                 if (neighbors.contains(n.vertex))
                     visit(n);
-            node.color = NodeColor.BLACK;
+            node.color = DFSNodeColor.BLACK;
             sortedVertices.add(0, node.vertex);
         }
     }
 
-    private enum NodeColor {
+    private enum DFSNodeColor {
         WHITE, GREY, BLACK
     }
 
-    private class Node<E> {
+    private class DFSNode<E> {
 
         private E vertex;
-        private NodeColor color;
+        private DFSNodeColor color;
 
-        Node(E vertex, NodeColor color) {
+        DFSNode(E vertex, DFSNodeColor color) {
             this.vertex = vertex;
             this.color = color;
         }
