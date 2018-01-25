@@ -15,6 +15,7 @@ public enum ComponentType {
     LOCATION,
     MAP,
     SAVE,
-    SENDMAIL
+    SENDMAIL,
+    BLANK
 
 }

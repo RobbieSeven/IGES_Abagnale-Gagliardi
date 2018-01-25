@@ -73,7 +73,7 @@ public class DeployParser {
     }
 
     private static File createXMLFile() {
-        File file = new File("C:\\file.xml");
+        File file = new File("D:\\Documenti\\Università\\Materiale magistrale\\Ingegneria, Gestione ed Evoluzione del Software\\file.xml");
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -169,7 +169,7 @@ public class DeployParser {
     private static void printComponents(ArrayList<Component> components) {
         System.out.println("Componenti:");
         for (Component c : components)
-            System.out.print(c.toString() + " --- ");
+            System.out.print(c.toString() + " - ");
         System.out.println();
     }
 

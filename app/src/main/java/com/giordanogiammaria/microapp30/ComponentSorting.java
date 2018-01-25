@@ -42,8 +42,7 @@ public class ComponentSorting {
         System.out.println();
         System.out.println("Archi del grafo:");
         for (DirEdge e : graph.edgeSet())
-            System.out.print(e.toString() + " - ");
-        System.out.println();
+            System.out.println(e.toString() + " - ");
     }
 
 }

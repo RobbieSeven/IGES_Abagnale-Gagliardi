@@ -50,8 +50,4 @@ public class MicroAppGenerator {
             return null;
     }
 
-    public static void main(String[] args) {
-        new MicroAppGenerator(null);
-    }
-
 }
