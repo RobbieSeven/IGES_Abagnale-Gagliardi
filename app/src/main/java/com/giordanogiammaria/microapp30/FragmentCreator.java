@@ -18,8 +18,7 @@ import com.giordanogiammaria.microapp30.Activity.TakePhotoFragment;
 
 public class FragmentCreator {
 
-    static ComponentFragment getComponentFragment(ComponentType type){
-
+    public static ComponentFragment getComponentFragment(ComponentType type) {
         switch (type) {
             case TAKEPHOTO:
                 return new TakePhotoFragment();
@@ -41,7 +40,6 @@ public class FragmentCreator {
                 return new SendMessageFragment();
             case SENDMAIL:
                 return new SendMailFragment();
-
         }
         return null;
     }
