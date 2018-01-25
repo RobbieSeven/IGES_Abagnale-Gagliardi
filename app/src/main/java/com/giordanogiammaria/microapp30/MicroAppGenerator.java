@@ -21,8 +21,6 @@ public class MicroAppGenerator {
         this.filePath = filePath;
         parser = new DeployParser(filePath.getPath());
         components = ComponentSorting.sortComponents(parser.getComponents());
-        /*for (Component comp : componentList)
-            components.put(comp.getId(), comp);*/
         currentIndex = 0;
     }
 
