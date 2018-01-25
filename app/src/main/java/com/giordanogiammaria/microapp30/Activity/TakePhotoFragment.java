@@ -1,6 +1,6 @@
 package com.giordanogiammaria.microapp30.Activity;
 
-import com.giordanogiammaria.microapp30.ComponentActivity;
+import com.giordanogiammaria.microapp30.ComponentFragment;
 import com.giordanogiammaria.microapp30.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created Giuseppe Abagnale on 22/01/2018.
+ * Created by Giuseppe Abagnale on 22/01/2018.
  */
 
-public class PreviewImageActivity extends ComponentActivity{
+public class TakePhotoFragment extends ComponentFragment {
     @Override
     public HashMap<String, DataType> getInputTypes() {
         return null;

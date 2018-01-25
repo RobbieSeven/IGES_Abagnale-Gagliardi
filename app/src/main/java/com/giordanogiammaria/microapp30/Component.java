@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Component {
 
     private String id;
-    private ComponentActivity compActivity;
+    private ComponentFragment compActivity;
     private HashMap<String, GenericData> inputData;
     private HashMap<String, ArrayList<String>> inputSenders;
     private ArrayList<String> outputReceivers;
@@ -29,7 +29,7 @@ public class Component {
         return id;
     }
 
-    public ComponentActivity getActivity() {
+    public ComponentFragment getActivity() {
         return compActivity;
     }
 

@@ -1,7 +1,6 @@
 package com.giordanogiammaria.microapp30.Activity;
 
-import com.giordanogiammaria.microapp30.ComponentActivity;
-import com.giordanogiammaria.microapp30.ComponentType;
+import com.giordanogiammaria.microapp30.ComponentFragment;
 import com.giordanogiammaria.microapp30.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 
@@ -12,7 +11,7 @@ import java.util.HashMap;
  * Created by Giuseppe Abagnale on 22/01/2018.
  */
 
-public class CallInterceptorActivity extends ComponentActivity{
+public class CallInterceptorFragment extends ComponentFragment {
     @Override
     public HashMap<String, DataType> getInputTypes() {
         return null;
