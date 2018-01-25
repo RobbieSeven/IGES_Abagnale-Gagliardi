@@ -12,14 +12,14 @@ import java.util.HashMap;
 public class Component {
 
     private String id;
-    private ComponentActivity compActivity;
+    private ComponentFragment compFragment;
     private HashMap<String, GenericData> inputData;
     private HashMap<String, ArrayList<String>> inputSenders;
     private ArrayList<String> outputReceivers;
 
     public Component(String id, ComponentType type) {
         this.id = id;
-        compActivity = new Activity();  // istanzia l'activity in base al tipo della componente
+        compFragment = new ComponentFragment();  // istanzia l'activity in base al tipo della componente
         inputData = new HashMap<>();
         inputSenders = new HashMap<>();
         outputReceivers = new ArrayList<>();
@@ -29,16 +29,16 @@ public class Component {
         return id;
     }
 
-    public ComponentActivity getActivity() {
-        return compActivity;
+    public ComponentFragment getFragment() {
+        return compFragment;
     }
 
     public HashMap<String, DataType> getInputTypes() {
-        return compActivity.getInputTypes();
+        return compFragment.getInputTypes();
     }
 
     public ArrayList<DataType> getOutputTypes() {
-        return compActivity.getOutputTypes();
+        return compFragment.getOutputTypes();
     }
 
     public HashMap<String, ArrayList<String>> getInputSenders() {
@@ -65,8 +65,8 @@ public class Component {
 
     public void putData(HashMap<DataType, GenericData> outputData, String sendId) {
         for (String dataName : inputSenders.get(sendId))
-            if (compActivity.getInputTypes().containsKey(dataName)) {
-                DataType dataType = compActivity.getInputTypes().get(dataName);
+            if (compFragment.getInputTypes().containsKey(dataName)) {
+                DataType dataType = compFragment.getInputTypes().get(dataName);
                 if (outputData.containsKey(dataType)) {
                     GenericData data = outputData.get(dataType);
                     inputData.put(sendId, data);
@@ -75,19 +75,19 @@ public class Component {
     }
 
     public void setInputs() {
-        for (String dataName : compActivity.getInputTypes().keySet())
+        for (String dataName : compFragment.getInputTypes().keySet())
             if (!inputData.containsKey(dataName))
                 return; // error
-        compActivity.setInputsData(inputData);
+        compFragment.setInputsData(inputData);
     }
 
     public HashMap<DataType, GenericData> getOutput() {
-        HashMap<DataType, GenericData> dataCollection = compActivity.getOutputsData();
+        HashMap<DataType, GenericData> dataCollection = compFragment.getOutputsData();
         if (dataCollection != null)
-            for (DataType dataType : compActivity.getOutputTypes())
+            for (DataType dataType : compFragment.getOutputTypes())
                 if (!dataCollection.containsKey(dataType))
                     return null; // error
-        return compActivity.getOutputsData();
+        return compFragment.getOutputsData();
     }
 
 }

@@ -1,10 +1,8 @@
 package com.giordanogiammaria.microapp30.Subsystem;
 
 import com.giordanogiammaria.microapp30.Component;
-import com.giordanogiammaria.microapp30.ComponentSorting;
 
 import org.jgrapht.DirectedGraph;
-import org.jgrapht.Graph;
 
 import java.util.ArrayList;
 
@@ -12,68 +10,58 @@ import java.util.ArrayList;
  * Created by Roberto on 22/01/2018.
  */
 
-public class DepthFirstOrder {
+public class DepthFirstOrder<V> {
 
-    DirectedGraph<Component, DirEdge> graph;
-    ArrayList<Component> sortedComponents;
-    ArrayList<Node<Component>> nodes;
-    boolean notDAG;
+    private DirectedGraph<V, DirEdge> graph;
+    private ArrayList<V> sortedVertices;
+    private ArrayList<Node<V>> nodes;
+    private boolean notDAG;
 
-    public DepthFirstOrder(DirectedGraph<Component, DirEdge> graph) {
+    public DepthFirstOrder(DirectedGraph<V, DirEdge> graph) {
         this.graph = graph;
-        sortedComponents = new ArrayList<>();
+        sortedVertices = new ArrayList<>();
         nodes = new ArrayList<>();
         notDAG = false;
     }
 
-    public ArrayList<Component> sort() {
-        for (Component comp : graph.vertexSet())
-            nodes.add(new Node<>(comp, NodeColor.WHITE));
-        for (Node<Component> n : nodes)
-            if (n.getColor() == NodeColor.WHITE)
+    public ArrayList<V> sort() {
+        for (V v : graph.vertexSet())
+            nodes.add(new Node<>(v, NodeColor.WHITE));
+        for (Node<V> n : nodes)
+            if (n.color == NodeColor.WHITE)
                 visit(n);
-        return sortedComponents;
+        if (notDAG)
+            return null;
+        return sortedVertices;
     }
 
-    private void visit(Node<Component> node) {
-        if (node.getColor() == NodeColor.GREY) {
+    private void visit(Node<V> node) {
+        if (node.color == NodeColor.GREY)
             notDAG = true;
-            return;
-        } else if (node.getColor() == NodeColor.WHITE) {
-            node.setColor(NodeColor.GREY);
-            ArrayList<Component> neighbors = new ArrayList<>();
-            for (DirEdge e : graph.outgoingEdgesOf(node.getVertex())) {
-                neighbors.add((Component) e.getTarget());
-            }
-            for (Node n : nodes) {
-                if (n.getVertex())
-            }
+        else if (node.color == NodeColor.WHITE) {
+            node.color = NodeColor.GREY;
+            ArrayList<V> neighbors = new ArrayList<>();
+            for (DirEdge e : graph.outgoingEdgesOf(node.vertex))
+                neighbors.add((V) e.getTarget());
+            for (Node n : nodes)
+                if (neighbors.contains(n.vertex))
+                    visit(n);
+            node.color = NodeColor.BLACK;
+            sortedVertices.add(0, node.vertex);
         }
     }
 
     private enum NodeColor {
-        WHITE, GREY, BLACK;
+        WHITE, GREY, BLACK
     }
 
-    private class Node<V> {
+    private class Node<E> {
 
-        private V vertex;
+        private E vertex;
         private NodeColor color;
 
-        public Node(V vertex, NodeColor color) {
+        Node(E vertex, NodeColor color) {
             this.vertex = vertex;
-            this.color = color;
-        }
-
-        public V getVertex() {
-            return vertex;
-        }
-
-        public NodeColor getColor() {
-            return color;
-        }
-
-        public void setColor(NodeColor color) {
             this.color = color;
         }
 
