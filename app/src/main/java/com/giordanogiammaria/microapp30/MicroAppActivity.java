@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.giordanogiammaria.microapp30.Activity.CallContactActivity;
-import com.giordanogiammaria.microapp30.Activity.SendMailActivity;
-import com.giordanogiammaria.microapp30.Subsystem.DetailFragment;
+import com.giordanogiammaria.microapp30.Activity.MapActivity;
+import com.giordanogiammaria.microapp30.Activity.TakePhotoActivity;
 
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
@@ -25,7 +23,7 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new SendMailActivity());
+        //showFragment(new ());
     }
 
     public void showFragment(Fragment fragment) {
@@ -45,10 +43,11 @@ public class MicroAppActivity extends AppCompatActivity {
 
 
     public void nextOnClick(View view) {
-        if (i==0)
-            showFragment(new DetailFragment());
+        if (i==0) {
+            showFragment(new TakePhotoActivity());
+        }
         else
-            showFragment(new CallContactActivity());
+            showFragment(new MapActivity());
         i++;
     }
 

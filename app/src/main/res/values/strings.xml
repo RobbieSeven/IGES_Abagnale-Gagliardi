@@ -82,8 +82,8 @@
     <string name="gps">GPS</string>
     <string name="network">Network</string>
     <string name="normal">Normal</string>
-    <string name="satellite">Satellite</string>
-    <string name="traffic">Traffic</string>
+    <string name="geografica">geografica</string>
+    <string name="satellitare">satellitare</string>
     <string name="precondition">Pre-condition</string>
     <string name="sendmail">Send Mail</string>
     <string name="send">Send</string>
@@ -132,7 +132,7 @@
     <string name="noXml">No file .xml is present</string>
     <string name="typeMismatch">Type mismatch</string>
     <string name="loaded">Loaded</string>
-    <string name="search">search</string >
+    <string name="search">search</string>
     <string name="saved">Saved correctly</string>
     <string name="deployed">Deployed correctly</string>
     <string name="opening">Opening&#8230;</string>
@@ -242,4 +242,5 @@
         <item>1000</item>
         <item>10000</item>
     </string-array>
+    <string name="title_activity_test_camera">TestCamera</string>
 </resources>
