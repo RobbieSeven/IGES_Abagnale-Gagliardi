@@ -27,12 +27,6 @@
         android:text="@string/content"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/tx_label_cont2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/content"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/tx_container"
@@ -42,15 +36,5 @@
         android:gravity="top"
         android:inputType="textMultiLine"
         android:lines="5"
-        android:state_enabled="false" >
-
-        <requestFocus />
-    </EditText>
-
-    <include
-        android:id="@+id/include1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-       />
-
+        android:state_enabled="false" />
 </LinearLayout>

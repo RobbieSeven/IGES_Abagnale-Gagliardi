@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         nameFile = findViewById(R.id.namefile);
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.SEND_SMS,Manifest.permission.CALL_PHONE,
                         Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION},
                 1);
     }
