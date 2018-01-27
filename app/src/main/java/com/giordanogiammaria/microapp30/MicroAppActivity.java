@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.giordanogiammaria.microapp30.Activity.CallContactActivity;
 import com.giordanogiammaria.microapp30.Activity.MapActivity;
+import com.giordanogiammaria.microapp30.Activity.SelectContactActivity;
 import com.giordanogiammaria.microapp30.Activity.SendMessageActivity;
 import com.giordanogiammaria.microapp30.Activity.TakePhotoActivity;
 
@@ -25,7 +26,7 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new SendMessageActivity());
+        showFragment(new SelectContactActivity());
     }
 
     public void showFragment(Fragment fragment) {
@@ -51,9 +52,11 @@ public class MicroAppActivity extends AppCompatActivity {
         }
         else if (i==1)
             showFragment(new MapActivity());
-        else
+        else if (i==2)
             showFragment(new CallContactActivity());
-        i=(++i)%3;
+        else
+            showFragment(new SelectContactActivity());
+        i=(++i)%4;
     }
 
 

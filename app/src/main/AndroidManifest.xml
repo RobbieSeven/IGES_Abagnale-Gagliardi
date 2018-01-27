@@ -44,8 +44,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ListFile" />
         <activity android:name=".MicroAppActivity" />
-        <activity android:name=".Activity.OpenCamera" />
-        <activity android:name=".Activity.WebViewActivity"></activity>
+        <activity android:name=".Activity.ContactPickerSampleActivity" />
     </application>
 
 </manifest>
