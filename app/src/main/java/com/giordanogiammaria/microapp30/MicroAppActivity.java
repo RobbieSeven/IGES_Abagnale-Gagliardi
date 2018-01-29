@@ -11,6 +11,7 @@ import android.view.View;
 import com.giordanogiammaria.microapp30.Activity.CallContactActivity;
 import com.giordanogiammaria.microapp30.Activity.MapActivity;
 import com.giordanogiammaria.microapp30.Activity.SelectContactActivity;
+import com.giordanogiammaria.microapp30.Activity.SendMailActivity;
 import com.giordanogiammaria.microapp30.Activity.SendMessageActivity;
 import com.giordanogiammaria.microapp30.Activity.TakePhotoActivity;
 
@@ -26,7 +27,7 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new SendMessageActivity());
+        showFragment(new SendMailActivity());
     }
 
     public void showFragment(Fragment fragment) {

@@ -5,8 +5,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.giordanogiammaria.microapp30.Activity.ContactPickerSampleActivity;
-
 
 public class SplashScreen extends AppCompatActivity {
     /*splashscreen */
