@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.Activity.CallContactActivity;
+import com.giordanogiammaria.microapp30.Activity.LocationActivity;
 import com.giordanogiammaria.microapp30.Activity.MapActivity;
 import com.giordanogiammaria.microapp30.Activity.SelectContactActivity;
 import com.giordanogiammaria.microapp30.Activity.SendMailActivity;
-import com.giordanogiammaria.microapp30.Activity.SendMessageActivity;
 import com.giordanogiammaria.microapp30.Activity.TakePhotoActivity;
 
 public class MicroAppActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new SendMailActivity());
+        showFragment(new LocationActivity());
     }
 
     public void showFragment(Fragment fragment) {
@@ -41,7 +42,7 @@ public class MicroAppActivity extends AppCompatActivity {
     }
 
     public void prevOnClick(View view) {
-
+        Toast.makeText(getApplicationContext(),"todo",Toast.LENGTH_LONG).show();
 
     }
 

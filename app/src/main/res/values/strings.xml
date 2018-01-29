@@ -36,7 +36,7 @@
     <string name="value">value</string>
     <string name="searchkey">search service</string>
     <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
+    <string name="longitude">Longitude:</string>
     <string name="accuracy">Accuracy</string>
     <string name="run_from_XML">run from XML</string>
     <string name="delete">Delete</string>
@@ -262,4 +262,6 @@
     </string>
     <string name="username">username</string>
     <string name="login">login</string>
+    <string name="lat">latitude:</string>
+    <string name="your_current_coordinates_are">your current coordinates are:</string>
 </resources>
