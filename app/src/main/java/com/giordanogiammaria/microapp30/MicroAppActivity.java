@@ -26,7 +26,7 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new SelectContactActivity());
+        showFragment(new SendMessageActivity());
     }
 
     public void showFragment(Fragment fragment) {

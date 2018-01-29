@@ -243,4 +243,7 @@
         <item>10000</item>
     </string-array>
     <string name="title_activity_test_camera">TestCamera</string>
+    <string name="messageSend">message sent correctly</string>
+    <string name="send_sms">send sms</string>
+    <string name="enter_text">enter text</string>
 </resources>
