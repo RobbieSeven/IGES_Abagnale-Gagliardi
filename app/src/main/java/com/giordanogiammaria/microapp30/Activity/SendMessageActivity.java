@@ -9,13 +9,13 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +34,7 @@ import java.util.Random;
  * Created by Giuseppe Abagnale on 22/01/2018.
  */
 
-public class SendMessageActivity extends ComponentFragment{
+public class    SendMessageActivity extends ComponentFragment{
     View view;
     Facade facade;
     TextView contactName;
@@ -78,8 +78,11 @@ public class SendMessageActivity extends ComponentFragment{
         sendSmsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              sendSMS(number,bodyMessage.getText().toString());
-              changeLayout();
+                if (!bodyMessage.getText().toString().equalsIgnoreCase("")) {
+                    sendSMS(number, bodyMessage.getText().toString());
+                    changeLayout();
+                }
+                else Snackbar.make(view,"please enter text",Snackbar.LENGTH_LONG).show();
 
             }
         });
@@ -99,45 +102,13 @@ public class SendMessageActivity extends ComponentFragment{
     //questo metodo invia un messaggio dato un numero di telefono e un testo
     public void sendSMS(String phoneNo, String msg) {
         try {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNo, null, msg, null, null);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    /*public Bitmap openPhoto(long contactId) {
-        Uri contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId);
-        Uri photoUri = Uri.withAppendedPath(contactUri, ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
-        Cursor cursor = view.getContext().getContentResolver().query(photoUri,
-                new String[] {ContactsContract.Contacts.Photo.PHOTO}, null, null, null);
-        if (cursor == null) {
-            return null;
-        }
-        try {
-            if (cursor.moveToFirst()) {
-                byte[] data = cursor.getBlob(0);
-                if (data != null) {
-                    return BitmapFactory.decodeStream(new ByteArrayInputStream(data));
-                }
-            }
-        } finally {
-            cursor.close();
-        }
-        return null;
 
-    }*/
-   /* public InputStream openDisplayPhoto(long contactId) {
-        Uri contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId);
-        Uri displayPhotoUri = Uri.withAppendedPath(contactUri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
-        try {
-            AssetFileDescriptor fd =
-                    view.getContext().getContentResolver().openAssetFileDescriptor(displayPhotoUri, "r");
-            assert fd != null;
-            return fd.createInputStream();
-        } catch (IOException e) {
-            return null;
-        }
-    }*/
     public  long getContactIDFromNumber(String contactNumber, Context context) {
         String UriContactNumber = Uri.encode(contactNumber);
         long phoneContactID = new Random().nextInt();
