@@ -2,6 +2,7 @@ package com.giordanogiammaria.microapp30;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -39,12 +40,13 @@ public class DeployParser {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-        // document.getDocumentElement().normalize();
+        document.getDocumentElement().normalize();
     }
 
     public ArrayList<Component> getComponents() {
         NodeList componentNodes = document.getElementsByTagName("component");
         ArrayList<Component> components = new ArrayList<>();
+        // crea componente dal tag component
         int compsLength = componentNodes.getLength();
         for (int i = 0; i < compsLength; i++) {
             Element compNode = (Element) componentNodes.item(i);
@@ -52,20 +54,21 @@ public class DeployParser {
             String type = compNode.getAttribute("type");
             Component component = new Component(id, ComponentType.valueOf(type));
             components.add(component);
-            NodeList inputNodes = document.getElementsByTagName("input");
-            int inputLength = inputNodes.getLength();
-            for (int j = 0; j < inputLength; j++) {
-                Element inputNode = (Element) inputNodes.item(j);
-                String dataName = inputNode.getAttribute("dataname");
-                String sendId = inputNode.getAttribute("id");
-                component.addInputSender(sendId, dataName);
-            }
-            NodeList outputNodes = document.getElementsByTagName("output");
-            int outputLength = outputNodes.getLength();
-            for (int k = 0; k < outputLength; k++) {
-                Element outputNode = (Element) outputNodes.item(k);
-                String destId = outputNode.getAttribute("id");
-                component.addOutputReceiver(destId);
+            // aggiungi input e output alla componente
+            if (compNode.hasChildNodes()) {
+                NodeList childNodes = compNode.getChildNodes();
+                int childLength = childNodes.getLength();
+                for (int j = 0; j < childLength; j++) {
+                    Element childNode = (Element) childNodes.item(j);
+                    if (childNode.getTagName().equals("input")) {
+                        String dataName = childNode.getAttribute("dataname");
+                        String sendId = childNode.getAttribute("id");
+                        component.addInputSender(sendId, dataName);
+                    } else if (childNode.getTagName().equals("output")) {
+                        String destId = childNode.getAttribute("id");
+                        component.addOutputReceiver(destId);
+                    }
+                }
             }
         }
         printComponents(components);
@@ -73,7 +76,7 @@ public class DeployParser {
     }
 
     private static File createXMLFile() {
-        File file = new File("D:\\Documenti\\Università\\Materiale magistrale\\Ingegneria, Gestione ed Evoluzione del Software\\file.xml");
+        File file = new File("D:\\Documenti\\Università\\Materiale magistrale\\Ingegneria, Gestione ed Evoluzione del Software\\file2.xml");
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -104,10 +107,13 @@ public class DeployParser {
             input2.setAttribute("dataname", "STRING");
             comp2.appendChild(input2);
 
-            Element output2 = doc.createElement("output");
-            output2.setAttribute("id", "3");
-            output2.setAttribute("id", "4");
-            comp2.appendChild(output2);
+            Element output21 = doc.createElement("output");
+            output21.setAttribute("id", "3");
+            comp2.appendChild(output21);
+
+            Element output22 = doc.createElement("output");
+            output22.setAttribute("id", "4");
+            comp2.appendChild(output22);
 
 
             Element comp3 = doc.createElement("component");
@@ -168,9 +174,13 @@ public class DeployParser {
 
     private static void printComponents(ArrayList<Component> components) {
         System.out.println("Componenti:");
-        for (Component c : components)
-            System.out.print(c.toString() + " - ");
-        System.out.println();
+        for (Component comp : components) {
+            System.out.println(comp.toString());
+            for (String sendId : comp.getInputSenders().keySet())
+                System.out.println("- input: " + sendId);
+            for (String destId : comp.getOutputReceivers())
+                System.out.println("- output: " + destId);
+        }
     }
 
 }

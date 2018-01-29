@@ -13,13 +13,10 @@ import java.util.HashMap;
 public class MicroAppGenerator {
 
     private ArrayList<Component> components;
-    private DeployParser parser;
     private int currentIndex;
-    private String filePath;
 
     public MicroAppGenerator(String filePath) {
-        this.filePath = filePath;
-        parser = new DeployParser(filePath);
+        DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;
     }
