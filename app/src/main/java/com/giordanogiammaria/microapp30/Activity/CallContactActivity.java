@@ -1,18 +1,13 @@
 package com.giordanogiammaria.microapp30.Activity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.ComponentFragment;
 import com.giordanogiammaria.microapp30.DataType;
@@ -23,9 +18,7 @@ import com.giordanogiammaria.microapp30.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Giuseppe Abagnale on 22/01/2018.
- */
+
 
 public class CallContactActivity extends ComponentFragment{
     View view;

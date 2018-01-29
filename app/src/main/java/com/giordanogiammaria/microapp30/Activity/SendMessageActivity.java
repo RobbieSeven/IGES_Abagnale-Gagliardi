@@ -30,9 +30,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-/**
- * Created by Giuseppe Abagnale on 22/01/2018.
- */
 
 public class    SendMessageActivity extends ComponentFragment{
     View view;

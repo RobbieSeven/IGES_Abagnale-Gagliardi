@@ -15,14 +15,11 @@ import com.giordanogiammaria.microapp30.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Giuseppe Abagnale on 22/01/2018.
- */
+
 
 public class LocationActivity extends ComponentFragment{
     View view;
@@ -55,6 +52,7 @@ public class LocationActivity extends ComponentFragment{
         lat=view.findViewById(R.id.lat);
         lon=view.findViewById(R.id.lon);
         LocationManager lm = (LocationManager)view.getContext().getSystemService(Context.LOCATION_SERVICE);
+        assert lm != null;
         @SuppressLint("MissingPermission")
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         double longitude = location.getLongitude();

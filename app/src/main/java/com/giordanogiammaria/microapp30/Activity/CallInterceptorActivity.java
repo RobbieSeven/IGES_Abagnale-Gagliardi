@@ -13,9 +13,6 @@ import com.giordanogiammaria.microapp30.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Giuseppe Abagnale on 22/01/2018.
- */
 
 public class CallInterceptorActivity extends ComponentFragment{
     View view;

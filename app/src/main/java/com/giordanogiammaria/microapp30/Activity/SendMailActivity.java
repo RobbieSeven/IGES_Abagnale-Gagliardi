@@ -1,33 +1,23 @@
 package com.giordanogiammaria.microapp30.Activity;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.giordanogiammaria.microapp30.ComponentFragment;
 import com.giordanogiammaria.microapp30.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Giuseppe Abagnale on 22/01/2018.
- */
+
 
 public class SendMailActivity extends ComponentFragment{
     View view;
-    EditText username,pass;
-    Button cancel,login;
 
     @Override
     public HashMap<String, DataType> getInputTypes() {
