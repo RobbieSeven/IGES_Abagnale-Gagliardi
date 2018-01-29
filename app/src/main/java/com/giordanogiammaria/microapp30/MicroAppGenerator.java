@@ -21,13 +21,13 @@ public class MicroAppGenerator {
         currentIndex = 0;
     }
 
-    public Fragment prevCompFragment() {
+    public ComponentFragment prevCompFragment() {
         if (currentIndex > 0)
             currentIndex -= 1;
         return components.get(currentIndex).getFragment();
     }
 
-    public Fragment nextCompFragment() {
+    public ComponentFragment nextCompFragment() {
         Component currentComp = components.get(currentIndex);
         HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
         for (String destId : currentComp.getOutputReceivers()) {
@@ -45,6 +45,10 @@ public class MicroAppGenerator {
             return nextComp.getFragment();
         } else      // se non ci sono altre componenti, restituisce null
             return null;
+    }
+
+    public boolean hasNextComponent() {
+        return currentIndex < components.size();
     }
 
 }

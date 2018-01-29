@@ -1,5 +1,6 @@
 package com.giordanogiammaria.microapp30;
 
+import com.giordanogiammaria.microapp30.Activity.BlankFragment;
 import com.giordanogiammaria.microapp30.Activity.CallContactFragment;
 import com.giordanogiammaria.microapp30.Activity.CallInterceptorFragment;
 import com.giordanogiammaria.microapp30.Activity.LocationFragment;
@@ -20,6 +21,8 @@ public class ComponentFragmentCreator {
 
     public static ComponentFragment getComponentFragment(ComponentType type) {
         switch (type) {
+            case BLANK:
+                return new BlankFragment();
             case TAKEPHOTO:
                 return new TakePhotoFragment();
             case PREVIEWIMAGE:
