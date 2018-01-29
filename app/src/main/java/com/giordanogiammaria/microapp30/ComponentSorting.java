@@ -22,7 +22,9 @@ public class ComponentSorting {
         DirectedGraph<Component, DirEdge> graph = createGraph(componentsMap);
         printGraph(graph);
         DepthFirstOrder<Component> dfs = new DepthFirstOrder<>(graph);
-        return dfs.sort();
+        ArrayList<Component> sortedComponents = dfs.sort();
+        printComponents(sortedComponents);
+        return sortedComponents;
     }
 
     private static DirectedGraph<Component, DirEdge> createGraph(HashMap<String, Component> components) {
@@ -43,6 +45,12 @@ public class ComponentSorting {
         System.out.println("Archi del grafo:");
         for (DirEdge e : graph.edgeSet())
             System.out.println(e.toString());
+    }
+
+    private static void printComponents(ArrayList<Component> components) {
+        System.out.println("Componenti ordinate:");
+        for (Component c : components)
+            System.out.print("Componente " + c.getId() + " - ");
     }
 
 }
