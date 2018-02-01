@@ -2,7 +2,6 @@ package com.giordanogiammaria.microapp30;
 
 import com.giordanogiammaria.microapp30.Activity.BlankFragment;
 import com.giordanogiammaria.microapp30.Activity.CallContactFragment;
-import com.giordanogiammaria.microapp30.Activity.CallInterceptorFragment;
 import com.giordanogiammaria.microapp30.Activity.LocationFragment;
 import com.giordanogiammaria.microapp30.Activity.MapFragment;
 import com.giordanogiammaria.microapp30.Activity.SaveFragment;

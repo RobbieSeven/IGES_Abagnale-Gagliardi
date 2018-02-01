@@ -163,10 +163,8 @@ public class DeployParser {
 
             transformer.transform(source, result);
 
-        } catch (ParserConfigurationException pce) {
+        } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
         }
 
         return file;
