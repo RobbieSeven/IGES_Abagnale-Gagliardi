@@ -55,6 +55,5 @@
         android:layout_height="wrap_content" 
         android:textIsSelectable="false"/>
 
-    <include layout="@layout/microapp" />
 
 </LinearLayout>

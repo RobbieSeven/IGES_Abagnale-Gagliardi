@@ -9,17 +9,15 @@ import java.util.HashMap;
  * Created by Roberto on 15/01/2018.
  */
 
-public abstract class ComponentFragment /*extends Fragment*/ {
+public abstract class ComponentFragment extends Fragment{
 
     protected ComponentType type;
     protected HashMap<String, DataType> inputTypes;
     protected ArrayList<DataType> outputTypes;
-
-    public ComponentFragment() {
-        // super();
-        type = ComponentType.BLANK;
-        inputTypes = new HashMap<>();
-        outputTypes = new ArrayList<>();
+    public ComponentFragment(){
+        type=ComponentType.BLANK;
+        inputTypes=new HashMap<>();
+        outputTypes=new ArrayList<>();
     }
 
     public ComponentType getType() {

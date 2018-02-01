@@ -5,17 +5,23 @@ package com.giordanogiammaria.microapp30;
  */
 
 public enum ComponentType {
+    TAKEPHOTO ("TakePhotoActivity"),
+    CALLCONTACT("CallContactActivity"),
+    SELECTCONTACT("SelectContactActivity"),
+    SENDMESSAGE("SendMessageActivity"),
+    LOCATION("LocationActivity"),
+    MAP("MapActivity"),
+    SAVE("SaveActivity"),
+    SENDMAIL("SendMailActivity"),
+    BLANK("BlankActivity");
 
-    TAKEPHOTO,
-    PREVIEWIMAGE,
-    CALLCONTACT,
-    CALLINTERCEPTOR,
-    SELECTCONTACT,
-    SENDMESSAGE,
-    LOCATION,
-    MAP,
-    SAVE,
-    SENDMAIL,
-    BLANK
+    private String name="";
 
+    ComponentType(String name) {
+        this.name=name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

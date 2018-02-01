@@ -5,7 +5,6 @@ import com.giordanogiammaria.microapp30.Activity.CallContactFragment;
 import com.giordanogiammaria.microapp30.Activity.CallInterceptorFragment;
 import com.giordanogiammaria.microapp30.Activity.LocationFragment;
 import com.giordanogiammaria.microapp30.Activity.MapFragment;
-import com.giordanogiammaria.microapp30.Activity.PreviewImageFragment;
 import com.giordanogiammaria.microapp30.Activity.SaveFragment;
 import com.giordanogiammaria.microapp30.Activity.SelectContactFragment;
 import com.giordanogiammaria.microapp30.Activity.SendMailFragment;
@@ -25,8 +24,6 @@ public class ComponentFragmentCreator {
                 return new BlankFragment();
             case TAKEPHOTO:
                 return new TakePhotoFragment();
-            case PREVIEWIMAGE:
-                return new PreviewImageFragment();
             case SAVE:
                 return new SaveFragment();
             case MAP:
@@ -35,8 +32,6 @@ public class ComponentFragmentCreator {
                 return new LocationFragment();
             case CALLCONTACT:
                 return new CallContactFragment();
-            case CALLINTERCEPTOR:
-                return new CallInterceptorFragment();
             case SELECTCONTACT:
                 return new SelectContactFragment();
             case SENDMESSAGE:

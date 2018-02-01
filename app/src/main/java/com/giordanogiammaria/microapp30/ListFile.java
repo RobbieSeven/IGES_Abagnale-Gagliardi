@@ -56,9 +56,9 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     }
 
     private void setData(String result) {
-        Intent returnIntent = new Intent(result);
-        returnIntent.putExtra("result",result);
-        Toast.makeText(getApplicationContext(),"call class ",Toast.LENGTH_LONG).show();
+        Intent returnIntent = new Intent(this,MicroAppActivity.class);
+        returnIntent.putExtra("filePath",result);
+        startActivity(returnIntent);
     }
 
     @Override
