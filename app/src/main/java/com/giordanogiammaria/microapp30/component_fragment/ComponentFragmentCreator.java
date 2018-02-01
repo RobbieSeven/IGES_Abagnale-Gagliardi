@@ -1,14 +1,6 @@
-package com.giordanogiammaria.microapp30;
+package com.giordanogiammaria.microapp30.component_fragment;
 
-import com.giordanogiammaria.microapp30.Activity.BlankFragment;
-import com.giordanogiammaria.microapp30.Activity.CallContactFragment;
-import com.giordanogiammaria.microapp30.Activity.LocationFragment;
-import com.giordanogiammaria.microapp30.Activity.MapFragment;
-import com.giordanogiammaria.microapp30.Activity.SaveFragment;
-import com.giordanogiammaria.microapp30.Activity.SelectContactFragment;
-import com.giordanogiammaria.microapp30.Activity.SendMailFragment;
-import com.giordanogiammaria.microapp30.Activity.SendMessageFragment;
-import com.giordanogiammaria.microapp30.Activity.TakePhotoFragment;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 
 /**

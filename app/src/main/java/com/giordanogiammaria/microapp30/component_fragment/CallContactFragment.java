@@ -1,17 +1,19 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.giordanogiammaria.microapp30.ComponentFragment;
-import com.giordanogiammaria.microapp30.DataType;
-import com.giordanogiammaria.microapp30.Facade.Facade;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
+import com.giordanogiammaria.microapp30.facade.Facade;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
@@ -24,13 +26,33 @@ public class CallContactFragment extends ComponentFragment{
     View view;
     TextView nameContact;
     Facade facade;
+    String number;
+    Contact values;
+    @Override
+    protected ComponentType setType() {
+        return ComponentType.CALLCONTACT;
+    }
 
     @Override
-    public void setInputsData(HashMap<String, GenericData> dataCollection) {
+    protected HashMap<String, DataType> setInputTypes() {
+        HashMap<String,DataType> inputTypes=new HashMap<>();
+        inputTypes.put("contact",DataType.CONTACT);
+        return  inputTypes;
+    }
+
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        return null;
+    }
+
+    @Override
+    public void setInputsData(HashMap<String,GenericData> dataCollection) {
+        GenericData<Contact> data = dataCollection.get("contact");
+        values=data.getData().get(0);
 
     }
     @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
+    public HashMap<DataType,GenericData> getOutputsData() {
         return null;
     }
 
@@ -43,8 +65,9 @@ public class CallContactFragment extends ComponentFragment{
         nameContact=view.findViewById(R.id.txNome);
         // get the reference of Button
         facade=new Facade(view.getContext());
-        nameContact.setText(facade.getContactName("081940021",view.getContext()));
-        call("081940021");
+        number =values.getNumberContact();
+        nameContact.setText(facade.getContactName(number,view.getContext()));
+        call(number);
         return view;
     }
     @SuppressLint("MissingPermission")

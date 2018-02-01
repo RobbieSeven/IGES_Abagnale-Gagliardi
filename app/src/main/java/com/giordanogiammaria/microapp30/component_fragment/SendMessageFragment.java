@@ -1,4 +1,4 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.ContentUris;
 import android.content.Context;
@@ -19,9 +19,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.giordanogiammaria.microapp30.ComponentFragment;
-import com.giordanogiammaria.microapp30.DataType;
-import com.giordanogiammaria.microapp30.Facade.Facade;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
+import com.giordanogiammaria.microapp30.facade.Facade;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
@@ -40,10 +40,29 @@ public class SendMessageFragment extends ComponentFragment{
     EditText bodyMessage;
     TextView sendingText;
     ImageView picture;
+    Contact values;
+    @Override
+    protected ComponentType setType() {
+        return ComponentType.SENDMESSAGE;
+    }
+
+    @Override
+    protected HashMap<String, DataType> setInputTypes() {
+        HashMap<String,DataType> inputType=new HashMap<>();
+        inputType.put("contact",DataType.CONTACT);
+        return inputType;
+
+    }
+
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        return null;
+    }
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
-
+        GenericData<Contact> data = dataCollection.get("contact");
+        values=data.getData().get(0);
     }
 
     @Override
@@ -56,7 +75,7 @@ public class SendMessageFragment extends ComponentFragment{
 
         view = inflater.inflate(R.layout.sendsms, container, false);
         facade=new Facade(view.getContext());
-        number="3342446869";
+        number=values.getNumberContact();
         sendSmsButton=view.findViewById(R.id.sendSms);
         contactName=view.findViewById(R.id.tx_label_cont);
         bodyMessage=view.findViewById(R.id.tx_container);

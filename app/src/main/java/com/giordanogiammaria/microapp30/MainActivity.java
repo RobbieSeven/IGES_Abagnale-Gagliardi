@@ -39,15 +39,11 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //empty
-                }
-                else {
+                if (grantResults.length <= 0
+                        || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
 
                     Toast.makeText(MainActivity.this, "Permission denied the application may not work correctly", Toast.LENGTH_SHORT).show();
                 }
-                return;
             }
         }
     }

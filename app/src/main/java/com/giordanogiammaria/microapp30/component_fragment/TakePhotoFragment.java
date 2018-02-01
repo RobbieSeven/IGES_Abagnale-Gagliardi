@@ -1,4 +1,4 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.giordanogiammaria.microapp30.ComponentFragment;
-import com.giordanogiammaria.microapp30.DataType;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
@@ -22,10 +22,26 @@ public class TakePhotoFragment extends ComponentFragment {
     Bitmap image;
 
     @Override
-    public HashMap<String, DataType> getInputTypes() {
+    protected ComponentType setType() {
+        return ComponentType.TAKEPHOTO;
+    }
+
+    @Override
+    protected HashMap<String, DataType> setInputTypes() {
         return null;
     }
 
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        ArrayList<DataType> outputTypes=new ArrayList<>();
+        outputTypes.add(DataType.IMAGE);
+        return outputTypes;
+    }
+
+    @Override
+    public HashMap<String, DataType> getInputTypes() {
+        return null;
+    }
     @Override
     public ArrayList<DataType> getOutputTypes() {
         return null;
@@ -33,12 +49,15 @@ public class TakePhotoFragment extends ComponentFragment {
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
-
     }
 
     @Override
     public HashMap<DataType, GenericData> getOutputsData() {
-        return null;
+        HashMap<DataType,GenericData> outputData=new HashMap<>();
+        GenericData<Bitmap> data=new GenericData<>();
+        data.addData(image);
+        outputData.put(DataType.IMAGE,data);
+        return outputData;
     }
 
     @Override

@@ -1,5 +1,10 @@
 package com.giordanogiammaria.microapp30;
 
+import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
+import com.giordanogiammaria.microapp30.component_fragment.ComponentFragmentCreator;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

@@ -1,11 +1,9 @@
-package com.giordanogiammaria.microapp30.Facade;
+package com.giordanogiammaria.microapp30.facade;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-
-import com.giordanogiammaria.microapp30.Subsystem.ManageFile;
 
 import java.io.File;
 import java.util.ArrayList;

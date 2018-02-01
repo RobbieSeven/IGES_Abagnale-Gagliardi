@@ -1,8 +1,10 @@
 package com.giordanogiammaria.microapp30;
 
-import android.app.Fragment;
+import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
+import com.giordanogiammaria.microapp30.sorting.ComponentSorting;
+import com.giordanogiammaria.microapp30.parsing.DeployParser;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 

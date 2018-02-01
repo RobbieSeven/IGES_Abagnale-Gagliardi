@@ -1,18 +1,16 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.giordanogiammaria.microapp30.ComponentFragment;
-import com.giordanogiammaria.microapp30.DataType;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
@@ -32,13 +30,35 @@ public class LocationFragment extends ComponentFragment{
 
 
     @Override
+    protected ComponentType setType() {
+        return ComponentType.LOCATION;
+    }
+
+    @Override
+    protected HashMap<String, DataType> setInputTypes() {
+        return null;
+    }
+
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        ArrayList<DataType> outputTypes=new ArrayList<>();
+        outputTypes.add(DataType.LOCATION);
+        return outputTypes;
+    }
+
+    @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
 
     }
 
     @Override
     public HashMap<DataType, GenericData> getOutputsData() {
-        return null;
+        HashMap<DataType,GenericData> outputData=new HashMap<>();
+        GenericData<Location> data= new GenericData<>();
+        data.addData(myLocation);
+        outputData.put(DataType.LOCATION,data);
+        return outputData;
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.giordanogiammaria.microapp30.ComponentFragment;
-import com.giordanogiammaria.microapp30.DataType;
-import com.giordanogiammaria.microapp30.Facade.Facade;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
+import com.giordanogiammaria.microapp30.facade.Facade;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
@@ -26,10 +26,30 @@ public class SelectContactFragment extends ComponentFragment{
     String name,contact;
     TextView nameTextView,contactTextView;
     Facade facade;
+    Contact values;
+    @Override
+    protected ComponentType setType() {
+        return  ComponentType.SELECTCONTACT;
+    }
+
+    @Override
+    protected HashMap<String, DataType> setInputTypes() {
+        HashMap<String,DataType> inputTypes=new HashMap<>();
+        inputTypes.put("selectContact",DataType.CONTACT);
+        return inputTypes;
+    }
+
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        ArrayList<DataType> outputType=new ArrayList<>();
+        outputType.add(DataType.CONTACT);
+        return outputType;
+    }
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
-
+        GenericData<Contact> data= dataCollection.get("selectContact");
+        values=data.getData().get(0);
     }
 
     @Override
@@ -49,14 +69,12 @@ public class SelectContactFragment extends ComponentFragment{
         startActivityForResult(intent,1);
         nameTextView.setText(name);
         contactTextView.setText(contact);
-        ContentValues values = new ContentValues();
-        values.put(ContactsContract.Data.RAW_CONTACT_ID, facade.getContactIDFromNumber(contact,view.getContext()));
+        /*values.put(ContactsContract.Data.RAW_CONTACT_ID, facade.getContactIDFromNumber(contact,view.getContext()));
         values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
         values.put(ContactsContract.CommonDataKinds.Phone.NUMBER, contact);
-        values.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM);
-        values.put(ContactsContract.CommonDataKinds.Phone.LABEL, "free directory assistance");
-        Uri dataUri = view.getContext().getContentResolver().insert(ContactsContract.Data.CONTENT_URI, values);
-
+        values.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM);*/
+        values.setNameContact(facade.getContactName(contact,view.getContext()));
+        values.setNumberContact(contact);
         return view;
     }
 

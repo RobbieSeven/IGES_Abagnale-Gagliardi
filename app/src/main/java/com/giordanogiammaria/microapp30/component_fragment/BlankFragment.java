@@ -1,9 +1,11 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
-import com.giordanogiammaria.microapp30.ComponentFragment;
-import com.giordanogiammaria.microapp30.DataType;
+import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.enumerators.ComponentType;
+import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -18,6 +20,25 @@ public class BlankFragment extends ComponentFragment {
         super();
         inputTypes.put("string", DataType.STRING);
         outputTypes.add(DataType.STRING);
+    }
+
+    @Override
+    protected ComponentType setType() {
+        return ComponentType.BLANK;
+    }
+
+    @Override
+    protected HashMap<String, DataType> setInputTypes() {
+        HashMap<String,DataType> inputTypes=new HashMap<>();
+        inputTypes.put("string",DataType.STRING);
+        return inputTypes;
+    }
+
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        ArrayList<DataType>outputTypes=new ArrayList<>();
+        outputTypes.add(DataType.STRING);
+        return outputTypes;
     }
 
     @Override

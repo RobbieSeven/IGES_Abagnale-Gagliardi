@@ -1,4 +1,4 @@
-package com.giordanogiammaria.microapp30.Activity;
+package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;

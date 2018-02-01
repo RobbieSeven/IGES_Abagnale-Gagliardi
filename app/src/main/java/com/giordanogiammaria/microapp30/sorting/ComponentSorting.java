@@ -1,7 +1,6 @@
-package com.giordanogiammaria.microapp30;
+package com.giordanogiammaria.microapp30.sorting;
 
-import com.giordanogiammaria.microapp30.Subsystem.DepthFirstOrder;
-import com.giordanogiammaria.microapp30.Subsystem.DirEdge;
+import com.giordanogiammaria.microapp30.Component;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;

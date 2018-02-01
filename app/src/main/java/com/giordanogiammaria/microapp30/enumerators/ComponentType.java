@@ -1,4 +1,4 @@
-package com.giordanogiammaria.microapp30;
+package com.giordanogiammaria.microapp30.enumerators;
 
 /**
  * Created by Giuseppe Abagnale on 22/01/2018.
