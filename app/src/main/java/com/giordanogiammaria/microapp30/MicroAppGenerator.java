@@ -1,11 +1,8 @@
 package com.giordanogiammaria.microapp30;
 
-import android.app.Fragment;
-
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
