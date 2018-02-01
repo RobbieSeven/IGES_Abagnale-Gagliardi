@@ -1,12 +1,8 @@
 package com.giordanogiammaria.microapp30;
 
-import android.app.Activity;
-
 import com.giordanogiammaria.microapp30.Activity.CallContactActivity;
-import com.giordanogiammaria.microapp30.Activity.CallInterceptorActivity;
 import com.giordanogiammaria.microapp30.Activity.LocationActivity;
 import com.giordanogiammaria.microapp30.Activity.MapActivity;
-import com.giordanogiammaria.microapp30.Activity.PreviewImageActivity;
 import com.giordanogiammaria.microapp30.Activity.SaveActivity;
 import com.giordanogiammaria.microapp30.Activity.SelectContactActivity;
 import com.giordanogiammaria.microapp30.Activity.SendMailActivity;
@@ -25,8 +21,8 @@ public class ComponentCreator {
         switch (type) {
             case TAKEPHOTO:
                 return new TakePhotoActivity();
-            case PREVIEWIMAGE:
-                return new PreviewImageActivity();
+           /* case PREVIEWIMAGE:
+                return new PreviewImageActivity();*/
             case SAVE:
                 return new SaveActivity();
             case MAP:
@@ -35,8 +31,8 @@ public class ComponentCreator {
                 return new LocationActivity();
             case CALLCONTACT:
                 return new CallContactActivity();
-            case CALLINTERCEPTOR:
-                return new CallInterceptorActivity();
+            /*case CALLINTERCEPTOR:
+                return new CallInterceptorActivity();*/
             case SELECTCONTACT:
                 return new SelectContactActivity();
             case SENDMESSAGE:
