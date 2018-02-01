@@ -152,7 +152,6 @@ public class DeployParser {
             input5.setAttribute("dataname", "STRING");
             comp5.appendChild(input5);
 
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
