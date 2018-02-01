@@ -2,6 +2,9 @@ package com.giordanogiammaria.microapp30;
 
 import android.app.Fragment;
 
+import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,13 +24,15 @@ public class MicroAppGenerator {
         currentIndex = 0;
     }
 
-    public ComponentFragment prevCompFragment() {
-        if (currentIndex > 0)
+    public ComponentFragment prevCompFragment() throws NoPrevComponentException {
+        if (currentIndex > 0) {
             currentIndex -= 1;
-        return components.get(currentIndex).getFragment();
+            return components.get(currentIndex).getFragment();
+        } else
+            throw new NoPrevComponentException();
     }
 
-    public ComponentFragment nextCompFragment() {
+    public ComponentFragment nextCompFragment() throws NoNextComponentException {
         Component currentComp = components.get(currentIndex);
         HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
         for (String destId : currentComp.getOutputReceivers()) {
@@ -43,8 +48,8 @@ public class MicroAppGenerator {
             Component nextComp = components.get(currentIndex);
             nextComp.setInputs();
             return nextComp.getFragment();
-        } else      // se non ci sono altre componenti, restituisce null
-            return null;
+        } else
+            throw new NoNextComponentException();
     }
 
     public boolean hasNextComponent() {
