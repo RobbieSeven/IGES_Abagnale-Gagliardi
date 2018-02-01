@@ -17,15 +17,6 @@ import java.util.HashMap;
 
 public class SaveFragment extends ComponentFragment{
     View view;
-    @Override
-    public HashMap<String, DataType> getInputTypes() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<DataType> getOutputTypes() {
-        return null;
-    }
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {

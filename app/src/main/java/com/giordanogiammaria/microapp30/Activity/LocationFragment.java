@@ -29,15 +29,7 @@ public class LocationFragment extends ComponentFragment{
     TextView lat,lon;
     LocationManager mLocationManager;
     Location myLocation ;
-    @Override
-    public HashMap<String, DataType> getInputTypes() {
-        return null;
-    }
 
-    @Override
-    public ArrayList<DataType> getOutputTypes() {
-        return null;
-    }
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
@@ -56,16 +48,6 @@ public class LocationFragment extends ComponentFragment{
         view = inflater.inflate(R.layout.location_layout, container, false);
         lat=view.findViewById(R.id.lat);
         lon=view.findViewById(R.id.lon);
-        /*LocationManager lm = (LocationManager)view.getContext().getSystemService(Context.LOCATION_SERVICE);
-        Log.d("lm:",lm.toString());
-        assert lm != null;
-        @SuppressLint("MissingPermission")
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        double longitude = location.getLongitude();
-        double latitude = location.getLatitude();
-        lat.setText(String.format("%s%s", lat.getText(),latitude));
-        lon.setText(String.format("%s%s",lon.getText(),longitude));
-        // get the reference of Button*/
         myLocation = getLastKnownLocation();
         lat.setText(String.format("%s%s", lat.getText(), myLocation.getLatitude()));
         lon.setText(String.format("%s%s", lon.getText(), myLocation.getLongitude()));

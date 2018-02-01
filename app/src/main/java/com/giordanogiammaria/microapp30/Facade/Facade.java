@@ -9,6 +9,7 @@ import com.giordanogiammaria.microapp30.Subsystem.ManageFile;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Giordano Giammaria on 08/01/2018.
@@ -48,5 +49,19 @@ public class Facade {
             cursor.close();
         }
         return contactName;
+    }
+
+
+    public  int getContactIDFromNumber(String contactNumber,Context context)
+    {
+        contactNumber = Uri.encode(contactNumber);
+        int phoneContactID = new Random().nextInt();
+        Cursor contactLookupCursor = context.getContentResolver().query(Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,contactNumber),new String[] {ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.PhoneLookup._ID}, null, null, null);
+        while(contactLookupCursor.moveToNext()){
+            phoneContactID = contactLookupCursor.getInt(contactLookupCursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup._ID));
+        }
+        contactLookupCursor.close();
+
+        return phoneContactID;
     }
 }

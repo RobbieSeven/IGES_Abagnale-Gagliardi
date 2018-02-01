@@ -20,15 +20,6 @@ import java.util.HashMap;
 public class MapFragment extends ComponentFragment {
     View view;
     WebView webView;
-    @Override
-    public HashMap<String, DataType> getInputTypes() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<DataType> getOutputTypes() {
-        return null;
-    }
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
@@ -39,6 +30,7 @@ public class MapFragment extends ComponentFragment {
     public HashMap<DataType, GenericData> getOutputsData() {
         return null;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

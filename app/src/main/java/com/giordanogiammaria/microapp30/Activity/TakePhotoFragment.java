@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 public class TakePhotoFragment extends ComponentFragment {
     View view;
+    Bitmap image;
 
     @Override
     public HashMap<String, DataType> getInputTypes() {
@@ -51,9 +52,10 @@ public class TakePhotoFragment extends ComponentFragment {
     }
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
-            Bitmap image = (Bitmap) data.getExtras().get("data");
+            image = (Bitmap) data.getExtras().get("data");
             ImageView imageview =  view.findViewById(R.id.pre_img);
             imageview.setImageBitmap(image);
+
         }
     }
 }
