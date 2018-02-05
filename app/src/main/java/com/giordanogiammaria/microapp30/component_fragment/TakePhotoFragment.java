@@ -28,7 +28,7 @@ public class TakePhotoFragment extends ComponentFragment {
 
     @Override
     protected HashMap<String, DataType> setInputTypes() {
-        return null;
+        return new HashMap<>();
     }
 
     @Override
@@ -40,11 +40,11 @@ public class TakePhotoFragment extends ComponentFragment {
 
     @Override
     public HashMap<String, DataType> getInputTypes() {
-        return null;
+        return new HashMap<>();
     }
     @Override
     public ArrayList<DataType> getOutputTypes() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

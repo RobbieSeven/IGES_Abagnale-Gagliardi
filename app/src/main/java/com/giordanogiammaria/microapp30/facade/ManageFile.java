@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Created by Giordano Giammaria on 08/01/2018.
  */
 
-class ManageFile {
+public class ManageFile {
 
 
     String createDir(File path) {

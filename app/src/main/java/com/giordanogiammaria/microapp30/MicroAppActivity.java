@@ -6,28 +6,38 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.giordanogiammaria.microapp30.component_fragment.CallContactFragment;
-import com.giordanogiammaria.microapp30.component_fragment.LocationFragment;
-import com.giordanogiammaria.microapp30.component_fragment.MapFragment;
-import com.giordanogiammaria.microapp30.component_fragment.SelectContactFragment;
-import com.giordanogiammaria.microapp30.component_fragment.ShowContactFragment;
+import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
+import com.giordanogiammaria.microapp30.facade.Facade;
 
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
     private String filePath;
     private Intent intent;
-    static int i=0;
+    // static int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.micro_app);
+        Facade facade= new Facade(getApplicationContext());
+        String path=facade.getLocalPath();
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new ShowContactFragment());
+        filePath=path+"/"+filePath;
+        Log.e("filePath",filePath);
+        generator = new MicroAppGenerator(filePath);
+
+        try {
+            showFragment(generator.getStartComponent());
+        } catch (NoNextComponentException e) {
+            Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     public void showFragment(Fragment fragment) {
@@ -41,25 +51,20 @@ public class MicroAppActivity extends AppCompatActivity {
     }
 
     public void prevOnClick(View view) {
-        Toast.makeText(getApplicationContext(),"todo",Toast.LENGTH_LONG).show();
-
+        try {
+            showFragment(generator.prevCompFragment());
+        } catch(NoPrevComponentException e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
-
 
     public void nextOnClick(View view) {
-
-        if (i==0) {
-            showFragment(new LocationFragment());
+        try {
+            showFragment(generator.nextCompFragment());
+        } catch(NoNextComponentException e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            finish();
         }
-        else if (i==1)
-            showFragment(new MapFragment());
-        else if (i==2)
-            showFragment(new CallContactFragment());
-        else
-            showFragment(new SelectContactFragment());
-        i=(++i)%4;
     }
-
-
 
 }

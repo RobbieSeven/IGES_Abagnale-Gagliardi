@@ -30,11 +30,11 @@ public class DeployParser {
     private Document document;
 
     public DeployParser(String filePath) {
-        File file;
-        if (filePath != null)
-            file = new File(filePath);
-        else
-            file = createXMLFile();
+        File file=new File(filePath);
+       // if (filePath != null)
+            //file = new File(filePath);
+       /* else*/
+           // file = createXMLFile();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

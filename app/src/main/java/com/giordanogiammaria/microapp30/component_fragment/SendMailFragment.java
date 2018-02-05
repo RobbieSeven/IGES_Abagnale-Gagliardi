@@ -40,7 +40,7 @@ public class SendMailFragment extends ComponentFragment{
 
     @Override
     protected ArrayList<DataType> setOutputTypes() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

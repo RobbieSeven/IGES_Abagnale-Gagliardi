@@ -40,7 +40,7 @@ public class MapFragment extends ComponentFragment {
 
     @Override
     protected ArrayList<DataType> setOutputTypes() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MapFragment extends ComponentFragment {
 
     @Override
     public HashMap<DataType, GenericData> getOutputsData() {
-        return null;
+        return new HashMap<>();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MapFragment extends ComponentFragment {
         geog.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               String url="https://www.google.it/maps/"+mLocation.getLatitude()+","+mLocation.getLongitude()+",16z?hl=it";
+               String url="https://www.google.it/maps/@"+mLocation.getLatitude()+","+mLocation.getLongitude()+",16z?hl=it";
                showMap(url);
            }
        });

@@ -32,7 +32,7 @@ public class SaveFragment extends ComponentFragment{
 
     @Override
     protected ArrayList<DataType> setOutputTypes() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SaveFragment extends ComponentFragment{
 
     @Override
     public HashMap<DataType, GenericData> getOutputsData() {
-        return null;
+        return new HashMap<>();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

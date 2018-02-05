@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+import com.giordanogiammaria.microapp30.component_fragment.Contact;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
@@ -46,5 +48,10 @@ public class Facade {
             cursor.close();
         }
         return contactName;
+    }
+    public String getLocalPath(){
+        ManageFile manageFile=new ManageFile();
+        File f=manageFile.getLocalPath(context);
+        return f.getPath();
     }
 }

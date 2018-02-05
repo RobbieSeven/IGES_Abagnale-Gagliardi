@@ -42,18 +42,19 @@ public class CallContactFragment extends ComponentFragment{
 
     @Override
     protected ArrayList<DataType> setOutputTypes() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public void setInputsData(HashMap<String,GenericData> dataCollection) {
+
         GenericData<Contact> data = dataCollection.get("contact");
         values=data.getData().get(0);
 
     }
     @Override
     public HashMap<DataType,GenericData> getOutputsData() {
-        return null;
+        return new HashMap<>();
     }
 
 

@@ -1,5 +1,7 @@
 package com.giordanogiammaria.microapp30;
 
+import android.util.Log;
+
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragmentCreator;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
@@ -78,21 +80,23 @@ public class Component {
                 DataType dataType = compFragment.getInputTypes().get(dataName);
                 if (outputData.containsKey(dataType)) {
                     GenericData data = outputData.get(dataType);
-                    inputData.put(sendId, data);
+                    inputData.put(dataName, data);
                 }
             }
     }
 
     public void setInputs() {
-        for (String dataName : compFragment.getInputTypes().keySet())
+        for (String dataName : compFragment.getInputTypes().keySet()) {
+            Log.d("DATANAME:",dataName);
+            Log.d("inputData:",""+inputData.containsKey(dataName));
             if (!inputData.containsKey(dataName))
                 return; // error
+        }
         compFragment.setInputsData(inputData);
     }
 
     public HashMap<DataType, GenericData> getOutput() {
         HashMap<DataType, GenericData> dataCollection = compFragment.getOutputsData();
-        if (dataCollection != null)
             for (DataType dataType : compFragment.getOutputTypes())
                 if (!dataCollection.containsKey(dataType))
                     return null; // error

@@ -36,7 +36,7 @@ public class LocationFragment extends ComponentFragment{
 
     @Override
     protected HashMap<String, DataType> setInputTypes() {
-        return null;
+        return new HashMap<>();
     }
 
     @Override
