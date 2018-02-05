@@ -13,7 +13,7 @@ import com.giordanogiammaria.microapp30.component_fragment.CallContactFragment;
 import com.giordanogiammaria.microapp30.component_fragment.LocationFragment;
 import com.giordanogiammaria.microapp30.component_fragment.MapFragment;
 import com.giordanogiammaria.microapp30.component_fragment.SelectContactFragment;
-import com.giordanogiammaria.microapp30.component_fragment.TakePhotoFragment;
+import com.giordanogiammaria.microapp30.component_fragment.ShowContactFragment;
 
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
@@ -27,7 +27,7 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        showFragment(new LocationFragment());
+        showFragment(new ShowContactFragment());
     }
 
     public void showFragment(Fragment fragment) {
@@ -49,7 +49,7 @@ public class MicroAppActivity extends AppCompatActivity {
     public void nextOnClick(View view) {
 
         if (i==0) {
-            showFragment(new TakePhotoFragment());
+            showFragment(new LocationFragment());
         }
         else if (i==1)
             showFragment(new MapFragment());

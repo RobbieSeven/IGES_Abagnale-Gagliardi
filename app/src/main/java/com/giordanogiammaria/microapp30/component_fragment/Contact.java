@@ -13,6 +13,10 @@ public class Contact {
         this.emailContact = emailContact;
     }
 
+    public Contact() {
+
+    }
+
     public String getNameContact() {
         return nameContact;
     }

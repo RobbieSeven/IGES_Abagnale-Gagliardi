@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
-import com.giordanogiammaria.microapp30.facade.Facade;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
+import com.giordanogiammaria.microapp30.facade.Facade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +73,7 @@ public class SelectContactFragment extends ComponentFragment{
         values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
         values.put(ContactsContract.CommonDataKinds.Phone.NUMBER, contact);
         values.put(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM);*/
+        values=new Contact();// riga da cancellare
         values.setNameContact(facade.getContactName(contact,view.getContext()));
         values.setNumberContact(contact);
         return view;
