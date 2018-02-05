@@ -39,7 +39,8 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String result = adapterView.getItemAtPosition(i).toString();
                 setData(result);
-
+                Intent intent=new Intent(getApplicationContext(),MicroAppActivity.class);
+                startActivity(intent);
             }
         });
     }
