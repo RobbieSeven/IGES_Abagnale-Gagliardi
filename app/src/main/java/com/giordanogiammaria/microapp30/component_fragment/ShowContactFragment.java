@@ -27,6 +27,43 @@ public class ShowContactFragment extends ComponentFragment {
     ArrayList<String> contactlist=new ArrayList<>();
     ArrayAdapter<String> itemAdapter;
     Contact contact;
+
+    protected ComponentType setType() {
+        return  ComponentType.SELECTCONTACT;
+    }
+
+    @Override
+    protected HashMap<String, DataType> setInputTypes() {
+        HashMap<String,DataType> inputTypes=new HashMap<>();
+        inputTypes.put("selectContact",DataType.CONTACT);
+        return inputTypes;
+    }
+
+    @Override
+    protected ArrayList<DataType> setOutputTypes() {
+        ArrayList<DataType> outputType=new ArrayList<>();
+        outputType.add(DataType.CONTACT);
+        return outputType;
+    }
+
+    @Override
+    public void setInputsData(HashMap<String, GenericData> dataCollection) {
+        GenericData<Contact> data= dataCollection.get("selectContact");
+        contact=data.getData().get(0);
+    }
+
+
+    @Override
+    public HashMap<DataType, GenericData> getOutputsData() {
+        HashMap<DataType,GenericData> outputData=new HashMap<>();
+        GenericData<Contact> data= new GenericData<>();
+        data.addData(contact);
+        outputData.put(DataType.CONTACT,data);
+        return outputData;
+    }
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,34 +118,5 @@ public class ShowContactFragment extends ComponentFragment {
             itemAdapter.notifyDataSetChanged();
         }
         cursor.close();
-    }
-
-    @Override
-    protected ComponentType setType() {
-        return null;
-    }
-
-    @Override
-    protected HashMap<String, DataType> setInputTypes() {
-        return null;
-    }
-
-    @Override
-    protected ArrayList<DataType> setOutputTypes() {
-        return null;
-    }
-
-    @Override
-    public void setInputsData(HashMap<String, GenericData> dataCollection) {
-
-    }
-
-    @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
-        HashMap<DataType,GenericData> outputData=new HashMap<>();
-        GenericData<Contact> data= new GenericData<>();
-        data.addData(contact);
-        outputData.put(DataType.CONTACT,data);
-        return outputData;
     }
 }

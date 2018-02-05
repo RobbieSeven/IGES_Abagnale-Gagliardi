@@ -11,10 +11,10 @@ import java.util.Arrays;
  * Created by Giordano Giammaria on 08/01/2018.
  */
 
-public class ManageFile {
+class ManageFile {
 
 
-    public String createDir(File path) {
+    String createDir(File path) {
         //create the folder microApp
         boolean isNotCreated;
         isNotCreated = path.mkdir();
@@ -22,7 +22,7 @@ public class ManageFile {
             System.exit(-1);//memory end
         return path.getPath();
     }
-    public ArrayList<File> ReadDir(String path) {
+    ArrayList<File> ReadDir(String path) {
         ArrayList<File> listOfFile;
         listOfFile= new ArrayList<>();
         File f = new File(path);
@@ -37,14 +37,14 @@ public class ManageFile {
         return currentExt.equalsIgnoreCase(ext);
     }
 
-    public File getLocalPath(Context context){
+    File getLocalPath(Context context){
         String nameApp= (String) context.getApplicationContext().getApplicationInfo().
                 loadLabel(context.getApplicationContext().getPackageManager());
         return new File(Environment.getExternalStorageDirectory() +
                 File.separator +nameApp);
     }
 
-    public ArrayList<String> filter(ArrayList<File> listFile, String ext) {
+    ArrayList<String> filter(ArrayList<File> listFile, String ext) {
         ArrayList<String>toReturn=new ArrayList<>();
         for (File file:listFile){
             if (compareExt(file,ext))

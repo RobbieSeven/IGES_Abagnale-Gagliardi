@@ -31,8 +31,7 @@ public class Facade {
         toReturn=manageFile.filter(app,"xml");
         return toReturn;
     }
-    public String getContactName(final String phoneNumber, Context context)
-    {
+    public String getContactName(final String phoneNumber, Context context) {
         Uri uri=Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,Uri.encode(phoneNumber));
 
         String[] projection = new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME};
@@ -47,19 +46,5 @@ public class Facade {
             cursor.close();
         }
         return contactName;
-    }
-
-
-    public  int getContactIDFromNumber(String contactNumber,Context context)
-    {
-        contactNumber = Uri.encode(contactNumber);
-        int phoneContactID = new Random().nextInt();
-        Cursor contactLookupCursor = context.getContentResolver().query(Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,contactNumber),new String[] {ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.PhoneLookup._ID}, null, null, null);
-        while(contactLookupCursor.moveToNext()){
-            phoneContactID = contactLookupCursor.getInt(contactLookupCursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup._ID));
-        }
-        contactLookupCursor.close();
-
-        return phoneContactID;
     }
 }

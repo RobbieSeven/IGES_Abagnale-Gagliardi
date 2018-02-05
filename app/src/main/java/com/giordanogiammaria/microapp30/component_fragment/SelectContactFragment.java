@@ -29,7 +29,7 @@ public class SelectContactFragment extends ComponentFragment{
     Contact values;
     @Override
     protected ComponentType setType() {
-        return  ComponentType.SELECTCONTACT;
+        return  ComponentType.BLANK;
     }
 
     @Override

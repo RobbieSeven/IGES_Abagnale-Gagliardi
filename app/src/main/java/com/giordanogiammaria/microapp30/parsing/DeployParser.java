@@ -78,7 +78,7 @@ public class DeployParser {
     }
 
     private static File createXMLFile() {
-        File file = new File("D:\\Documenti\\Università\\Materiale magistrale\\Ingegneria, Gestione ed Evoluzione del Software\\file2.xml");
+        File file = new File("my.xml");
         try {
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

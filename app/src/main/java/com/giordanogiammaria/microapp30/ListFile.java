@@ -30,7 +30,7 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
         facade= new Facade(getApplicationContext());
-        ArrayList<String> namesOfFile = facade.getListFile();
+        final ArrayList<String> namesOfFile = facade.getListFile();
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, namesOfFile);
         listFile.setAdapter(adapter);
@@ -39,6 +39,7 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String result = adapterView.getItemAtPosition(i).toString();
                 setData(result);
+
             }
         });
     }
