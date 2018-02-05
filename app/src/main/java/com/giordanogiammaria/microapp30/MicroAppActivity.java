@@ -12,11 +12,6 @@ import android.widget.Toast;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
 
-/*import com.giordanogiammaria.microapp30.Activity.CallContactFragment;
-import com.giordanogiammaria.microapp30.Activity.LocationFragment;
-import com.giordanogiammaria.microapp30.Activity.MapFragment;
-import com.giordanogiammaria.microapp30.Activity.SelectContactFragment;*/
-
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
     private String filePath;
@@ -36,7 +31,6 @@ public class MicroAppActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
             finish();
         }
-        // showFragment(new LocationFragment());
     }
 
     public void showFragment(Fragment fragment) {
@@ -64,15 +58,6 @@ public class MicroAppActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
         }
-        /*if (i==0)
-            showFragment(new TakePhotoFragment());
-        else if (i==1)
-            showFragment(new MapFragment());
-        else if (i==2)
-            showFragment(new CallContactFragment());
-        else
-            showFragment(new SelectContactFragment());
-        i=(++i)%4;*/
     }
 
 }
