@@ -73,7 +73,7 @@ public class Component {
                 DataType dataType = compFragment.getInputTypes().get(dataName);
                 if (outputData.containsKey(dataType)) {
                     GenericData data = outputData.get(dataType);
-                    inputData.put(sendId, data);
+                    inputData.put(dataName, data);
                 }
             }
     }
