@@ -1,5 +1,7 @@
 package com.giordanogiammaria.microapp30;
 
+import android.app.Fragment;
+
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
@@ -25,7 +27,7 @@ public class MicroAppGenerator {
         currentIndex = 0;
     }
 
-    public ComponentFragment prevCompFragment() throws NoPrevComponentException {
+    public Fragment prevCompFragment() throws NoPrevComponentException {
         if (currentIndex > 0) {
             currentIndex -= 1;
             return components.get(currentIndex).getFragment();
@@ -33,18 +35,19 @@ public class MicroAppGenerator {
             throw new NoPrevComponentException();
     }
 
-    public ComponentFragment nextCompFragment() throws NoNextComponentException {
-        Component currentComp = components.get(currentIndex);
-        HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
-        for (String destId : currentComp.getOutputReceivers()) {
-            Component destComp = null;
-            for (Component comp : components)
-                if (comp.getId().equals(destId))
-                    destComp = comp;
-            if (destComp != null)
-                destComp.putData(dataCollection, currentComp.getId());
-        }
+    public Fragment nextCompFragment() throws NoNextComponentException {
         if (currentIndex < components.size() - 1) {
+            Component currentComp = components.get(currentIndex);
+            HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
+            for (String destId : currentComp.getOutputReceivers()) {
+                Component destComp = null;
+                for (Component comp : components)
+                    if (comp.getId().equals(destId))
+                        destComp = comp;
+                if (destComp != null) {
+                    destComp.putData(dataCollection, currentComp.getId());
+                }
+            }
             currentIndex += 1;
             Component nextComp = components.get(currentIndex);
             nextComp.setInputs();

@@ -1,10 +1,13 @@
 package com.giordanogiammaria.microapp30.parsing;
 
+import android.util.Log;
+
 import com.giordanogiammaria.microapp30.Component;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -46,7 +49,7 @@ public class DeployParser {
     }
 
     public ArrayList<Component> getComponents() {
-        NodeList componentNodes = document.getElementsByTagName("component");
+       NodeList componentNodes = document.getElementsByTagName("component");
         ArrayList<Component> components = new ArrayList<>();
         // crea componente dal tag component
         int compsLength = componentNodes.getLength();
@@ -61,20 +64,24 @@ public class DeployParser {
                 NodeList childNodes = compNode.getChildNodes();
                 int childLength = childNodes.getLength();
                 for (int j = 0; j < childLength; j++) {
-                    Element childNode = (Element) childNodes.item(j);
-                    if (childNode.getTagName().equals("input")) {
-                        String dataName = childNode.getAttribute("dataname");
-                        String sendId = childNode.getAttribute("id");
-                        component.addInputSender(sendId, dataName);
-                    } else if (childNode.getTagName().equals("output")) {
-                        String destId = childNode.getAttribute("id");
-                        component.addOutputReceiver(destId);
+                    Log.d("j:", "" + j);
+                    if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                        Element childNode = (Element) childNodes.item(j);
+                        if (childNode.getTagName().equals("input")) {
+                            String dataName = childNode.getAttribute("dataname");
+                            String sendId = childNode.getAttribute("id");
+                            component.addInputSender(sendId, dataName);
+                        } else if (childNode.getTagName().equals("output")) {
+                            String destId = childNode.getAttribute("id");
+                            component.addOutputReceiver(destId);
+                        }
                     }
                 }
             }
         }
         printComponents(components);
         return components;
+
     }
 
     private static File createXMLFile() {

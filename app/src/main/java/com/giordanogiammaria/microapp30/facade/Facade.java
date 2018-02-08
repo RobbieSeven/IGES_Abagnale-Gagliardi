@@ -2,6 +2,7 @@ package com.giordanogiammaria.microapp30.facade;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
@@ -53,5 +54,9 @@ public class Facade {
         ManageFile manageFile=new ManageFile();
         File f=manageFile.getLocalPath(context);
         return f.getPath();
+    }
+
+    public void SavePhoto(Bitmap image) {
+
     }
 }

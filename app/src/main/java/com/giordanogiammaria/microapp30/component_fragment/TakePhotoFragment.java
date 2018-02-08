@@ -1,8 +1,13 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,9 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -69,12 +77,36 @@ public class TakePhotoFragment extends ComponentFragment {
         startActivityForResult(cameraIntent, 1);
         return view;
     }
-     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             image = (Bitmap) data.getExtras().get("data");
             ImageView imageview =  view.findViewById(R.id.pre_img);
             imageview.setImageBitmap(image);
-
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("string_id", image.toString()); //InputString: from the EditText
+            editor.apply();
         }
+    }
+    private String saveImage(Bitmap finalBitmap, String image_name) {
+
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root);
+        if (!myDir.mkdirs())
+                System.exit(1);//memory end
+        String fname = "Image-" + image_name+ ".jpg";
+        File file = new File(myDir, fname);
+        if (file.exists()) file.delete();
+        Log.i("LOAD", root + fname);
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fname;
     }
 }

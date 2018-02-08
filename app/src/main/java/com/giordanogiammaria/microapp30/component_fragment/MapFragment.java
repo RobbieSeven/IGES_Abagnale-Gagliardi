@@ -33,7 +33,7 @@ public class MapFragment extends ComponentFragment {
     @Override
     protected HashMap<String, DataType> setInputTypes() {
         HashMap<String,DataType> inputTypes=new HashMap<>();
-        inputTypes.put("location",DataType.LOCATION);
+            inputTypes.put("location",DataType.LOCATION);
         return inputTypes;
 
     }
