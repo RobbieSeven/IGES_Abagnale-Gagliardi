@@ -48,7 +48,7 @@ public class ShowContactFragment extends ComponentFragment {
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
-        GenericData<Contact> data= dataCollection.get("selectContact");
+        GenericData<Contact> data=  dataCollection.get("selectContact");
         contact=data.getData().get(0);
     }
 
