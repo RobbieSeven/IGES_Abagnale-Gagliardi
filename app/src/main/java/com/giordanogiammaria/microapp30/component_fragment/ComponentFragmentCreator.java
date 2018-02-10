@@ -3,10 +3,6 @@ package com.giordanogiammaria.microapp30.component_fragment;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 
-/**
- * Created by Giuseppe Abagnale on 22/01/2018.
- */
-
 public class ComponentFragmentCreator {
 
     public static ComponentFragment getComponentFragment(ComponentType type) {
