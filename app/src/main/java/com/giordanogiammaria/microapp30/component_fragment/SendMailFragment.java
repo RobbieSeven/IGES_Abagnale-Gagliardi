@@ -85,12 +85,11 @@ public class SendMailFragment extends ComponentFragment{
         return view;
     }
 
-    private String getUriPhoto() {
+         private String getUriPhoto() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String data = prefs.getString("fname", "no id"); //no id: default value
         String photoPath = Environment.getExternalStorageDirectory()+"/"+data;
         Log.d("photoPath",photoPath);
         return photoPath;
-
     }
 }
