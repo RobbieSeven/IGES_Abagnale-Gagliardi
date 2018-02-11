@@ -1,6 +1,5 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
-import com.giordanogiammaria.microapp30.Component;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
@@ -12,6 +11,7 @@ import java.util.HashMap;
  * Created by Roberto on 29/01/2018.
  */
 
+//questa è un Fragment blank di prova
 public class BlankFragment extends ComponentFragment {
 
     private String string;
