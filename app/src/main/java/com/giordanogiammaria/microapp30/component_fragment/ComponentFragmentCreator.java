@@ -11,8 +11,6 @@ public class ComponentFragmentCreator {
                 return new BlankFragment();
             case TAKEPHOTO:
                 return new TakePhotoFragment();
-            case SAVE:
-                return new SaveFragment();
             case MAP:
                 return new MapFragment();
             case LOCATION:
