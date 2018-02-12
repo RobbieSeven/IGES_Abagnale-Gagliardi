@@ -54,6 +54,8 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     public void onBackPressed() {
         if (!materialSearchView.onBackPressed()) {
             super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         }
     }
 

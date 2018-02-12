@@ -77,8 +77,8 @@ public class Component {
     }
 
     public void putData(HashMap<DataType, GenericData> outputData, String sendId) {
-        Log.d("inputSenders",inputSenders.toString());
-        Log.d("sendId",sendId);
+        Log.d("inputSenders", inputSenders.toString());
+        Log.d("sendId", sendId);
         for (String dataName : inputSenders.get(sendId))
             if (compFragment.getInputTypes().containsKey(dataName)) {
                 DataType dataType = compFragment.getInputTypes().get(dataName);

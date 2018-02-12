@@ -34,9 +34,7 @@ public class ShowContactFragment extends ComponentFragment {
 
     @Override
     protected HashMap<String, DataType> setInputTypes() {
-        HashMap<String,DataType> inputTypes=new HashMap<>();
-        inputTypes.put("selectContact",DataType.CONTACT);
-        return inputTypes;
+        return new HashMap<>();
     }
 
     @Override
@@ -48,8 +46,6 @@ public class ShowContactFragment extends ComponentFragment {
 
     @Override
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
-        GenericData<Contact> data=  dataCollection.get("selectContact");
-        contact=data.getData().get(0);
     }
 
 
@@ -72,12 +68,12 @@ public class ShowContactFragment extends ComponentFragment {
         view = inflater.inflate(R.layout.activity_temp  , container, false);
         lvItem = (view.findViewById(R.id.listView_items));
         itemAdapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_list_item_1,contactlist);
-        contact=new Contact();
         lvItem.setAdapter(itemAdapter);
         readContacts();
         lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                contact=new Contact();
                 cutString(adapterView.getItemAtPosition(i).toString());
                 Snackbar.make(view,"the contact has been selected",Snackbar.LENGTH_SHORT).show();
             }

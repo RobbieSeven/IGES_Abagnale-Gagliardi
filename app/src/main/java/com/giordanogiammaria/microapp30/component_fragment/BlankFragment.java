@@ -29,15 +29,15 @@ public class BlankFragment extends ComponentFragment {
 
     @Override
     protected HashMap<String, DataType> setInputTypes() {
-        HashMap<String,DataType> inputTypes=new HashMap<>();
-        inputTypes.put("string",DataType.STRING);
+        HashMap<String,DataType> inputTypes = new HashMap<>();
+        inputTypes.put("string", DataType.STRING);
         return inputTypes;
     }
 
     @Override
     protected ArrayList<DataType> setOutputTypes() {
-        ArrayList<DataType>outputTypes=new ArrayList<>();
-        outputTypes.add(DataType.STRING);
+        ArrayList<DataType>outputTypes = new ArrayList<>();
+        // outputTypes.add(DataType.STRING);
         return outputTypes;
     }
 
