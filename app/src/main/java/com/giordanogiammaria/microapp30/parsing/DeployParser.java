@@ -3,6 +3,7 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
@@ -52,7 +53,7 @@ public class DeployParser {
             document.getDocumentElement().normalize();
     }
 
-    public ArrayList<Component> getComponents() {
+    public ArrayList<Component> getComponents() throws NonExistentComponentException {
        NodeList componentNodes = document.getElementsByTagName("component");
         ArrayList<Component> components = new ArrayList<>();
         // crea componente dal tag component

@@ -6,6 +6,7 @@ import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.parsing.DeployParser;
@@ -24,7 +25,7 @@ public class MicroAppGenerator {
     private ArrayList<Component> components;
     private int currentIndex;
 
-    public MicroAppGenerator(String filePath) throws FileNotFoundException {
+    public MicroAppGenerator(String filePath) throws FileNotFoundException, NonExistentComponentException {
         DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;

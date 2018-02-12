@@ -53,14 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(R.drawable.logo_micro_app)
                 .setTitle("Closing Activity")
                 .setMessage("Are you sure you want to close this activity?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        finishAffinity();
                         System.exit(0);
                     }
-
                 })
                 .setNegativeButton("No", null)
                 .show();

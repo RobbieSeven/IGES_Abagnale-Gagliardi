@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
+import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragmentCreator;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
@@ -25,7 +26,7 @@ public class Component {
     private HashMap<String, ArrayList<String>> inputSenders;
     private ArrayList<String> outputReceivers;
 
-    public Component(String id, ComponentType type) {
+    public Component(String id, ComponentType type) throws NonExistentComponentException {
         this.id = id;
         this.type = type;
         compFragment = ComponentFragmentCreator.getComponentFragment(type);  // istanzia l'activity in base al tipo della componente
@@ -79,14 +80,12 @@ public class Component {
     public void putData(HashMap<DataType, GenericData> outputData, String sendId) {
         Log.d("inputSenders", inputSenders.toString());
         Log.d("sendId", sendId);
-        for (String dataName : inputSenders.get(sendId))
-            if (compFragment.getInputTypes().containsKey(dataName)) {
-                DataType dataType = compFragment.getInputTypes().get(dataName);
-                if (outputData.containsKey(dataType)) {
-                    GenericData data = outputData.get(dataType);
-                    inputData.put(dataName, data);
-                }
-            }
+        for (String dataName : inputSenders.get(sendId)) {
+            DataType dataType = compFragment.getInputTypes().get(dataName);
+            GenericData data = outputData.get(dataType);
+            if (dataType != null && data != null)
+                inputData.put(dataName, data);
+        }
     }
 
     public void setInputs() throws MissingInputException {

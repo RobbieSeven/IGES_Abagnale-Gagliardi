@@ -14,15 +14,13 @@ import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
 import com.giordanogiammaria.microapp30.facade.Facade;
 
 import java.io.FileNotFoundException;
 
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
-    private String filePath;
-    private Intent intent;
-    // static int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +28,22 @@ public class MicroAppActivity extends AppCompatActivity {
         setContentView(R.layout.micro_app);
         Facade facade= new Facade(getApplicationContext());
         String path=facade.getLocalPath();
-        intent = getIntent();
-        filePath = intent.getStringExtra("filePath");
+        Intent intent = getIntent();
+        String filePath = intent.getStringExtra("filePath");
         filePath = path + "/" + filePath;
-        Log.e("filePath",filePath);
+        Log.e("filePath", filePath);
         try {
             generator = new MicroAppGenerator(filePath);
-        } catch (FileNotFoundException e) {
-            Toast.makeText(getApplicationContext(),"file not found!",Toast.LENGTH_LONG).show();
-            finish();
-        }
-        try {
             showFragment(generator.getStartComponent());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),"File not found", Toast.LENGTH_LONG).show();
+            finish();
+        } catch (NonExistentComponentException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (NoNextComponentException e) {
+            e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
             finish();
         }
@@ -73,9 +74,8 @@ public class MicroAppActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-       /* Intent intent = new Intent(getApplicationContext(), ListFile.class);
-        startActivity(intent);*/
-       finish();
+       Intent intent = new Intent(getApplicationContext(), ListFile.class);
+        startActivity(intent);
     }
 
     private void showFragment(Fragment fragment) {

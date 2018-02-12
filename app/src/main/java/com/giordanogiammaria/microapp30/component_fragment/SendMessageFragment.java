@@ -1,12 +1,14 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.telephony.SmsManager;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +46,6 @@ public class SendMessageFragment extends ComponentFragment{
         HashMap<String,DataType> inputType=new HashMap<>();
         inputType.put("contact",DataType.CONTACT);
         return inputType;
-
     }
 
     @Override
@@ -92,15 +93,17 @@ public class SendMessageFragment extends ComponentFragment{
 
                 }
             });
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-            String data = prefs.getString("imageContact", "no id");
-        if (data.equalsIgnoreCase("no id")){
-                picture.setImageDrawable(getResources().getDrawable(R.drawable.ic_contact_picture));
-            }
-        else
-                picture.setImageBitmap(BitmapFactory.decodeFile(data));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        String data = prefs.getString("imagePreference", "no id");
+        picture.setImageBitmap(decodeBase64(data));
         return view;
-        }
+    }
+
+    public static Bitmap decodeBase64(String input) {
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
+    }
 
     private void changeLayout() {
         sendSmsButton.setVisibility(View.VISIBLE);

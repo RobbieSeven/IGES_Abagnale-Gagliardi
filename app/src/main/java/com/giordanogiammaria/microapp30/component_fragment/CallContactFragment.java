@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,13 +84,22 @@ public class CallContactFragment extends ComponentFragment{
         Bitmap bitmap=getContactsDetails(view.getContext(),number);
         Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.8), (int)(bitmap.getHeight()*0.8), true);
         imageViewContact.setImageBitmap(resized);
-        Uri uriImg=getImageUri(view.getContext(),resized);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("imageContact",getRealPathFromURI(uriImg)); // mi salvo l'eventuale immagine del contatto
-        editor.apply();
+        editor.putString("imagePreference", encodeTobase64(bitmap));
         return view;
     }
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
+    }
+
     @SuppressLint("MissingPermission")
     public void call(String number){
         Intent intent = new Intent(Intent.ACTION_CALL);
