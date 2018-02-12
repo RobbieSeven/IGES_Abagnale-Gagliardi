@@ -101,10 +101,10 @@ public class Component {
 
     public HashMap<DataType, GenericData> getOutput() throws MissingOutputException {
         HashMap<DataType, GenericData> dataCollection = compFragment.getOutputsData();
-            for (DataType dataType : compFragment.getOutputTypes())
-                if (!dataCollection.containsKey(dataType))
-                    throw new MissingOutputException(dataType.toString());
-        return compFragment.getOutputsData();
+        for (DataType dataType : compFragment.getOutputTypes())
+            if (!dataCollection.containsKey(dataType))
+                throw new MissingOutputException(dataType.toString());
+        return dataCollection;
     }
 
 }
