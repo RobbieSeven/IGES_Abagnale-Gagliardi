@@ -2,6 +2,8 @@ package com.giordanogiammaria.microapp30;
 
 import android.util.Log;
 
+import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragmentCreator;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
@@ -87,21 +89,21 @@ public class Component {
             }
     }
 
-    public void setInputs() {
+    public void setInputs() throws MissingInputException {
         for (String dataName : compFragment.getInputTypes().keySet()) {
-            Log.d("DATANAME:",dataName);
-            Log.d("inputData:",""+inputData.containsKey(dataName));
+            Log.d("DATANAME:", dataName);
+            Log.d("inputData:","" + inputData.containsKey(dataName));
             if (!inputData.containsKey(dataName))
-                return; // error
+                throw new MissingInputException(dataName);
         }
         compFragment.setInputsData(inputData);
     }
 
-    public HashMap<DataType, GenericData> getOutput() {
+    public HashMap<DataType, GenericData> getOutput() throws MissingOutputException {
         HashMap<DataType, GenericData> dataCollection = compFragment.getOutputsData();
             for (DataType dataType : compFragment.getOutputTypes())
                 if (!dataCollection.containsKey(dataType))
-                    return null; // error
+                    throw new MissingOutputException(dataType.toString());
         return compFragment.getOutputsData();
     }
 
