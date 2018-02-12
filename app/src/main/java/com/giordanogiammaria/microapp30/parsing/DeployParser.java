@@ -34,13 +34,13 @@ public class DeployParser {
     private Document document;
 
     public DeployParser(String filePath) throws FileNotFoundException {
-        File file=new File(filePath);
-       // if (filePath != null)
-            //file = new File(filePath);
-       /* else*/
-           // file = createXMLFile();
+        File file = new File(filePath);
+       /*if (filePath != null)
+            file = new File(filePath);
+       else
+           file = createXMLFile();*/
         if (!file.exists())
-            throw new  FileNotFoundException("file not found ");
+            throw new  FileNotFoundException("Deploy file not found");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -48,9 +48,8 @@ public class DeployParser {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-        if (document!=null)
+        if (document != null)
             document.getDocumentElement().normalize();
-
     }
 
     public ArrayList<Component> getComponents() {
