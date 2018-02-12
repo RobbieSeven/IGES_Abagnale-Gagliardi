@@ -14,6 +14,8 @@ import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
 import com.giordanogiammaria.microapp30.facade.Facade;
 
+import java.io.FileNotFoundException;
+
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
     private String filePath;
@@ -30,7 +32,12 @@ public class MicroAppActivity extends AppCompatActivity {
         filePath = intent.getStringExtra("filePath");
         filePath=path+"/"+filePath;
         Log.e("filePath",filePath);
-        generator = new MicroAppGenerator(filePath);
+        try {
+            generator = new MicroAppGenerator(filePath);
+        } catch (FileNotFoundException e) {
+            Toast.makeText(getApplicationContext(),"file not found!",Toast.LENGTH_LONG).show();
+            finish();
+        }
 
         try {
             showFragment(generator.getStartComponent());

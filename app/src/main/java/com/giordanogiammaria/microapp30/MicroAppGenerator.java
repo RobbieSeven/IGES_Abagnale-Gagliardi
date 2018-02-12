@@ -9,6 +9,7 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.parsing.DeployParser;
 import com.giordanogiammaria.microapp30.sorting.ComponentSorting;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ public class MicroAppGenerator {
     private ArrayList<Component> components;
     private int currentIndex;
 
-    public MicroAppGenerator(String filePath) {
+    public MicroAppGenerator(String filePath) throws FileNotFoundException {
         DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;
@@ -56,9 +57,7 @@ public class MicroAppGenerator {
             throw new NoNextComponentException();
     }
 
-    public boolean hasNextComponent() {
-        return currentIndex < components.size();
-    }
+
     public ComponentFragment getStartComponent() throws NoNextComponentException{
         Component component=components.get(0);
         if (component!=null)

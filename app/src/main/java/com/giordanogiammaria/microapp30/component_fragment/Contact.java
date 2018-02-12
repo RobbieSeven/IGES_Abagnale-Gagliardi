@@ -13,7 +13,7 @@ public class Contact {
         this.emailContact = emailContact;
     }
 
-    public Contact() {
+    Contact() {
 
     }
 
@@ -21,23 +21,23 @@ public class Contact {
         return nameContact;
     }
 
-    public void setNameContact(String nameContact) {
+    void setNameContact(String nameContact) {
         this.nameContact = nameContact;
     }
 
-    public String getNumberContact() {
+    String getNumberContact() {
         return numberContact;
     }
 
-    public void setNumberContact(String numberContact) {
+    void setNumberContact(String numberContact) {
         this.numberContact = numberContact;
     }
 
-    public String getEmailContact() {
+    String getEmailContact() {
         return emailContact;
     }
 
-    public void setEmailContact(String emailContact) {
+    void setEmailContact(String emailContact) {
         this.emailContact = emailContact;
     }
 }

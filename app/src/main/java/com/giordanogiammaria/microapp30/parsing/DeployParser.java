@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,12 +33,14 @@ public class DeployParser {
 
     private Document document;
 
-    public DeployParser(String filePath) {
+    public DeployParser(String filePath) throws FileNotFoundException {
         File file=new File(filePath);
        // if (filePath != null)
             //file = new File(filePath);
        /* else*/
            // file = createXMLFile();
+        if (!file.exists())
+            throw new  FileNotFoundException("file not found ");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -45,7 +48,9 @@ public class DeployParser {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-        document.getDocumentElement().normalize();
+        if (document!=null)
+            document.getDocumentElement().normalize();
+
     }
 
     public ArrayList<Component> getComponents() {
