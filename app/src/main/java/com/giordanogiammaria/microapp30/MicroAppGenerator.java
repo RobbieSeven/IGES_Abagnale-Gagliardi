@@ -13,10 +13,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
-
 public class MicroAppGenerator {
 
     private ArrayList<Component> components;
