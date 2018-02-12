@@ -57,8 +57,10 @@ public class ShowContactFragment extends ComponentFragment {
     public HashMap<DataType, GenericData> getOutputsData() {
         HashMap<DataType,GenericData> outputData=new HashMap<>();
         GenericData<Contact> data= new GenericData<>();
-        data.addData(contact);
-        outputData.put(DataType.CONTACT,data);
+        if (contact!=null) {
+            data.addData(contact);
+            outputData.put(DataType.CONTACT, data);
+        }
         return outputData;
     }
 
