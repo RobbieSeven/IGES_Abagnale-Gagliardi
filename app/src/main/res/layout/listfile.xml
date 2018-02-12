@@ -5,6 +5,7 @@
       <com.michaelgarnerdev.materialsearchview.MaterialSearchView
           android:id="@+id/material_search_view"
           android:layout_width="match_parent"
+          android:background="@drawable/border_text_view"
           android:layout_height="wrap_content"/>
 
       <ListView

@@ -262,6 +262,6 @@
     </string>
     <string name="username">username</string>
     <string name="login">login</string>
-    <string name="lat">latitude:</string>
+    <string name="lat">Latitude:</string>
     <string name="your_current_coordinates_are">your current coordinates are:</string>
 </resources>

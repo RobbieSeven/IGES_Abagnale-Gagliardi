@@ -6,10 +6,10 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/CallButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/photoContact"
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
         android:contentDescription="@string/image"
         android:src="@drawable/ic_contact_picture" />
 
@@ -18,20 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empty"
-        android:layout_below="@id/CallButton"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/photoContact"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textIsSelectable="false" />
-
-
-    <TextView
-        android:id="@+id/txNumero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/empty"
-        android:layout_below="@id/txNome"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textIsSelectable="false" />
-
-
 
 </RelativeLayout>

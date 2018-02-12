@@ -6,11 +6,17 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
+import com.giordanogiammaria.microapp30.facade.Facade;
+
+import java.io.FileNotFoundException;
 
 public class MicroAppActivity extends AppCompatActivity {
     private MicroAppGenerator generator;
@@ -22,25 +28,24 @@ public class MicroAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.micro_app);
+        Facade facade= new Facade(getApplicationContext());
+        String path=facade.getLocalPath();
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        generator = new MicroAppGenerator(filePath);
+        filePath = path + "/" + filePath;
+        Log.e("filePath",filePath);
         try {
-            showFragment(generator.nextCompFragment());
+            generator = new MicroAppGenerator(filePath);
+        } catch (FileNotFoundException e) {
+            Toast.makeText(getApplicationContext(),"file not found!",Toast.LENGTH_LONG).show();
+            finish();
+        }
+        try {
+            showFragment(generator.getStartComponent());
         } catch (NoNextComponentException e) {
             Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
             finish();
         }
-    }
-
-    public void showFragment(Fragment fragment) {
-        // create a FragmentManager
-        FragmentManager fm = getFragmentManager();
-        // create a FragmentTransaction to begin the transaction and replace the Fragment
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        // replace the FrameLayout with new Fragment
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit(); // save the changes
     }
 
     public void prevOnClick(View view) {
@@ -55,9 +60,24 @@ public class MicroAppActivity extends AppCompatActivity {
         try {
             showFragment(generator.nextCompFragment());
         } catch(NoNextComponentException e) {
+            e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            finish();
+            Intent intent = new Intent(getApplicationContext(), ListFile.class);
+            startActivity(intent);
+        } catch (MissingOutputException | MissingInputException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void showFragment(Fragment fragment) {
+        // create a FragmentManager
+        FragmentManager fm = getFragmentManager();
+        // create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        // replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit(); // save the changes
     }
 
 }
