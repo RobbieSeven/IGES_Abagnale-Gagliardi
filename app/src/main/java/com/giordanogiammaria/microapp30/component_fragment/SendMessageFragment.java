@@ -89,7 +89,6 @@ public class SendMessageFragment extends ComponentFragment{
                     }
                 }
                 else Snackbar.make(view,"please enter text",Snackbar.LENGTH_LONG).show();
-
                 }
             });
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
@@ -98,7 +97,7 @@ public class SendMessageFragment extends ComponentFragment{
         return view;
     }
 
-    public static Bitmap decodeBase64(String input) {
+    public  Bitmap decodeBase64(String input) {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory
                 .decodeByteArray(decodedByte, 0, decodedByte.length);

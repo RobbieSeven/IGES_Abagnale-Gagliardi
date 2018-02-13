@@ -2,10 +2,19 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +28,8 @@ import com.giordanogiammaria.microapp30.R;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -78,11 +89,46 @@ public class ListContactFragment extends ComponentFragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 contact = (Contact) adapterView.getItemAtPosition(i);
                 Snackbar.make(view,"the contact has been selected "+contact.getNameContact(),Snackbar.LENGTH_SHORT).show();
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                Bitmap bitmap=getContactsDetails(view.getContext(),contact.getNumberContact());
+                editor.putString("imagePreference", encodeTobase64(bitmap));
+                editor.apply();
             }
         });
         return view;
     }
 
+    public static String encodeTobase64(Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        return Base64.encodeToString(b, Base64.DEFAULT);
+    }
+    public  Bitmap getContactsDetails(Context context, String address) {
+        Bitmap bp = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.ic_contact_picture);
+        Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address));
+        // querying contact data store
+        Cursor phones = context.getContentResolver().query(contactUri, null, null, null, null);
+        assert phones != null;
+        while (phones.moveToNext()) {
+            String image_uri = phones.getString(phones.getColumnIndex(
+                    ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+            if (image_uri != null) {
+                try {
+                    bp = MediaStore.Images.Media
+                            .getBitmap(context.getContentResolver(),
+                                    Uri.parse(image_uri));
+
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+        return   bp;
+    }
     private ArrayList<Contact> readListContact() {
         ContentResolver cr =view.getContext().getContentResolver();
         Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
