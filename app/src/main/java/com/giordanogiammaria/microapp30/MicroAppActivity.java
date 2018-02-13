@@ -14,7 +14,7 @@ import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingComponentTypeException;
+import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 import com.giordanogiammaria.microapp30.facade.Facade;
 
 import java.io.FileNotFoundException;
@@ -39,7 +39,7 @@ public class MicroAppActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(),"File not found", Toast.LENGTH_LONG).show();
             finish();
-        } catch (MissingComponentTypeException e) {
+        } catch (ParsingException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (NoNextComponentException e) {
@@ -60,7 +60,7 @@ public class MicroAppActivity extends AppCompatActivity {
     public void nextOnClick(View view) {
         try {
             showFragment(generator.nextCompFragment());
-        } catch(NoNextComponentException | DataMismatchException e) {
+        } catch(NoNextComponentException | DataMismatchException | ParsingException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), ListFile.class);
