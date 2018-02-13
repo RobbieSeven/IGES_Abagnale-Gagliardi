@@ -6,8 +6,8 @@ package com.giordanogiammaria.microapp30.Subsystem;
 
 public class MissingComponentException extends ParsingException {
 
-    public MissingComponentException(String tagId, String reqId) {
-        super("Component " + reqId + " required from Component " + tagId + " is missing");
+    public MissingComponentException(String fromId, String toId) {
+        super("Component " + fromId + " required from Component " + toId + " is missing");
     }
 
 }
