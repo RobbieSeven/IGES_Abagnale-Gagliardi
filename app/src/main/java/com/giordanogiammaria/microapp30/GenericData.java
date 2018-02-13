@@ -27,4 +27,8 @@ public class GenericData<T> {
         return data.contains(singleData);
     }
 
+    public boolean isEmpty() {
+        return data.isEmpty();
+    }
+
 }

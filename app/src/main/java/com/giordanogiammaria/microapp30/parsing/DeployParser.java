@@ -3,7 +3,8 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
-import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingComponentTypeException;
+import com.giordanogiammaria.microapp30.Subsystem.InputNotExceptedException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
@@ -53,8 +54,8 @@ public class DeployParser {
             document.getDocumentElement().normalize();
     }
 
-    public ArrayList<Component> getComponents() throws NonExistentComponentException {
-       NodeList componentNodes = document.getElementsByTagName("component");
+    public ArrayList<Component> getComponents() throws MissingComponentTypeException, InputNotExceptedException {
+        NodeList componentNodes = document.getElementsByTagName("component");
         ArrayList<Component> components = new ArrayList<>();
         // crea componente dal tag component
         int compsLength = componentNodes.getLength();
@@ -88,6 +89,16 @@ public class DeployParser {
         return components;
 
     }
+
+    /*private void checkComponents(ArrayList<Component> components) {
+        for (Component component : components) {
+            for (String sendId : component.getInputSenders().keySet())
+                for (Component comp : components) {
+                    if (component.getId().equals(sendId))
+                        break;
+                }
+        }
+    }*/
 
     private static File createXMLFile() {
         File file = new File("my.xml");

@@ -11,11 +11,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingComponentTypeException;
 import com.giordanogiammaria.microapp30.facade.Facade;
 
 import java.io.FileNotFoundException;
@@ -40,7 +39,7 @@ public class MicroAppActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(),"File not found", Toast.LENGTH_LONG).show();
             finish();
-        } catch (NonExistentComponentException e) {
+        } catch (MissingComponentTypeException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (NoNextComponentException e) {
@@ -66,7 +65,7 @@ public class MicroAppActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), ListFile.class);
             startActivity(intent);
-        } catch (MissingOutputException | MissingInputException e) {
+        } catch (MissingDataException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
