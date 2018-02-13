@@ -48,7 +48,7 @@
         <activity android:name=".MicroAppActivity" />
         <activity android:name=".component_fragment.ContactPickerSampleActivity" />
         <activity android:name=".component_fragment.ShowContactFragment" />
-        <activity android:name=".component_fragment.ListContact2"></activity>
+        <activity android:name=".component_fragment.ListContactFragment"></activity>
     </application>
 
 </manifest>

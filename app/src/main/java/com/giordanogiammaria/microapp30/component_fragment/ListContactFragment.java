@@ -22,7 +22,7 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ListContact2 extends ComponentFragment {
+public class ListContactFragment extends ComponentFragment {
     View view;
     ListView lvItem;
     String displayName="", emailAddress="", phoneNumber="";
