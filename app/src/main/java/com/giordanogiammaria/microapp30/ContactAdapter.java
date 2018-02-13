@@ -1,4 +1,4 @@
-package com;
+package com.giordanogiammaria.microapp30;
 
 import android.content.Context;
 import android.view.LayoutInflater;

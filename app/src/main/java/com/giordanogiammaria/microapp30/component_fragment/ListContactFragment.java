@@ -13,13 +13,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.ContactAdapter;
+import com.giordanogiammaria.microapp30.ContactAdapter;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class ListContactFragment extends ComponentFragment {
@@ -67,14 +68,15 @@ public class ListContactFragment extends ComponentFragment {
         view = inflater.inflate(R.layout.activity_list_contact2  , container, false);
         lvItem = (view.findViewById(R.id.listView));
         itemAdapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_list_item_1,contactlist);
-        ContactAdapter contactAdapter=new ContactAdapter (readListContact(),view.getContext());
+        ArrayList<Contact> contacts=readListContact();
+        Collections.sort(contacts);
+        ContactAdapter contactAdapter=new ContactAdapter (contacts,view.getContext());
+
         lvItem.setAdapter(contactAdapter);
         lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //cutString(adapterView.getItemAtPosition(i).toString());
-                Object cont = adapterView.getItemAtPosition(i);
-                contact=(Contact) cont;
+                contact = (Contact) adapterView.getItemAtPosition(i);
                 Snackbar.make(view,"the contact has been selected "+contact.getNameContact(),Snackbar.LENGTH_SHORT).show();
             }
         });

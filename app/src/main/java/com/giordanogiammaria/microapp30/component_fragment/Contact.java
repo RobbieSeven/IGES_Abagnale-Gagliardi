@@ -1,10 +1,12 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by Giordano Giammaria on 01/02/2018.
  */
 
-public class Contact {
+public class Contact implements Comparable<Contact>{
     private String nameContact,numberContact,emailContact;
     private int photoContact;
     public Contact(String nameContact, String numberContact, String emailContact,int photoContact ) {
@@ -48,5 +50,12 @@ public class Contact {
 
     public void setPhotoContact(int photoContact) {
         this.photoContact = photoContact;
+    }
+
+    @Override
+    public int compareTo(@NonNull Contact contact) {
+        String name1=this.getNameContact().toLowerCase();
+        String name2=contact.getNameContact().toLowerCase();
+        return name1.compareTo(name2);
     }
 }
