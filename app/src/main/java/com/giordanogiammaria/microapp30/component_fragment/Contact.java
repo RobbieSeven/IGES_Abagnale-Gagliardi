@@ -6,11 +6,12 @@ package com.giordanogiammaria.microapp30.component_fragment;
 
 public class Contact {
     private String nameContact,numberContact,emailContact;
-
-    public Contact(String nameContact, String numberContact, String emailContact) {
+    private int photoContact;
+    public Contact(String nameContact, String numberContact, String emailContact,int photoContact ) {
         this.nameContact = nameContact;
         this.numberContact = numberContact;
         this.emailContact = emailContact;
+        this.photoContact = photoContact;
     }
 
     Contact() {
@@ -25,7 +26,7 @@ public class Contact {
         this.nameContact = nameContact;
     }
 
-    String getNumberContact() {
+    public String getNumberContact() {
         return numberContact;
     }
 
@@ -33,11 +34,19 @@ public class Contact {
         this.numberContact = numberContact;
     }
 
-    String getEmailContact() {
+    public String getEmailContact() {
         return emailContact;
     }
 
     void setEmailContact(String emailContact) {
         this.emailContact = emailContact;
+    }
+
+    public int getPhotoContact() {
+        return photoContact;
+    }
+
+    public void setPhotoContact(int photoContact) {
+        this.photoContact = photoContact;
     }
 }

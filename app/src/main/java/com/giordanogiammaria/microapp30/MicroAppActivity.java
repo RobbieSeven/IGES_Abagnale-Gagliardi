@@ -74,8 +74,9 @@ public class MicroAppActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-       Intent intent = new Intent(getApplicationContext(), ListFile.class);
+        Intent intent = new Intent(getApplicationContext(), ListFile.class);
         startActivity(intent);
+       finish();
     }
 
     private void showFragment(Fragment fragment) {

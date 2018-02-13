@@ -21,7 +21,7 @@ public class ComponentFragmentCreator {
             case CALLCONTACT:
                 return new CallContactFragment();
             case SELECTCONTACT:
-                return new ShowContactFragment();
+                return new ListContact2();
             case SENDMESSAGE:
                 return new SendMessageFragment();
             case SENDMAIL:
