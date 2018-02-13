@@ -4,25 +4,22 @@ import org.jgrapht.DirectedGraph;
 
 import java.util.ArrayList;
 
-/**
- * Created by Roberto on 22/01/2018.
- */
 
-public class DepthFirstOrder<V> {
+class DepthFirstOrder<V> {
 
     private DirectedGraph<V, DirEdge> graph;
     private ArrayList<V> sortedVertices;
     private ArrayList<DFSNode<V>> nodes;
     private boolean notDAG;
 
-    public DepthFirstOrder(DirectedGraph<V, DirEdge> graph) {
+    DepthFirstOrder(DirectedGraph<V, DirEdge> graph) {
         this.graph = graph;
         sortedVertices = new ArrayList<>();
         nodes = new ArrayList<>();
         notDAG = false;
     }
 
-    public ArrayList<V> sort() {
+    ArrayList<V> sort() {
         for (V v : graph.vertexSet())
             nodes.add(new DFSNode<>(v, DFSNodeColor.WHITE));
         for (DFSNode<V> n : nodes)

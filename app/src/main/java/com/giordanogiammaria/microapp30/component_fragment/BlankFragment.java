@@ -7,9 +7,6 @@ import com.giordanogiammaria.microapp30.GenericData;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 29/01/2018.
- */
 
 //questa è un Fragment blank di prova
 public class BlankFragment extends ComponentFragment {

@@ -78,7 +78,6 @@ public class SendMessageFragment extends ComponentFragment{
         sendingText=view.findViewById(R.id.sendingSmsTo);
         picture=view.findViewById(R.id.picture);
         contactName.setText(facade.getContactName(number,view.getContext()));
-        //sendSmsButton.setBackgroundColor(Color.GRAY);
         sendSmsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

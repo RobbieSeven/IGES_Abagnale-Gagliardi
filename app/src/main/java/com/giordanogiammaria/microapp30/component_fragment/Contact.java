@@ -2,9 +2,7 @@ package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.support.annotation.NonNull;
 
-/**
- * Created by Giordano Giammaria on 01/02/2018.
- */
+
 
 public class Contact implements Comparable<Contact>{
     private String nameContact,numberContact,emailContact;

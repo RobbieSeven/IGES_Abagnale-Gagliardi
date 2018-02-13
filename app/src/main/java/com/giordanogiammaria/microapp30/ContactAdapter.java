@@ -12,9 +12,6 @@ import com.giordanogiammaria.microapp30.component_fragment.Contact;
 
 import java.util.List;
 
-/**
- * Created by Giordano Giammaria on 13/02/2018.
- */
 
 public class ContactAdapter extends BaseAdapter {
     private List<Contact> contacts=null;
@@ -42,8 +39,7 @@ public class ContactAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view==null)
-        {
+        if (view==null) {
             view= LayoutInflater.from(context).inflate(R.layout.recycle_view_layout, null);
         }
         Contact contact=(Contact) getItem(i);

@@ -9,9 +9,6 @@ import com.giordanogiammaria.microapp30.GenericData;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
 public abstract class ComponentFragment extends Fragment{
 

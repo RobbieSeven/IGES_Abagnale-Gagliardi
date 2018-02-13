@@ -2,9 +2,6 @@ package com.giordanogiammaria.microapp30;
 
 import java.util.ArrayList;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
 public class GenericData<T> {
 

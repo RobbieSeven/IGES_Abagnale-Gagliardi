@@ -13,9 +13,6 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
 public class Component {
 
@@ -39,7 +36,7 @@ public class Component {
         return id;
     }
 
-    public ComponentFragment getFragment() {
+    ComponentFragment getFragment() {
         return compFragment;
     }
 
@@ -77,7 +74,7 @@ public class Component {
         outputReceivers.add(compId);
     }
 
-    public void putData(HashMap<DataType, GenericData> outputData, String sendId) {
+    void putData(HashMap<DataType, GenericData> outputData, String sendId) {
         Log.d("inputSenders", inputSenders.toString());
         Log.d("sendId", sendId);
         for (String dataName : inputSenders.get(sendId)) {
@@ -88,7 +85,7 @@ public class Component {
         }
     }
 
-    public void setInputs() throws MissingInputException {
+    void setInputs() throws MissingInputException {
         for (String dataName : compFragment.getInputTypes().keySet()) {
             Log.d("DATANAME:", dataName);
             Log.d("inputData:","" + inputData.containsKey(dataName));
@@ -98,7 +95,7 @@ public class Component {
         compFragment.setInputsData(inputData);
     }
 
-    public HashMap<DataType, GenericData> getOutput() throws MissingOutputException {
+    HashMap<DataType, GenericData> getOutput() throws MissingOutputException {
         HashMap<DataType, GenericData> dataCollection = compFragment.getOutputsData();
         for (DataType dataType : compFragment.getOutputTypes())
             if (!dataCollection.containsKey(dataType))

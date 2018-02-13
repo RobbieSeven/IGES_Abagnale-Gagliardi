@@ -16,22 +16,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
-public class MicroAppGenerator {
+
+class MicroAppGenerator {
 
     private ArrayList<Component> components;
     private int currentIndex;
 
-    public MicroAppGenerator(String filePath) throws FileNotFoundException, NonExistentComponentException {
+    MicroAppGenerator(String filePath) throws FileNotFoundException, NonExistentComponentException {
         DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;
     }
 
-    public Fragment prevCompFragment() throws NoPrevComponentException {
+    Fragment prevCompFragment() throws NoPrevComponentException {
         if (currentIndex > 0) {
             currentIndex -= 1;
             return components.get(currentIndex).getFragment();
@@ -39,7 +37,7 @@ public class MicroAppGenerator {
             throw new NoPrevComponentException();
     }
 
-    public Fragment nextCompFragment() throws NoNextComponentException, MissingInputException, MissingOutputException {
+    Fragment nextCompFragment() throws NoNextComponentException, MissingInputException, MissingOutputException {
         if (currentIndex < components.size() - 1) {
             Component currentComp = components.get(currentIndex);
             HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
@@ -61,7 +59,7 @@ public class MicroAppGenerator {
     }
 
 
-    public ComponentFragment getStartComponent() throws NoNextComponentException{
+    ComponentFragment getStartComponent() throws NoNextComponentException{
         Component component=components.get(0);
         if (component!=null)
             return components.get(0).getFragment();

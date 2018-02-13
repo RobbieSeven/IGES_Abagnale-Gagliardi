@@ -7,9 +7,6 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Utente on 12/02/2018.
- */
 
 public class BlankStartFragment extends ComponentFragment {
 
