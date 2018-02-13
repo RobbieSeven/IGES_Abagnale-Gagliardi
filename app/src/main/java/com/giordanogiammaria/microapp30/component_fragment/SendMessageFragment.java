@@ -3,7 +3,6 @@ package com.giordanogiammaria.microapp30.component_fragment;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -72,7 +71,6 @@ public class SendMessageFragment extends ComponentFragment{
         number=values.getNumberContact();
         sendSmsButton= view.findViewById(R.id.sendSms);
         sendSmsButton.setIndeterminateProgressMode(true);
-
         contactName=view.findViewById(R.id.tx_label_cont);
         bodyMessage=view.findViewById(R.id.tx_container);
         sendingText=view.findViewById(R.id.sendingSmsTo);
