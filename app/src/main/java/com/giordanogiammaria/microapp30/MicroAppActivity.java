@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
@@ -60,7 +61,7 @@ public class MicroAppActivity extends AppCompatActivity {
     public void nextOnClick(View view) {
         try {
             showFragment(generator.nextCompFragment());
-        } catch(NoNextComponentException e) {
+        } catch(NoNextComponentException | DataMismatchException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), ListFile.class);

@@ -65,7 +65,7 @@ public class CallContactFragment extends ComponentFragment{
 
     }
     @Override
-    public HashMap<DataType,GenericData> getOutputsData() {
+    public HashMap<DataType,GenericData> getOutputData() {
         return new HashMap<>();
     }
 

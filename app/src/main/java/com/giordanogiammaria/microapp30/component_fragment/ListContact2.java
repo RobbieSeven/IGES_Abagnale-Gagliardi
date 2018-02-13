@@ -51,7 +51,7 @@ public class ListContact2 extends ComponentFragment {
     }
 
     @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
+    public HashMap<DataType, GenericData> getOutputData() {
         HashMap<DataType,GenericData> outputData=new HashMap<>();
         GenericData<Contact> data= new GenericData<>();
         if (contact!=null) {
