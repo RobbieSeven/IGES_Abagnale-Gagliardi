@@ -43,7 +43,7 @@ public class SendMessageFragment extends ComponentFragment{
 
     @Override
     protected HashMap<String, DataType> setInputTypes() {
-        HashMap<String,DataType> inputType=new HashMap<>();
+        HashMap<String,DataType> inputType = new HashMap<>();
         inputType.put("contact",DataType.CONTACT);
         return inputType;
     }
