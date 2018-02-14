@@ -28,6 +28,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
+
 public class SendMailFragment extends ComponentFragment{
     View view;
     Contact values;
@@ -106,9 +108,5 @@ public class SendMailFragment extends ComponentFragment{
         Log.d("photoPath",photoPath);
         return photoPath;
     }
-    public Bitmap decodeBase64(String input) {
-        byte[] decodedByte = Base64.decode(input, 0);
-        return BitmapFactory
-                .decodeByteArray(decodedByte, 0, decodedByte.length);
-    }
+
 }

@@ -13,8 +13,6 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +26,12 @@ import com.giordanogiammaria.microapp30.R;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
+import static com.giordanogiammaria.microapp30.CodeDecode.encodeTobase64;
 
 public class ListContactFragment extends ComponentFragment {
     View view;
@@ -88,7 +87,7 @@ public class ListContactFragment extends ComponentFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 contact = (Contact) adapterView.getItemAtPosition(i);
-                Snackbar.make(view,"the contact has been selected "+contact.getNameContact(),Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view,"the selected contact is: "+contact.getNameContact(),Snackbar.LENGTH_SHORT).show();
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
                 SharedPreferences.Editor editor = prefs.edit();
                 Bitmap bitmap=getContactsDetails(view.getContext(),contact.getNumberContact());
@@ -99,13 +98,7 @@ public class ListContactFragment extends ComponentFragment {
         return view;
     }
 
-    public static String encodeTobase64(Bitmap image) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        return Base64.encodeToString(b, Base64.DEFAULT);
-    }
-    public  Bitmap getContactsDetails(Context context, String address) {
+    private   Bitmap getContactsDetails(Context context, String address) {
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.ic_contact_picture);
         Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address));
@@ -127,6 +120,7 @@ public class ListContactFragment extends ComponentFragment {
                 }
             }
         }
+        phones.close();
         return   bp;
     }
     private ArrayList<Contact> readListContact() {

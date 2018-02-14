@@ -3,6 +3,7 @@ package com.giordanogiammaria.microapp30;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import com.giordanogiammaria.microapp30.facade.Facade;
 
 import java.io.FileNotFoundException;
 
-public class MicroAppActivity extends AppCompatActivity {
+public class MicroAppActivity extends AppCompatActivity{
     private MicroAppGenerator generator;
 
     @Override
@@ -88,5 +89,6 @@ public class MicroAppActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit(); // save the changes
     }
+
 
 }

@@ -264,4 +264,8 @@
     <string name="login">login</string>
     <string name="lat">Latitude:</string>
     <string name="your_current_coordinates_are">your current coordinates are:</string>
+    <string name="generic_failure">Generic failure</string>
+    <string name="no_service">No service</string>
+    <string name="null_pdu">Null PDU</string>
+    <string name="radio_off">Radio off</string>
 </resources>

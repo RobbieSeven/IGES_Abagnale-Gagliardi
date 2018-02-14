@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,9 @@ import com.giordanogiammaria.microapp30.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static android.content.Context.TELEPHONY_SERVICE;
+import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 
 
 public class CallContactFragment extends ComponentFragment{
@@ -83,11 +88,5 @@ public class CallContactFragment extends ComponentFragment{
         intent.setData(Uri.parse("tel:"+number ));
         startActivity(intent);
     }
-    public  Bitmap decodeBase64(String input) {
-        byte[] decodedByte = Base64.decode(input, 0);
-        return BitmapFactory
-                .decodeByteArray(decodedByte, 0, decodedByte.length);
-    }
-
 }
 

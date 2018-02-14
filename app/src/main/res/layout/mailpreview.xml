@@ -28,28 +28,36 @@
         android:layout_below="@id/imageViewContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="match_parent"
+        android:layout_below="@id/imageViewContact"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstFloat">
     <EditText
         android:id="@+id/subjectEditText"
         android:hint="@string/subject"
+        android:paddingTop="20sp"
         android:paddingLeft="5sp"
         android:layout_below="@id/toTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-    <TextView
-        android:id="@+id/bodyTextView"
-        android:text="@string/body"
-        android:paddingLeft="5sp"
-        android:layout_below="@id/subjectEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="match_parent"
+        android:layout_below="@id/firstFloat"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/bodyEditText"
         android:hint="@string/body"
         android:paddingLeft="5sp"
-        android:layout_below="@id/bodyTextView"
+        android:layout_below="@id/subjectEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
 
     <Button
     android:id="@+id/sendButton"
