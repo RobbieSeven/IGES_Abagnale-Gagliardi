@@ -97,16 +97,16 @@ public class DeployParser {
                     }
                 }
             }
-            for (String dataName : component.getInputTypes().keySet()) {
+            /*for (String dataName : component.getInputTypes().keySet()) {
                 for (ArrayList<String> dataNames : component.getInputSenders().values()) {
                     if (dataNames.contains(dataName))
-                        break;
+                        continue;
                     throw new MissingInputNameException(component.getId(), dataName);
                 }
-            }
+            }*/
         }
         ArrayList<Component> componentList = new ArrayList<>();
-        components.values().addAll(componentList);
+        componentList.addAll(components.values());
         printComponents(componentList);
         return componentList;
     }

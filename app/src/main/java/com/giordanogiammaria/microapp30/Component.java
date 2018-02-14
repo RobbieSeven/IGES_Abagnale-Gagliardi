@@ -67,7 +67,7 @@ public class Component {
     }
 
     public void addInputSender(String compId, String dataName) throws InputNotExceptedException {
-        if (getInputTypes().containsKey(dataName))
+        if (!getInputTypes().containsKey(dataName))
             throw new InputNotExceptedException(compId, id, dataName);
         if (inputSenders.containsKey(compId)) {
             inputSenders.get(compId).add(dataName);
