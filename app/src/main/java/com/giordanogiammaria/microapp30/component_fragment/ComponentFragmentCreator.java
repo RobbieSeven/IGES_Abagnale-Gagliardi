@@ -1,12 +1,12 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
-import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingComponentTypeException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 
 public class ComponentFragmentCreator {
 
-    public static ComponentFragment getComponentFragment(ComponentType type) throws NonExistentComponentException {
+    public static ComponentFragment getComponentFragment(ComponentType type) throws MissingComponentTypeException {
         switch (type) {
             case BLANK:
                 return new BlankFragment();
@@ -29,7 +29,7 @@ public class ComponentFragmentCreator {
             default:
                 break;
         }
-        throw new NonExistentComponentException(type.toString());
+        throw new MissingComponentTypeException(type.toString());
     }
 
 }

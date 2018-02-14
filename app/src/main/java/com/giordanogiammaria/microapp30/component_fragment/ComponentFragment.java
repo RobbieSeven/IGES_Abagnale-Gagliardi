@@ -16,20 +16,18 @@ public abstract class ComponentFragment extends Fragment{
     protected HashMap<String, DataType> inputTypes;
     protected ArrayList<DataType> outputTypes;
 
-    public ComponentFragment(){
-        type=setType();
-        inputTypes=setInputTypes();
-        outputTypes=setOutputTypes();
+    public ComponentFragment() {
+        type = setType();
+        inputTypes = setInputTypes();
+        outputTypes = setOutputTypes();
     }
 
     public ComponentType getType() {
         return type;
     }
-
     public HashMap<String, DataType> getInputTypes() {
         return inputTypes;
     }
-
     public ArrayList<DataType> getOutputTypes() {
         return outputTypes;
     }
@@ -39,6 +37,6 @@ public abstract class ComponentFragment extends Fragment{
     protected abstract ArrayList<DataType> setOutputTypes();
 
     public abstract void setInputsData(HashMap<String, GenericData> dataCollection);
-    public abstract HashMap<DataType, GenericData> getOutputsData();
+    public abstract HashMap<DataType, GenericData> getOutputData();
     
 }

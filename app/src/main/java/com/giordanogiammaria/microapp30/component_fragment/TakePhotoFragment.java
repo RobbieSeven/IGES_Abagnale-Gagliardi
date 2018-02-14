@@ -58,7 +58,7 @@ public class TakePhotoFragment extends ComponentFragment {
     }
 
     @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
+    public HashMap<DataType, GenericData> getOutputData() {
         HashMap<DataType,GenericData> outputData=new HashMap<>();
         GenericData<Bitmap> data=new GenericData<>();
         data.addData(image);

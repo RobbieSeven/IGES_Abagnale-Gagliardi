@@ -2,11 +2,12 @@ package com.giordanogiammaria.microapp30;
 
 import android.app.Fragment;
 
-import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
+import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.NonExistentComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.parsing.DeployParser;
@@ -16,20 +17,22 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Created by Roberto on 15/01/2018.
+ */
 
-
-class MicroAppGenerator {
+public class MicroAppGenerator {
 
     private ArrayList<Component> components;
     private int currentIndex;
 
-    MicroAppGenerator(String filePath) throws FileNotFoundException, NonExistentComponentException {
+    public MicroAppGenerator(String filePath) throws FileNotFoundException, ParsingException {
         DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;
     }
 
-    Fragment prevCompFragment() throws NoPrevComponentException {
+    public Fragment prevCompFragment() throws NoPrevComponentException {
         if (currentIndex > 0) {
             currentIndex -= 1;
             return components.get(currentIndex).getFragment();
@@ -37,7 +40,7 @@ class MicroAppGenerator {
             throw new NoPrevComponentException();
     }
 
-    Fragment nextCompFragment() throws NoNextComponentException, MissingInputException, MissingOutputException {
+    public Fragment nextCompFragment() throws NoNextComponentException, MissingDataException, DataMismatchException, ParsingException {
         if (currentIndex < components.size() - 1) {
             Component currentComp = components.get(currentIndex);
             HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
@@ -46,9 +49,10 @@ class MicroAppGenerator {
                 for (Component comp : components)
                     if (comp.getId().equals(destId))
                         destComp = comp;
-                if (destComp != null) {
+                if (destComp != null)
                     destComp.putData(dataCollection, currentComp.getId());
-                }
+                else
+                    throw new MissingComponentException(currentComp.getId(), destId);
             }
             currentIndex += 1;
             Component nextComp = components.get(currentIndex);
@@ -58,12 +62,12 @@ class MicroAppGenerator {
             throw new NoNextComponentException();
     }
 
-
-    ComponentFragment getStartComponent() throws NoNextComponentException{
-        Component component=components.get(0);
-        if (component!=null)
+    public ComponentFragment getStartComponent() throws NoNextComponentException {
+        Component component = components.get(0);
+        if (component != null)
             return components.get(0).getFragment();
-        else throw new NoNextComponentException();
+        else
+            throw new NoNextComponentException();
     }
 
 }

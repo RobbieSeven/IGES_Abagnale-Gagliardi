@@ -61,7 +61,7 @@ public class CallContactFragment extends ComponentFragment{
         values=data.getData().get(0);
     }
     @Override
-    public HashMap<DataType,GenericData> getOutputsData() {
+    public HashMap<DataType,GenericData> getOutputData() {
         return new HashMap<>();
     }
     //infiltro il layout di callContact

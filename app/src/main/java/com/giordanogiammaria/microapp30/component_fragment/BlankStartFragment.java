@@ -33,7 +33,7 @@ public class BlankStartFragment extends ComponentFragment {
     }
 
     @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
+    public HashMap<DataType, GenericData> getOutputData() {
         HashMap<DataType, GenericData> dataCollection = new HashMap<>();
         GenericData<String> data = new GenericData<>();
         data.addData("string");

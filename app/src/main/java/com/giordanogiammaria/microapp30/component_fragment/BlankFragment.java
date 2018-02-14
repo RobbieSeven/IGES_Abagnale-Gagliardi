@@ -49,7 +49,7 @@ public class BlankFragment extends ComponentFragment {
     }
 
     @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
+    public HashMap<DataType, GenericData> getOutputData() {
         HashMap<DataType, GenericData> outputData = new HashMap<>();
         GenericData<String> data = new GenericData<>();
         data.addData(string);

@@ -2,14 +2,11 @@ package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +62,7 @@ public class SendMailFragment extends ComponentFragment{
     }
 
     @Override
-    public HashMap<DataType, GenericData> getOutputsData() {
+    public HashMap<DataType, GenericData> getOutputData() {
         return null;
     }
     @Override
