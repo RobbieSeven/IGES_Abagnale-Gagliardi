@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
 import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
@@ -94,6 +95,13 @@ public class DeployParser {
                                 throw new MissingComponentException(id, destId);
                         }
                     }
+                }
+            }
+            for (String dataName : component.getInputTypes().keySet()) {
+                for (ArrayList<String> dataNames : component.getInputSenders().values()) {
+                    if (dataNames.contains(dataName))
+                        break;
+                    throw new MissingInputNameException(component.getId(), dataName);
                 }
             }
         }
