@@ -87,9 +87,9 @@
     <string name="precondition">Pre-condition</string>
     <string name="sendmail">Send Mail</string>
     <string name="send">Send</string>
-    <string name="subject">Subject</string>
-    <string name="body">Body</string>
-    <string name="to">To</string>
+    <string name="subject">Subject:</string>
+    <string name="body">Body:</string>
+    <string name="to">To:</string>
     <string name="attach">Attach</string>
     <string name="loading">Loading&#8230;</string>
     <string name="previewMap">Maps v2</string>
@@ -264,4 +264,8 @@
     <string name="login">login</string>
     <string name="lat">Latitude:</string>
     <string name="your_current_coordinates_are">your current coordinates are:</string>
+    <string name="generic_failure">Generic failure</string>
+    <string name="no_service">No service</string>
+    <string name="null_pdu">Null PDU</string>
+    <string name="radio_off">Radio off</string>
 </resources>

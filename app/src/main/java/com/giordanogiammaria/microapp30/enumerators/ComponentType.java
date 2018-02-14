@@ -13,7 +13,8 @@ public enum ComponentType {
     MAP("MapActivity"),
     SAVE("SaveActivity"),
     SENDMAIL("SendMailActivity"),
-    BLANK("BlankActivity");
+    BLANK("BlankActivity"),
+    BLANKSTART("BlankStartActivity");
 
     private String name="";
 

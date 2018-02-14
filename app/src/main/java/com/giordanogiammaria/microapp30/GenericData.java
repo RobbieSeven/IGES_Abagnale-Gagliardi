@@ -2,9 +2,6 @@ package com.giordanogiammaria.microapp30;
 
 import java.util.ArrayList;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
 public class GenericData<T> {
 
@@ -25,6 +22,10 @@ public class GenericData<T> {
 
     public boolean contains(T singleData) {
         return data.contains(singleData);
+    }
+
+    public boolean isEmpty() {
+        return data.isEmpty();
     }
 
 }

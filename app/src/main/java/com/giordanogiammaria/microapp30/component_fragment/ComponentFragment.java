@@ -9,9 +9,6 @@ import com.giordanogiammaria.microapp30.GenericData;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
 public abstract class ComponentFragment extends Fragment{
 
@@ -19,20 +16,18 @@ public abstract class ComponentFragment extends Fragment{
     protected HashMap<String, DataType> inputTypes;
     protected ArrayList<DataType> outputTypes;
 
-    public ComponentFragment(){
-        type=setType();
-        inputTypes=setInputTypes();
-        outputTypes=setOutputTypes();
+    public ComponentFragment() {
+        type = setType();
+        inputTypes = setInputTypes();
+        outputTypes = setOutputTypes();
     }
 
     public ComponentType getType() {
         return type;
     }
-
     public HashMap<String, DataType> getInputTypes() {
         return inputTypes;
     }
-
     public ArrayList<DataType> getOutputTypes() {
         return outputTypes;
     }
@@ -42,6 +37,6 @@ public abstract class ComponentFragment extends Fragment{
     protected abstract ArrayList<DataType> setOutputTypes();
 
     public abstract void setInputsData(HashMap<String, GenericData> dataCollection);
-    public abstract HashMap<DataType, GenericData> getOutputsData();
+    public abstract HashMap<DataType, GenericData> getOutputData();
     
 }

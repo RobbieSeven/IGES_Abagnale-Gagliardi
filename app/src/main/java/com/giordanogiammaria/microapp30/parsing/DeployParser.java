@@ -3,6 +3,9 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
+import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
@@ -15,6 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,17 +56,22 @@ public class DeployParser {
             document.getDocumentElement().normalize();
     }
 
-    public ArrayList<Component> getComponents() {
-       NodeList componentNodes = document.getElementsByTagName("component");
-        ArrayList<Component> components = new ArrayList<>();
-        // crea componente dal tag component
+    public ArrayList<Component> getComponents() throws ParsingException {
+        NodeList componentNodes = document.getElementsByTagName("component");
+        HashMap<String, Component> components = new HashMap<String, Component>();
         int compsLength = componentNodes.getLength();
         for (int i = 0; i < compsLength; i++) {
+            // crea componente dal tag component
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
             String type = compNode.getAttribute("type");
             Component component = new Component(id, ComponentType.valueOf(type));
-            components.add(component);
+            components.put(id, component);
+        }
+        for (int i = 0; i < compsLength; i++) {
+            Element compNode = (Element) componentNodes.item(i);
+            String id = compNode.getAttribute("id");
+            Component component = components.get(id);
             // aggiungi input e output alla componente
             if (compNode.hasChildNodes()) {
                 NodeList childNodes = compNode.getChildNodes();
@@ -74,19 +83,43 @@ public class DeployParser {
                         if (childNode.getTagName().equals("input")) {
                             String dataName = childNode.getAttribute("dataname");
                             String sendId = childNode.getAttribute("id");
-                            component.addInputSender(sendId, dataName);
+                            if (components.containsKey(sendId))
+                                component.addInputSender(sendId, dataName);
+                            else
+                                throw new MissingComponentException(id, sendId);
                         } else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
-                            component.addOutputReceiver(destId);
+                            if (components.containsKey(destId))
+                                component.addOutputReceiver(destId);
+                            else
+                                throw new MissingComponentException(id, destId);
                         }
                     }
                 }
             }
+            /*for (String dataName : component.getInputTypes().keySet()) {
+                for (ArrayList<String> dataNames : component.getInputSenders().values()) {
+                    if (dataNames.contains(dataName))
+                        continue;
+                    throw new MissingInputNameException(component.getId(), dataName);
+                }
+            }*/
         }
-        printComponents(components);
-        return components;
-
+        ArrayList<Component> componentList = new ArrayList<>();
+        componentList.addAll(components.values());
+        printComponents(componentList);
+        return componentList;
     }
+
+    /*private void checkComponents(ArrayList<Component> components) {
+        for (Component component : components) {
+            for (String sendId : component.getInputSenders().keySet())
+                for (Component comp : components) {
+                    if (component.getId().equals(sendId))
+                        break;
+                }
+        }
+    }*/
 
     private static File createXMLFile() {
         File file = new File("my.xml");

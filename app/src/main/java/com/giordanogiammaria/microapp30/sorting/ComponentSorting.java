@@ -8,9 +8,6 @@ import org.jgrapht.graph.DefaultDirectedGraph;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 22/01/2018.
- */
 
 public class ComponentSorting {
 

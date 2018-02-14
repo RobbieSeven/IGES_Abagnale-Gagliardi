@@ -1,16 +1,17 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
-/**
- * Created by Giordano Giammaria on 01/02/2018.
- */
+import android.support.annotation.NonNull;
 
-public class Contact {
+
+
+public class Contact implements Comparable<Contact>{
     private String nameContact,numberContact,emailContact;
-
-    public Contact(String nameContact, String numberContact, String emailContact) {
+    private int photoContact;
+    public Contact(String nameContact, String numberContact, String emailContact,int photoContact ) {
         this.nameContact = nameContact;
         this.numberContact = numberContact;
         this.emailContact = emailContact;
+        this.photoContact = photoContact;
     }
 
     Contact() {
@@ -25,7 +26,7 @@ public class Contact {
         this.nameContact = nameContact;
     }
 
-    String getNumberContact() {
+    public String getNumberContact() {
         return numberContact;
     }
 
@@ -33,11 +34,26 @@ public class Contact {
         this.numberContact = numberContact;
     }
 
-    String getEmailContact() {
+    public String getEmailContact() {
         return emailContact;
     }
 
     void setEmailContact(String emailContact) {
         this.emailContact = emailContact;
+    }
+
+    public int getPhotoContact() {
+        return photoContact;
+    }
+
+    public void setPhotoContact(int photoContact) {
+        this.photoContact = photoContact;
+    }
+
+    @Override
+    public int compareTo(@NonNull Contact contact) {
+        String name1=this.getNameContact().toLowerCase();
+        String name2=contact.getNameContact().toLowerCase();
+        return name1.compareTo(name2);
     }
 }
