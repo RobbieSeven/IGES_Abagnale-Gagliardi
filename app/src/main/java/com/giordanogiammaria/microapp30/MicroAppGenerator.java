@@ -2,6 +2,8 @@ package com.giordanogiammaria.microapp30;
 
 import android.app.Fragment;
 
+import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
 import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
@@ -32,7 +34,7 @@ public class MicroAppGenerator {
             throw new NoPrevComponentException();
     }
 
-    public Fragment nextCompFragment() throws NoNextComponentException {
+    public Fragment nextCompFragment() throws NoNextComponentException, MissingInputException, MissingOutputException {
         if (currentIndex < components.size() - 1) {
             Component currentComp = components.get(currentIndex);
             HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();

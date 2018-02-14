@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.giordanogiammaria.microapp30.Subsystem.MissingInputException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingOutputException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
 import com.giordanogiammaria.microapp30.facade.Facade;
@@ -30,7 +32,7 @@ public class MicroAppActivity extends AppCompatActivity {
         String path=facade.getLocalPath();
         intent = getIntent();
         filePath = intent.getStringExtra("filePath");
-        filePath=path+"/"+filePath;
+        filePath = path + "/" + filePath;
         Log.e("filePath",filePath);
         try {
             generator = new MicroAppGenerator(filePath);
@@ -38,23 +40,12 @@ public class MicroAppActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"file not found!",Toast.LENGTH_LONG).show();
             finish();
         }
-
         try {
             showFragment(generator.getStartComponent());
         } catch (NoNextComponentException e) {
             Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
             finish();
         }
-    }
-
-    public void showFragment(Fragment fragment) {
-        // create a FragmentManager
-        FragmentManager fm = getFragmentManager();
-        // create a FragmentTransaction to begin the transaction and replace the Fragment
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        // replace the FrameLayout with new Fragment
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit(); // save the changes
     }
 
     public void prevOnClick(View view) {
@@ -69,9 +60,24 @@ public class MicroAppActivity extends AppCompatActivity {
         try {
             showFragment(generator.nextCompFragment());
         } catch(NoNextComponentException e) {
+            e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            finish();
+            Intent intent = new Intent(getApplicationContext(), ListFile.class);
+            startActivity(intent);
+        } catch (MissingOutputException | MissingInputException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void showFragment(Fragment fragment) {
+        // create a FragmentManager
+        FragmentManager fm = getFragmentManager();
+        // create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        // replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit(); // save the changes
     }
 
 }
