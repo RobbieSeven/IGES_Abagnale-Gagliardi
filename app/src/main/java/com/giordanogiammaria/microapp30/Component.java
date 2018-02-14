@@ -85,17 +85,17 @@ public class Component {
     public void putData(HashMap<DataType, GenericData> outputData, String sendId) throws DataMismatchException {
         /*Log.d("inputSenders", inputSenders.toString());
         Log.d("sendId", sendId);*/
-        ArrayList<String> dataNames = inputSenders.get(sendId);                 // prendo i nomi dei dati che il mittente dovrebbe inviare
+        ArrayList<String> dataNames = inputSenders.get(sendId); // prendo i nomi dei dati che il mittente dovrebbe inviare
         if (dataNames == null)
             throw new OutputNotRequiredException(sendId, id);
-        for (String dataName : dataNames) {                                     // per ogni nome di dato che il mittente dovrebbe inviare
-            DataType dataType = compFragment.getInputTypes().get(dataName);     // trovo il tipo di quel dato
+        for (String dataName : dataNames) { // per ogni nome di dato che il mittente dovrebbe inviare
+            DataType dataType = compFragment.getInputTypes().get(dataName); // trovo il tipo di quel dato
             if (dataType == null)
                 throw new InputMismatchException(sendId, id, dataName);
-            GenericData data = outputData.get(dataType);                        // dall'insieme dei dati ricevuti, prendo il dato di quel tipo
+            GenericData data = outputData.get(dataType);    // dall'insieme dei dati ricevuti, prendo il dato di quel tipo
             if (data == null || data.isEmpty())
                 throw new OutputNotFoundException(sendId, id, dataName, dataType.toString().toLowerCase());
-            inputData.put(dataName, data);                                      // aggiungo il dato trovato all'insieme dei miei dati
+            inputData.put(dataName, data);  // aggiungo il dato trovato all'insieme dei miei dati
         }
     }
 

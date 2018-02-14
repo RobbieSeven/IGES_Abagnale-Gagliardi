@@ -20,6 +20,7 @@ import com.giordanogiammaria.microapp30.facade.Facade;
 import java.io.FileNotFoundException;
 
 public class MicroAppActivity extends AppCompatActivity {
+
     private MicroAppGenerator generator;
 
     @Override
@@ -41,7 +42,7 @@ public class MicroAppActivity extends AppCompatActivity {
             finish();
         } catch (ParsingException | NoNextComponentException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(), ListFile.class));
         }
     }
