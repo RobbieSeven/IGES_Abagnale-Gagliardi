@@ -26,8 +26,8 @@ public class MicroAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.micro_app);
-        Facade facade= new Facade(getApplicationContext());
-        String path=facade.getLocalPath();
+        Facade facade = new Facade(getApplicationContext());
+        String path = facade.getLocalPath();
         Intent intent = getIntent();
         String filePath = intent.getStringExtra("filePath");
         filePath = path + "/" + filePath;
@@ -39,13 +39,10 @@ public class MicroAppActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(),"File not found", Toast.LENGTH_LONG).show();
             finish();
-        } catch (ParsingException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        } catch (NoNextComponentException e) {
+        } catch (ParsingException | NoNextComponentException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "No components found", Toast.LENGTH_LONG).show();
-            finish();
+            startActivity(new Intent(getApplicationContext(), ListFile.class));
         }
     }
 
