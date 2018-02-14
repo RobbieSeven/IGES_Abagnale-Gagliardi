@@ -2,17 +2,21 @@ package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
@@ -30,6 +34,7 @@ public class SendMailFragment extends ComponentFragment{
     EditText subject,body;
     Button send;
     TextView to;
+    ImageView image;
 
     @Override
     protected ComponentType setType() {
@@ -70,7 +75,11 @@ public class SendMailFragment extends ComponentFragment{
         body= view.findViewById(R.id.bodyEditText);
         send=view.findViewById(R.id.sendButton);
         to=view.findViewById(R.id.toTextView);
+        image=view.findViewById(R.id.imageViewContact);
         to.setText(String.format("%s %s", to.getText(), values.getEmailContact()));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
+        String data = prefs.getString("imagePreference", "no id");
+        image.setImageBitmap(decodeBase64(data));
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,5 +105,10 @@ public class SendMailFragment extends ComponentFragment{
         String photoPath = Environment.getExternalStorageDirectory()+"/"+data;
         Log.d("photoPath",photoPath);
         return photoPath;
+    }
+    public Bitmap decodeBase64(String input) {
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 }
