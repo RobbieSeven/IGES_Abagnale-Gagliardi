@@ -42,9 +42,8 @@ public class MicroAppActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"File not found", Toast.LENGTH_LONG).show();
             finish();
         } catch (ParsingException e) {
-            View x = findViewById(android.R.id.content);
-            Snackbar.make(x,e.getMessage(),Snackbar.LENGTH_LONG).show();
-            //startActivity(new Intent(getApplicationContext(), ListFile.class));
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(), ListFile.class));
         }
          catch (NoNextComponentException e) {
             e.printStackTrace();
