@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class SendMessageFragment extends ComponentFragment {
     View view;
     Facade facade;
     TextView contactName;
-    CircularProgressButton sendSmsButton;
+    ImageButton sendSmsButton;
     String number;
     EditText bodyMessage;
     TextView sendingText;
@@ -81,23 +82,24 @@ public class SendMessageFragment extends ComponentFragment {
         facade = new Facade(view.getContext());
         number = values.getNumberContact();
         sendSmsButton = view.findViewById(R.id.sendSms);
-        sendSmsButton.setIndeterminateProgressMode(true);
         contactName = view.findViewById(R.id.tx_label_cont);
         bodyMessage = view.findViewById(R.id.tx_container);
         sendingText = view.findViewById(R.id.sendingSmsTo);
         picture = view.findViewById(R.id.picture);
         context = container.getContext();
         contactName.setText(facade.getContactName(number, context));
+        sendSmsButton.setBackgroundResource(R.drawable.sendorangebutton);
+        sendSmsButton.setEnabled(true);
         sendSmsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!bodyMessage.getText().toString().equalsIgnoreCase("")) {
 
-                    if (sendSmsButton.getProgress() == 0) {
-                        sendSmsButton.setProgress(100);
-                        sendSMS(number, bodyMessage.getText().toString());
-                        changeLayout();
-                    }
+
+                    sendSMS(number, bodyMessage.getText().toString());
+                    changeLayout();
+                    bodyMessage.setText("");
+
                 } else Snackbar.make(view, "please enter text", Snackbar.LENGTH_LONG).show();
             }
         });
@@ -111,7 +113,7 @@ public class SendMessageFragment extends ComponentFragment {
     private void changeLayout() {
         sendSmsButton.setVisibility(View.VISIBLE);
         sendSmsButton.setEnabled(false);
-        contactName.setText(R.string.messageSend);
+        bodyMessage.setText("");
         bodyMessage.setVisibility(View.INVISIBLE);
         sendingText.setVisibility(View.INVISIBLE);
         picture.setVisibility(View.INVISIBLE);
@@ -139,41 +141,35 @@ public class SendMessageFragment extends ComponentFragment {
                     case Activity.RESULT_OK:
                         Toast.makeText(view.getContext(), "SMS sent",
                                 Toast.LENGTH_SHORT).show();
-                        sendSmsButton.setVisibility(View.INVISIBLE);
-                        sendSmsButton.setVisibility(View.VISIBLE);
-                        sendSmsButton.setBackgroundColor(Color.GREEN);
+
+                        sendSmsButton.setImageResource(R.drawable.check);
+                        contactName.setText(R.string.messageSend);
+
                         break;
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
                         Toast.makeText(view.getContext(), "Generic failure",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.generic_failure);
-                        sendSmsButton.setVisibility(View.INVISIBLE);
-                        sendSmsButton.setVisibility(View.VISIBLE);
-                        sendSmsButton.setBackgroundColor(Color.RED);
+                        sendSmsButton.setImageResource(R.drawable.error);
+
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
                         Toast.makeText(view.getContext(), "No service",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.no_service);
-                        sendSmsButton.setVisibility(View.INVISIBLE);
-                        sendSmsButton.setVisibility(View.VISIBLE);
-                        sendSmsButton.setBackgroundColor(Color.RED);
+                        sendSmsButton.setImageResource(R.drawable.error);
                         break;
                     case SmsManager.RESULT_ERROR_NULL_PDU:
                         Toast.makeText(view.getContext(), "Null PDU",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.null_pdu);
-                        sendSmsButton.setVisibility(View.INVISIBLE);
-                        sendSmsButton.setVisibility(View.VISIBLE);
-                        sendSmsButton.setBackgroundColor(Color.RED);
+                        sendSmsButton.setImageResource(R.drawable.error);
                         break;
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
                         Toast.makeText(view.getContext(), "Radio off",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.radio_off);
-                        sendSmsButton.setVisibility(View.INVISIBLE);
-                        sendSmsButton.setVisibility(View.VISIBLE);
-                        sendSmsButton.setBackgroundColor(Color.RED);
+                        sendSmsButton.setImageResource(R.drawable.error);
                         break;
                 }
             }

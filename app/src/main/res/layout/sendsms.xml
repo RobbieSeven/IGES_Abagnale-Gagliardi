@@ -55,14 +55,13 @@
             android:state_enabled="false"
             android:tag="disabled" />
     </RelativeLayout>
-    <com.dd.CircularProgressButton
+    <ImageButton
         android:id="@+id/sendSms"
         android:layout_width="match_parent"
-        app:cpb_textIdle="@string/send"
-        app:cpb_colorIndicator="#334422"
-        fbutton:buttonColor="#ff00ff"
         android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sendorangebutton"
         android:layout_below="@id/relativeLayout2"
-        app:cpb_iconComplete="@drawable/ic_action_accept"
+
         />
 </RelativeLayout>
