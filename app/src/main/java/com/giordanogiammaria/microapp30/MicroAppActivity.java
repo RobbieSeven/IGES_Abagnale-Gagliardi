@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
+import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
@@ -36,11 +37,11 @@ public class MicroAppActivity extends AppCompatActivity {
         try {
             generator = new MicroAppGenerator(filePath);
             showFragment(generator.getStartComponent());
-        } catch (FileNotFoundException e) {
+        } catch (DeployFileException | ParsingException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"File not found", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
-        } catch (ParsingException | NoNextComponentException e) {
+        } catch (NoNextComponentException e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(), ListFile.class));

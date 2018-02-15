@@ -3,6 +3,9 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
+import com.giordanogiammaria.microapp30.Subsystem.EmptyDeployFileException;
+import com.giordanogiammaria.microapp30.Subsystem.FileNotFoundException;
 import com.giordanogiammaria.microapp30.Subsystem.IdAlreadyTakenException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
@@ -16,7 +19,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,14 +40,14 @@ public class DeployParser {
 
     private Document document;
 
-    public DeployParser(String filePath) throws FileNotFoundException {
+    public DeployParser(String filePath) throws DeployFileException {
         File file = new File(filePath);
        /*if (filePath != null)
             file = new File(filePath);
        else
            file = createXMLFile();*/
         if (!file.exists())
-            throw new  FileNotFoundException("Deploy file not found");
+            throw new FileNotFoundException();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -55,6 +57,8 @@ public class DeployParser {
         }
         if (document != null)
             document.getDocumentElement().normalize();
+        else
+            throw new EmptyDeployFileException();
     }
 
     public ArrayList<Component> getComponents() throws ParsingException {

@@ -5,18 +5,18 @@ package com.giordanogiammaria.microapp30.enumerators;
  */
 
 public enum ComponentType {
+
     TAKEPHOTO ("TakePhotoActivity"),
     CALLCONTACT("CallContactActivity"),
     SELECTCONTACT("SelectContactActivity"),
     SENDMESSAGE("SendMessageActivity"),
     LOCATION("LocationActivity"),
     MAP("MapActivity"),
-    SAVE("SaveActivity"),
     SENDMAIL("SendMailActivity"),
     BLANK("BlankActivity"),
     BLANKSTART("BlankStartActivity");
 
-    private String name="";
+    private String name = "";
 
     ComponentType(String name) {
         this.name=name;
@@ -25,4 +25,5 @@ public enum ComponentType {
     public String getName() {
         return name;
     }
+
 }
