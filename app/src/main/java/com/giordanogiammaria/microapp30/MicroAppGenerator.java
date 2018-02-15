@@ -3,6 +3,7 @@ package com.giordanogiammaria.microapp30;
 import android.app.Fragment;
 
 import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
+import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
 import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
@@ -22,7 +23,7 @@ public class MicroAppGenerator {
     private ArrayList<Component> components;
     private int currentIndex;
 
-    public MicroAppGenerator(String filePath) throws FileNotFoundException, ParsingException {
+    public MicroAppGenerator(String filePath) throws DeployFileException, ParsingException {
         DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;

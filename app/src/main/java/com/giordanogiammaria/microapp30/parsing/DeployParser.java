@@ -3,9 +3,19 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
+import com.giordanogiammaria.microapp30.Subsystem.EmptyDeployFileException;
+import com.giordanogiammaria.microapp30.Subsystem.FileNotFoundException;
+import com.giordanogiammaria.microapp30.Subsystem.IdAlreadyTakenException;
+import com.giordanogiammaria.microapp30.Subsystem.InputNameAlreadyTakenException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingDataNameAttrException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingIdCompAttrException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingIdInputAttrException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingTypeAttrException;
 import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
+import com.giordanogiammaria.microapp30.Subsystem.SelfInputException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
@@ -15,7 +25,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,14 +46,14 @@ public class DeployParser {
 
     private Document document;
 
-    public DeployParser(String filePath) throws FileNotFoundException {
+    public DeployParser(String filePath) throws DeployFileException {
         File file = new File(filePath);
        /*if (filePath != null)
             file = new File(filePath);
        else
            file = createXMLFile();*/
         if (!file.exists())
-            throw new  FileNotFoundException("Deploy file not found");
+            throw new FileNotFoundException();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -54,6 +63,8 @@ public class DeployParser {
         }
         if (document != null)
             document.getDocumentElement().normalize();
+        else
+            throw new EmptyDeployFileException();
     }
 
     public ArrayList<Component> getComponents() throws ParsingException {
@@ -64,7 +75,13 @@ public class DeployParser {
             // crea componente dal tag component
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
+            if (id.equalsIgnoreCase(""))
+                throw new MissingIdCompAttrException(i);
+            if (components.containsKey(id))
+                throw new IdAlreadyTakenException(id, components.get(id).getType().toString());
             String type = compNode.getAttribute("type");
+            if (type.equalsIgnoreCase(""))
+                throw new MissingTypeAttrException(id);
             Component component = new Component(id, ComponentType.valueOf(type));
             components.put(id, component);
         }
@@ -76,20 +93,28 @@ public class DeployParser {
             if (compNode.hasChildNodes()) {
                 NodeList childNodes = compNode.getChildNodes();
                 int childLength = childNodes.getLength();
+                ArrayList<String> inputNames = new ArrayList<>();
                 for (int j = 0; j < childLength; j++) {
                     Log.d("j:", "" + j);
                     if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
                         Element childNode = (Element) childNodes.item(j);
                         if (childNode.getTagName().equals("input")) {
                             String dataName = childNode.getAttribute("dataname");
+                            if (dataName.equalsIgnoreCase(""))
+                                throw new MissingDataNameAttrException(id, j);
+                            if (inputNames.contains(dataName))
+                                throw new InputNameAlreadyTakenException(id, dataName);
                             String sendId = childNode.getAttribute("id");
-                            if (components.containsKey(sendId)) {
-                                component.addInputSender(sendId, dataName);
-                                components.get(sendId).addOutputReceiver(component.getId());
-                            }
-                            else
+                            if (sendId.equalsIgnoreCase(""))
+                                throw new MissingIdInputAttrException(id, j);
+                            if (sendId.equals(id))
+                                throw new SelfInputException(id, dataName);
+                            if (!components.containsKey(sendId))
                                 throw new MissingComponentException(id, sendId);
-                        } /*else if (childNode.getTagName().equals("output")) {
+                            component.addInputSender(sendId, dataName);
+                            inputNames.add(dataName);
+                            components.get(sendId).addOutputReceiver(component.getId());
+                        }/* else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
                                 component.addOutputReceiver(destId);
@@ -98,14 +123,10 @@ public class DeployParser {
                         }*/
                     }
                 }
+                for (String dataName : component.getInputTypes().keySet())
+                    if (!inputNames.contains(dataName))
+                        throw new MissingInputNameException(component.getId(), dataName);
             }
-            /*for (String dataName : component.getInputTypes().keySet()) {
-                for (ArrayList<String> dataNames : component.getInputSenders().values()) {
-                    if (dataNames.contains(dataName))
-                        continue;
-                    throw new MissingInputNameException(component.getId(), dataName);
-                }
-            }*/
         }
         ArrayList<Component> componentList = new ArrayList<>();
         componentList.addAll(components.values());
