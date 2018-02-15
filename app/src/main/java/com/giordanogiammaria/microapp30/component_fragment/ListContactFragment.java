@@ -98,11 +98,10 @@ public class ListContactFragment extends ComponentFragment {
         return view;
     }
 
-    private   Bitmap getContactsDetails(Context context, String address) {
+    private  Bitmap getContactsDetails(Context context, String address) {
         Bitmap bp = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.ic_contact_picture);
         Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address));
-        // querying contact data store
         Cursor phones = context.getContentResolver().query(contactUri, null, null, null, null);
         assert phones != null;
         while (phones.moveToNext()) {
@@ -120,17 +119,16 @@ public class ListContactFragment extends ComponentFragment {
                 }
             }
         }
-        phones.close();
-        return   bp;
+        return  bp;
     }
+
     private ArrayList<Contact> readListContact() {
         ContentResolver cr =view.getContext().getContentResolver();
         Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         ArrayList<Contact> contacts=new ArrayList<>();
         Contact contact;
         assert cursor != null;
-        while (cursor.moveToNext())
-        {
+        while (cursor.moveToNext()) {
             contact=new Contact();
             displayName="";emailAddress=""; phoneNumber="";
             displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));

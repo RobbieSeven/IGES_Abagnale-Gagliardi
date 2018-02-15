@@ -36,6 +36,4 @@ dependencies {
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.wrapp.floatlabelededittext:library:0.0.6'
-
-
 }

@@ -1,13 +1,14 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
 
 
 public class Contact implements Comparable<Contact>{
     private String nameContact,numberContact,emailContact;
-    private int photoContact;
-    public Contact(String nameContact, String numberContact, String emailContact,int photoContact ) {
+    private Bitmap photoContact;
+    public Contact(String nameContact, String numberContact, String emailContact,Bitmap photoContact ) {
         this.nameContact = nameContact;
         this.numberContact = numberContact;
         this.emailContact = emailContact;
@@ -42,11 +43,11 @@ public class Contact implements Comparable<Contact>{
         this.emailContact = emailContact;
     }
 
-    public int getPhotoContact() {
+    public Bitmap getPhotoContact() {
         return photoContact;
     }
 
-    public void setPhotoContact(int photoContact) {
+    public void setPhotoContact(Bitmap photoContact) {
         this.photoContact = photoContact;
     }
 
