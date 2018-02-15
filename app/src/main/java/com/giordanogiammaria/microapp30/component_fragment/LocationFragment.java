@@ -1,14 +1,18 @@
 package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.giordanogiammaria.microapp30.ListFile;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
@@ -69,8 +73,16 @@ public class LocationFragment extends ComponentFragment{
         lat=view.findViewById(R.id.lat);
         lon=view.findViewById(R.id.lon);
         myLocation = getLastKnownLocation();
-        lat.setText(String.format("%s%s", lat.getText(), myLocation.getLatitude()));
-        lon.setText(String.format("%s%s", lon.getText(), myLocation.getLongitude()));
+
+            myLocation = getLastKnownLocation();
+            if (myLocation != null) {
+                lat.setText(String.format("%s%s", lat.getText(), myLocation.getLatitude()));
+                lon.setText(String.format("%s%s", lon.getText(), myLocation.getLongitude()));
+            }else{
+                Toast.makeText(view.getContext(),"please active the GPS",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(view.getContext(), ListFile.class));
+            }
+
         return view;
     }
     private Location getLastKnownLocation() {

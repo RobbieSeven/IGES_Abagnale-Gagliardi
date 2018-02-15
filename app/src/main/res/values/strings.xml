@@ -268,4 +268,5 @@
     <string name="no_service">No service</string>
     <string name="null_pdu">Null PDU</string>
     <string name="radio_off">Radio off</string>
+    <string name="SMS_SEND">SMS SEND</string>
 </resources>

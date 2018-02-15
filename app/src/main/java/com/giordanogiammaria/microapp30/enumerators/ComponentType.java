@@ -4,7 +4,7 @@ package com.giordanogiammaria.microapp30.enumerators;
  * Created by Giuseppe Abagnale on 22/01/2018.
  */
 
-public enum ComponentType {
+ public enum ComponentType {
     TAKEPHOTO ("TakePhotoActivity"),
     CALLCONTACT("CallContactActivity"),
     SELECTCONTACT("SelectContactActivity"),

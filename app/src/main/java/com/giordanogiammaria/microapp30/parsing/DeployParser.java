@@ -83,17 +83,19 @@ public class DeployParser {
                         if (childNode.getTagName().equals("input")) {
                             String dataName = childNode.getAttribute("dataname");
                             String sendId = childNode.getAttribute("id");
-                            if (components.containsKey(sendId))
+                            if (components.containsKey(sendId)) {
                                 component.addInputSender(sendId, dataName);
+                                components.get(sendId).addOutputReceiver(component.getId());
+                            }
                             else
                                 throw new MissingComponentException(id, sendId);
-                        } else if (childNode.getTagName().equals("output")) {
+                        } /*else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
                                 component.addOutputReceiver(destId);
                             else
                                 throw new MissingComponentException(id, destId);
-                        }
+                        }*/
                     }
                 }
             }

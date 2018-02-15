@@ -21,8 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.dd.CircularProgressButton;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.facade.Facade;
@@ -32,13 +30,15 @@ import com.giordanogiammaria.microapp30.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import info.hoang8f.widget.FButton;
+
 import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 
 public class SendMessageFragment extends ComponentFragment {
     View view;
     Facade facade;
     TextView contactName;
-    ImageButton sendSmsButton;
+    FButton sendSmsButton;
     String number;
     EditText bodyMessage;
     TextView sendingText;
@@ -88,7 +88,6 @@ public class SendMessageFragment extends ComponentFragment {
         picture = view.findViewById(R.id.picture);
         context = container.getContext();
         contactName.setText(facade.getContactName(number, context));
-        sendSmsButton.setBackgroundResource(R.drawable.sendorangebutton);
         sendSmsButton.setEnabled(true);
         sendSmsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +141,8 @@ public class SendMessageFragment extends ComponentFragment {
                         Toast.makeText(view.getContext(), "SMS sent",
                                 Toast.LENGTH_SHORT).show();
 
-                        sendSmsButton.setImageResource(R.drawable.check);
+                        sendSmsButton.setButtonColor(Color.GREEN);
+                        sendSmsButton.setText(R.string.SMS_SEND);
                         contactName.setText(R.string.messageSend);
 
                         break;
@@ -150,26 +150,30 @@ public class SendMessageFragment extends ComponentFragment {
                         Toast.makeText(view.getContext(), "Generic failure",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.generic_failure);
-                        sendSmsButton.setImageResource(R.drawable.error);
+                        sendSmsButton.setButtonColor(Color.RED);
+                        sendSmsButton.setText(R.string.error);
 
                         break;
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
                         Toast.makeText(view.getContext(), "No service",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.no_service);
-                        sendSmsButton.setImageResource(R.drawable.error);
+                        sendSmsButton.setButtonColor(Color.RED);
+                        sendSmsButton.setText(R.string.error);
                         break;
                     case SmsManager.RESULT_ERROR_NULL_PDU:
                         Toast.makeText(view.getContext(), "Null PDU",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.null_pdu);
-                        sendSmsButton.setImageResource(R.drawable.error);
+                        sendSmsButton.setButtonColor(Color.RED);
+                        sendSmsButton.setText(R.string.error);
                         break;
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
                         Toast.makeText(view.getContext(), "Radio off",
                                 Toast.LENGTH_SHORT).show();
                         contactName.setText(R.string.radio_off);
-                        sendSmsButton.setImageResource(R.drawable.error);
+                        sendSmsButton.setButtonColor(Color.RED);
+                        sendSmsButton.setText(R.string.error);
                         break;
                 }
             }

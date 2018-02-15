@@ -79,7 +79,8 @@ public class Component {
     }
 
     public void addOutputReceiver(String compId) {
-        outputReceivers.add(compId);
+        if (!outputReceivers.contains(compId))
+            outputReceivers.add(compId);
     }
 
     public void putData(HashMap<DataType, GenericData> outputData, String sendId) throws DataMismatchException {

@@ -55,12 +55,14 @@
             android:state_enabled="false"
             android:tag="disabled" />
     </RelativeLayout>
-    <ImageButton
+    <info.hoang8f.widget.FButton
         android:id="@+id/sendSms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/sendorangebutton"
+        android:textColor="@android:color/white"
+        android:text="@string/send"
+        fbutton:buttonColor="@color/fbutton_color_turquoise"
         android:layout_below="@id/relativeLayout2"
 
         />
