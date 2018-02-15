@@ -12,6 +12,7 @@ import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingIdException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
 import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
+import com.giordanogiammaria.microapp30.Subsystem.SelfInputException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
@@ -97,12 +98,15 @@ public class DeployParser {
                             if (inputNames.contains(dataName))
                                 throw new InputNameAlreadyTakenException(id, dataName);
                             String sendId = childNode.getAttribute("id");
-                            if (components.containsKey(sendId)) {
-                                component.addInputSender(sendId, dataName);
-                                inputNames.add(dataName);
-                                components.get(sendId).addOutputReceiver(component.getId());
+                            if (!sendId.equals(id)) {
+                                if (components.containsKey(sendId)) {
+                                    component.addInputSender(sendId, dataName);
+                                    inputNames.add(dataName);
+                                    components.get(sendId).addOutputReceiver(component.getId());
+                                } else
+                                    throw new MissingComponentException(id, sendId);
                             } else
-                                throw new MissingComponentException(id, sendId);
+                                throw new SelfInputException(id, dataName);
                         }/* else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
