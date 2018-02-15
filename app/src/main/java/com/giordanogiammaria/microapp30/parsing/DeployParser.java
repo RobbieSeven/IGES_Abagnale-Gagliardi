@@ -3,6 +3,7 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.IdAlreadyTakenException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
 import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
@@ -64,6 +65,8 @@ public class DeployParser {
             // crea componente dal tag component
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
+            if (components.containsKey(id))
+                throw new IdAlreadyTakenException(id, components.get(id).getType().toString());
             String type = compNode.getAttribute("type");
             Component component = new Component(id, ComponentType.valueOf(type));
             components.put(id, component);
@@ -72,6 +75,7 @@ public class DeployParser {
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
             Component component = components.get(id);
+            ArrayList<String> inputNames = new ArrayList<>();
             // aggiungi input e output alla componente
             if (compNode.hasChildNodes()) {
                 NodeList childNodes = compNode.getChildNodes();
@@ -83,9 +87,10 @@ public class DeployParser {
                         if (childNode.getTagName().equals("input")) {
                             String dataName = childNode.getAttribute("dataname");
                             String sendId = childNode.getAttribute("id");
-                            if (components.containsKey(sendId))
+                            if (components.containsKey(sendId)) {
                                 component.addInputSender(sendId, dataName);
-                            else
+                                inputNames.add(dataName);
+                            } else
                                 throw new MissingComponentException(id, sendId);
                         } else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
@@ -97,13 +102,9 @@ public class DeployParser {
                     }
                 }
             }
-            /*for (String dataName : component.getInputTypes().keySet()) {
-                for (ArrayList<String> dataNames : component.getInputSenders().values()) {
-                    if (dataNames.contains(dataName))
-                        continue;
+            for (String dataName : component.getInputTypes().keySet())
+                if (!inputNames.contains(dataName))
                     throw new MissingInputNameException(component.getId(), dataName);
-                }
-            }*/
         }
         ArrayList<Component> componentList = new ArrayList<>();
         componentList.addAll(components.values());

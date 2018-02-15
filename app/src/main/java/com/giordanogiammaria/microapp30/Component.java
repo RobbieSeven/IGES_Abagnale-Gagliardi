@@ -46,6 +46,10 @@ public class Component {
         return id;
     }
 
+    public ComponentType getType() {
+        return type;
+    }
+
     public ComponentFragment getFragment() {
         return compFragment;
     }
