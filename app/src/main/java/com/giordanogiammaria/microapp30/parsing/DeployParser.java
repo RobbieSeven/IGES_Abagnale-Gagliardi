@@ -9,8 +9,11 @@ import com.giordanogiammaria.microapp30.Subsystem.FileNotFoundException;
 import com.giordanogiammaria.microapp30.Subsystem.IdAlreadyTakenException;
 import com.giordanogiammaria.microapp30.Subsystem.InputNameAlreadyTakenException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingIdException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingDataNameAttrException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingIdCompAttrException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingIdInputAttrException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingTypeAttrException;
 import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 import com.giordanogiammaria.microapp30.Subsystem.SelfInputException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
@@ -73,10 +76,12 @@ public class DeployParser {
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
             if (id == null)
-                throw new MissingIdException(i);
+                throw new MissingIdCompAttrException(i);
             if (components.containsKey(id))
                 throw new IdAlreadyTakenException(id, components.get(id).getType().toString());
             String type = compNode.getAttribute("type");
+            if (type == null)
+                throw new MissingTypeAttrException(id);
             Component component = new Component(id, ComponentType.valueOf(type));
             components.put(id, component);
         }
@@ -95,18 +100,20 @@ public class DeployParser {
                         Element childNode = (Element) childNodes.item(j);
                         if (childNode.getTagName().equals("input")) {
                             String dataName = childNode.getAttribute("dataname");
+                            if (dataName == null)
+                                throw new MissingDataNameAttrException(id, j);
                             if (inputNames.contains(dataName))
                                 throw new InputNameAlreadyTakenException(id, dataName);
                             String sendId = childNode.getAttribute("id");
-                            if (!sendId.equals(id)) {
-                                if (components.containsKey(sendId)) {
-                                    component.addInputSender(sendId, dataName);
-                                    inputNames.add(dataName);
-                                    components.get(sendId).addOutputReceiver(component.getId());
-                                } else
-                                    throw new MissingComponentException(id, sendId);
-                            } else
+                            if (sendId == null)
+                                throw new MissingIdInputAttrException(id, j);
+                            if (sendId.equals(id))
                                 throw new SelfInputException(id, dataName);
+                            if (!components.containsKey(sendId))
+                                throw new MissingComponentException(id, sendId);
+                            component.addInputSender(sendId, dataName);
+                            inputNames.add(dataName);
+                            components.get(sendId).addOutputReceiver(component.getId());
                         }/* else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
