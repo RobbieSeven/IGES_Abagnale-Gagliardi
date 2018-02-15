@@ -1,6 +1,8 @@
 package com.giordanogiammaria.microapp30.sorting;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.ComponentsNotSortableException;
+import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -14,7 +16,7 @@ import java.util.HashMap;
 
 public class ComponentSorting {
 
-    public static ArrayList<Component> sortComponents(ArrayList<Component> components) {
+    public static ArrayList<Component> sortComponents(ArrayList<Component> components) throws ParsingException {
         HashMap<String, Component> componentsMap = new HashMap<>();
         for (Component comp : components)
             componentsMap.put(comp.getId(), comp);
@@ -22,6 +24,8 @@ public class ComponentSorting {
         printGraph(graph);
         DepthFirstOrder<Component> dfs = new DepthFirstOrder<>(graph);
         ArrayList<Component> sortedComponents = dfs.sort();
+        if (sortedComponents == null)
+            throw new ComponentsNotSortableException();
         printComponents(sortedComponents);
         return sortedComponents;
     }

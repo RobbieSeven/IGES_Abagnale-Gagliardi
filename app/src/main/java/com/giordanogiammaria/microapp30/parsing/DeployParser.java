@@ -7,7 +7,9 @@ import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
 import com.giordanogiammaria.microapp30.Subsystem.EmptyDeployFileException;
 import com.giordanogiammaria.microapp30.Subsystem.FileNotFoundException;
 import com.giordanogiammaria.microapp30.Subsystem.IdAlreadyTakenException;
+import com.giordanogiammaria.microapp30.Subsystem.InputNameAlreadyTakenException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
+import com.giordanogiammaria.microapp30.Subsystem.MissingIdException;
 import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
 import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
@@ -69,6 +71,8 @@ public class DeployParser {
             // crea componente dal tag component
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
+            if (id == null)
+                throw new MissingIdException(i);
             if (components.containsKey(id))
                 throw new IdAlreadyTakenException(id, components.get(id).getType().toString());
             String type = compNode.getAttribute("type");
@@ -79,36 +83,39 @@ public class DeployParser {
             Element compNode = (Element) componentNodes.item(i);
             String id = compNode.getAttribute("id");
             Component component = components.get(id);
-            ArrayList<String> inputNames = new ArrayList<>();
             // aggiungi input e output alla componente
             if (compNode.hasChildNodes()) {
                 NodeList childNodes = compNode.getChildNodes();
                 int childLength = childNodes.getLength();
+                ArrayList<String> inputNames = new ArrayList<>();
                 for (int j = 0; j < childLength; j++) {
                     Log.d("j:", "" + j);
                     if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
                         Element childNode = (Element) childNodes.item(j);
                         if (childNode.getTagName().equals("input")) {
                             String dataName = childNode.getAttribute("dataname");
+                            if (inputNames.contains(dataName))
+                                throw new InputNameAlreadyTakenException(id, dataName);
                             String sendId = childNode.getAttribute("id");
                             if (components.containsKey(sendId)) {
                                 component.addInputSender(sendId, dataName);
                                 inputNames.add(dataName);
+                                components.get(sendId).addOutputReceiver(component.getId());
                             } else
                                 throw new MissingComponentException(id, sendId);
-                        } else if (childNode.getTagName().equals("output")) {
+                        }/* else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
                                 component.addOutputReceiver(destId);
                             else
                                 throw new MissingComponentException(id, destId);
-                        }
+                        }*/
                     }
                 }
+                for (String dataName : component.getInputTypes().keySet())
+                    if (!inputNames.contains(dataName))
+                        throw new MissingInputNameException(component.getId(), dataName);
             }
-            for (String dataName : component.getInputTypes().keySet())
-                if (!inputNames.contains(dataName))
-                    throw new MissingInputNameException(component.getId(), dataName);
         }
         ArrayList<Component> componentList = new ArrayList<>();
         componentList.addAll(components.values());
