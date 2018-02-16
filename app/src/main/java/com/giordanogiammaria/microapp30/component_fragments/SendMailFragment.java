@@ -2,6 +2,7 @@ package com.giordanogiammaria.microapp30.component_fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,11 +31,12 @@ import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 
 public class SendMailFragment extends ComponentFragment{
     View view;
-    Contact values;
+    Contact contact;
     EditText subject,body;
     Button send;
     TextView to;
     ImageView image;
+    Bitmap imageBitmap;
 
     @Override
     protected ComponentType setType() {
@@ -46,6 +48,7 @@ public class SendMailFragment extends ComponentFragment{
         HashMap<String,DataType> inputType=new HashMap<>();
         inputType.put("contact", DataType.CONTACT);
         inputType.put("location",DataType.LOCATION);
+        inputType.put("image",DataType.IMAGE);
 
         return inputType;
     }
@@ -59,7 +62,10 @@ public class SendMailFragment extends ComponentFragment{
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
         GenericData<Location> location= dataCollection.get("location");
         GenericData<Contact> nameContact=dataCollection.get("contact");
-        values=nameContact.getData().get(0);
+        GenericData<Bitmap> image= dataCollection.get("image");
+        contact=nameContact.getData().get(0);
+        imageBitmap=image.getData().get(0);
+
     }
 
     @Override
@@ -76,7 +82,7 @@ public class SendMailFragment extends ComponentFragment{
         send=view.findViewById(R.id.sendButton);
         to=view.findViewById(R.id.toTextView);
         image=view.findViewById(R.id.imageViewContact);
-        to.setText(String.format("%s %s", to.getText(), values.getEmailContact()));
+        to.setText(String.format("%s %s", to.getText(), contact.getEmailContact()));
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String data = prefs.getString("imagePreference", "no id");
         image.setImageBitmap(decodeBase64(data));
@@ -85,14 +91,14 @@ public class SendMailFragment extends ComponentFragment{
             public void onClick(View view) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {values.getEmailContact()});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {contact.getEmailContact()});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject.getText().toString());
                 emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
-                String sPhoto=getUriPhoto();
-                if (!sPhoto.equalsIgnoreCase("no id")) {
-                    Uri uri = Uri.fromFile(new File(sPhoto));
-                    emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                }
+                //String sPhoto=getUriPhoto();
+                /*if (!sPhoto.equalsIgnoreCase("no id")) {
+                    Uri uri = Uri.fromFile(new File(sPhoto));*/
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, imageBitmap);
+               // }
                 startActivity(Intent.createChooser(emailIntent, "Pick an email provider"));
             }
         });

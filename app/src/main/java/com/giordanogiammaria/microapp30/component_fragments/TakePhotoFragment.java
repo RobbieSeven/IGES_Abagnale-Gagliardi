@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
@@ -81,12 +82,12 @@ public class TakePhotoFragment extends ComponentFragment {
             image = (Bitmap) data.getExtras().get("data");
             ImageView imageview =  view.findViewById(R.id.pre_img);
             imageview.setImageBitmap(image);
-            String name=saveImage(image,"fname");
+           /* String name=saveImage(image,"fname");
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("fname", name);
             Log.d("fname:",name);
-            editor.apply();
+            editor.apply();*/
         }
     }
     private String saveImage(Bitmap finalBitmap, String image_name) {
