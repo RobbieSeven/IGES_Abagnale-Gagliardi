@@ -118,14 +118,14 @@ public class DeployParser {
                                 throw new MissingComponentException(id, sendId);
                             component.addInputSender(sendId, dataName);
                             inputNames.add(dataName);
-                            components.get(sendId).addOutputReceiver(component.getId());
-                        }/* else if (childNode.getTagName().equals("output")) {
+                           // components.get(sendId).addOutputReceiver(component.getId());
+                        }else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
                                 component.addOutputReceiver(destId);
                             else
                                 throw new MissingComponentException(id, destId);
-                        }*/
+                        }
                     }
                 }
                 for (String dataName : component.getInputTypes().keySet())

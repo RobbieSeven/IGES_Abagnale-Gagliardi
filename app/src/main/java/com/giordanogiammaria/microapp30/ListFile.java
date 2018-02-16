@@ -28,8 +28,9 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         ListView listFile;
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
-        ManageFile manageFile=new ManageFile(getApplicationContext());
-        final ArrayList<String> namesOfFile = manageFile.getListFile();
+        ManageFile manageFile = new ManageFile(getApplicationContext());
+        ArrayList<String> namesOfFile;
+        namesOfFile = manageFile.getListFile();
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, namesOfFile);
         listFile.setAdapter(adapter);

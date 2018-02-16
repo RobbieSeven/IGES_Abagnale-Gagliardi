@@ -94,11 +94,11 @@ public class SendMailFragment extends ComponentFragment{
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {contact.getEmailContact()});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject.getText().toString());
                 emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
-                //String sPhoto=getUriPhoto();
-                /*if (!sPhoto.equalsIgnoreCase("no id")) {
-                    Uri uri = Uri.fromFile(new File(sPhoto));*/
-                    emailIntent.putExtra(Intent.EXTRA_STREAM, imageBitmap);
-               // }
+                String sPhoto=getUriPhoto();
+                if (!sPhoto.equalsIgnoreCase("no id")) {
+                    Uri uri = Uri.fromFile(new File(sPhoto));
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                }
                 startActivity(Intent.createChooser(emailIntent, "Pick an email provider"));
             }
         });

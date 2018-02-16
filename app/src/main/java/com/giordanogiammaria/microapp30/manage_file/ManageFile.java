@@ -55,6 +55,10 @@ public class ManageFile {
         }
         return toReturn;
     }
+    public String getLocalPath(){
+        File f = this.getLocalPath(context);
+        return f.getPath();
+    }
     public ArrayList<String>getListFile(){
         ArrayList<String>toReturn;
         ArrayList<File>app;
@@ -64,8 +68,5 @@ public class ManageFile {
         toReturn = this.filter(app,"xml");
         return toReturn;
     }
-    public String getLocalPath(){
-        File f = this.getLocalPath(context);
-        return f.getPath();
-    }
+
 }
