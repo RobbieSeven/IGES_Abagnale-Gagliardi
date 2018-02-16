@@ -3,19 +3,8 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
-import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
-import com.giordanogiammaria.microapp30.Subsystem.EmptyDeployFileException;
-import com.giordanogiammaria.microapp30.Subsystem.FileNotFoundException;
-import com.giordanogiammaria.microapp30.Subsystem.IdAlreadyTakenException;
-import com.giordanogiammaria.microapp30.Subsystem.InputNameAlreadyTakenException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingDataNameAttrException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingIdCompAttrException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingIdInputAttrException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingInputNameException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingTypeAttrException;
-import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
-import com.giordanogiammaria.microapp30.Subsystem.SelfInputException;
+
+import com.giordanogiammaria.microapp30.Subsystem.*;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 
 import org.w3c.dom.Document;
@@ -82,8 +71,12 @@ public class DeployParser {
             String type = compNode.getAttribute("type");
             if (type.equalsIgnoreCase(""))
                 throw new MissingTypeAttrException(id);
-            Component component = new Component(id, ComponentType.valueOf(type));
-            components.put(id, component);
+            try {
+                Component component = new Component(id, ComponentType.valueOf(type));
+                components.put(id, component);
+            }catch (IllegalArgumentException e ){
+                throw new ComponentTypeNotFoundException(id,type);
+            }
         }
         for (int i = 0; i < compsLength; i++) {
             Element compNode = (Element) componentNodes.item(i);
@@ -113,14 +106,14 @@ public class DeployParser {
                                 throw new MissingComponentException(id, sendId);
                             component.addInputSender(sendId, dataName);
                             inputNames.add(dataName);
-                            components.get(sendId).addOutputReceiver(component.getId());
-                        }/* else if (childNode.getTagName().equals("output")) {
+                           // components.get(sendId).addOutputReceiver(component.getId());
+                        }else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
                                 component.addOutputReceiver(destId);
                             else
                                 throw new MissingComponentException(id, destId);
-                        }*/
+                        }
                     }
                 }
                 for (String dataName : component.getInputTypes().keySet())
