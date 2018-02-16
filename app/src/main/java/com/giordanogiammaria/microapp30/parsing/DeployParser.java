@@ -3,6 +3,7 @@ package com.giordanogiammaria.microapp30.parsing;
 import android.util.Log;
 
 import com.giordanogiammaria.microapp30.Component;
+import com.giordanogiammaria.microapp30.Subsystem.ComponentTypeNotFoundException;
 import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
 import com.giordanogiammaria.microapp30.Subsystem.EmptyDeployFileException;
 import com.giordanogiammaria.microapp30.Subsystem.FileNotFoundException;
@@ -82,8 +83,12 @@ public class DeployParser {
             String type = compNode.getAttribute("type");
             if (type.equalsIgnoreCase(""))
                 throw new MissingTypeAttrException(id);
-            Component component = new Component(id, ComponentType.valueOf(type));
-            components.put(id, component);
+            try {
+                Component component = new Component(id, ComponentType.valueOf(type));
+                components.put(id, component);
+            }catch (IllegalArgumentException e ){
+                throw new ComponentTypeNotFoundException(id,type);
+            }
         }
         for (int i = 0; i < compsLength; i++) {
             Element compNode = (Element) componentNodes.item(i);
