@@ -1,8 +1,8 @@
 package com.giordanogiammaria.microapp30.sorting;
 
 import com.giordanogiammaria.microapp30.Component;
-import com.giordanogiammaria.microapp30.Subsystem.ComponentsNotSortableException;
-import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
+import com.giordanogiammaria.microapp30.exceptions.ComponentsNotSortableException;
+import com.giordanogiammaria.microapp30.exceptions.ParsingException;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;

@@ -49,7 +49,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ListFile" />
         <activity android:name=".MicroAppActivity" />
-        <activity android:name=".component_fragment.ContactPickerSampleActivity" />
+        <activity android:name=".component_fragments.ContactPickerSampleActivity" />
         <receiver android:name=".SMSReceiver"  android:enabled="true">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />

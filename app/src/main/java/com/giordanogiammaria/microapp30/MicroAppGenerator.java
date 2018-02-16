@@ -2,19 +2,18 @@ package com.giordanogiammaria.microapp30;
 
 import android.app.Fragment;
 
-import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
-import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
-import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
-import com.giordanogiammaria.microapp30.component_fragment.ComponentFragment;
+import com.giordanogiammaria.microapp30.exceptions.DataMismatchException;
+import com.giordanogiammaria.microapp30.exceptions.DeployFileException;
+import com.giordanogiammaria.microapp30.exceptions.MissingComponentException;
+import com.giordanogiammaria.microapp30.exceptions.MissingDataException;
+import com.giordanogiammaria.microapp30.exceptions.NoNextComponentException;
+import com.giordanogiammaria.microapp30.exceptions.NoPrevComponentException;
+import com.giordanogiammaria.microapp30.exceptions.ParsingException;
+import com.giordanogiammaria.microapp30.component_fragments.ComponentFragment;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.parsing.DeployParser;
 import com.giordanogiammaria.microapp30.sorting.ComponentSorting;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 

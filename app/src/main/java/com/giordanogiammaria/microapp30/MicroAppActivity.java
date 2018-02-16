@@ -10,15 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.giordanogiammaria.microapp30.Subsystem.DataMismatchException;
-import com.giordanogiammaria.microapp30.Subsystem.DeployFileException;
-import com.giordanogiammaria.microapp30.Subsystem.MissingDataException;
-import com.giordanogiammaria.microapp30.Subsystem.NoNextComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.NoPrevComponentException;
-import com.giordanogiammaria.microapp30.Subsystem.ParsingException;
-import com.giordanogiammaria.microapp30.facade.Facade;
-
-import java.io.FileNotFoundException;
+import com.giordanogiammaria.microapp30.exceptions.DataMismatchException;
+import com.giordanogiammaria.microapp30.exceptions.DeployFileException;
+import com.giordanogiammaria.microapp30.exceptions.MissingDataException;
+import com.giordanogiammaria.microapp30.exceptions.NoNextComponentException;
+import com.giordanogiammaria.microapp30.exceptions.NoPrevComponentException;
+import com.giordanogiammaria.microapp30.exceptions.ParsingException;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 
 public class MicroAppActivity extends AppCompatActivity {
 
@@ -28,8 +26,8 @@ public class MicroAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.micro_app);
-        Facade facade = new Facade(getApplicationContext());
-        String path = facade.getLocalPath();
+        ManageFile manageFile=new ManageFile(getApplicationContext());
+        String path = manageFile.getLocalPath();
         Intent intent = getIntent();
         String filePath = intent.getStringExtra("filePath");
         filePath = path + "/" + filePath;

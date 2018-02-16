@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.giordanogiammaria.microapp30.R;
-import com.giordanogiammaria.microapp30.component_fragment.Contact;
+import com.giordanogiammaria.microapp30.manage_contact.Contact;
 
 import java.util.List;
 

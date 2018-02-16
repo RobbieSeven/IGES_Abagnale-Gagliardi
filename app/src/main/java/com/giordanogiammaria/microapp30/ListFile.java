@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.giordanogiammaria.microapp30.facade.Facade;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     /*la classe mostra la lista  dei file xml*/
     private ArrayAdapter<String> adapter;
     MaterialSearchView materialSearchView;
-    Facade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,8 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         ListView listFile;
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
-        facade= new Facade(getApplicationContext());
-        final ArrayList<String> namesOfFile = facade.getListFile();
+        ManageFile manageFile= new ManageFile(getApplicationContext());
+        final ArrayList<String> namesOfFile = manageFile.getListFile();
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, namesOfFile);
         listFile.setAdapter(adapter);
