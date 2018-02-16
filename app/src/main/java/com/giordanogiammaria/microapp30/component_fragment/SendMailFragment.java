@@ -2,6 +2,7 @@ package com.giordanogiammaria.microapp30.component_fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class SendMailFragment extends ComponentFragment{
         HashMap<String,DataType> inputType=new HashMap<>();
         inputType.put("contact", DataType.CONTACT);
         inputType.put("location",DataType.LOCATION);
+        inputType.put("image",DataType.IMAGE);
 
         return inputType;
     }
@@ -58,6 +60,7 @@ public class SendMailFragment extends ComponentFragment{
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
         GenericData<Location> location= dataCollection.get("location");
         GenericData<Contact> nameContact=dataCollection.get("contact");
+        GenericData<Bitmap> roba=dataCollection.get("image");
         values=nameContact.getData().get(0);
     }
 
