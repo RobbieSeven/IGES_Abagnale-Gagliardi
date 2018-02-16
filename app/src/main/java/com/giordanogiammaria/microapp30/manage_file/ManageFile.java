@@ -1,4 +1,4 @@
-package com.giordanogiammaria.microapp30.facade;
+package com.giordanogiammaria.microapp30.manage_file;
 
 import android.content.Context;
 import android.os.Environment;
@@ -12,7 +12,10 @@ import java.util.Arrays;
  */
 
 public class ManageFile {
-
+    Context context;
+    public ManageFile(Context context){
+        this.context=context;
+    }
 
     String createDir(File path) {
         //create the folder microApp
@@ -22,7 +25,7 @@ public class ManageFile {
             System.exit(-1);//memory end
         return path.getPath();
     }
-    ArrayList<File> ReadDir(String path) {
+    ArrayList<File> readDir(String path) {
         ArrayList<File> listOfFile;
         listOfFile= new ArrayList<>();
         File f = new File(path);
@@ -51,5 +54,18 @@ public class ManageFile {
                 toReturn.add(file.getName());
         }
         return toReturn;
+    }
+    public ArrayList<String>getListFile(){
+        ArrayList<String>toReturn;
+        ArrayList<File>app;
+        File localPath = this.getLocalPath(context);
+        String path = this.createDir(localPath);
+        app = this.readDir(path);
+        toReturn = this.filter(app,"xml");
+        return toReturn;
+    }
+    public String getLocalPath(){
+        File f = this.getLocalPath(context);
+        return f.getPath();
     }
 }

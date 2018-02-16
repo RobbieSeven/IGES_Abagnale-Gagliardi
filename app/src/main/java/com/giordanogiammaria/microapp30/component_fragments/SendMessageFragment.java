@@ -22,9 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
-import com.giordanogiammaria.microapp30.facade.Facade;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
+import com.giordanogiammaria.microapp30.manage_contact.Contact;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +35,6 @@ import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 
 public class SendMessageFragment extends ComponentFragment {
     View view;
-    Facade facade;
     TextView contactName;
     FButton sendSmsButton;
     String number;
@@ -78,7 +77,6 @@ public class SendMessageFragment extends ComponentFragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.sendsms, container, false);
-        facade = new Facade(view.getContext());
         number = values.getNumberContact();
         sendSmsButton = view.findViewById(R.id.sendSms);
         contactName = view.findViewById(R.id.tx_label_cont);
@@ -86,7 +84,7 @@ public class SendMessageFragment extends ComponentFragment {
         sendingText = view.findViewById(R.id.sendingSmsTo);
         picture = view.findViewById(R.id.picture);
         context = container.getContext();
-        contactName.setText(facade.getContactName(number, context));
+        contactName.setText(Contact.getContactName(number, context));
         sendSmsButton.setEnabled(true);
         sendSmsButton.setOnClickListener(new View.OnClickListener() {
             @Override

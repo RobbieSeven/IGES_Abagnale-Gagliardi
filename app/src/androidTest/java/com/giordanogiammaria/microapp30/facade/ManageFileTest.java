@@ -1,10 +1,9 @@
 package com.giordanogiammaria.microapp30.facade;
 
-import android.support.test.rule.ActivityTestRule;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;

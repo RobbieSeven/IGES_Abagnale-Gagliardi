@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
-import com.giordanogiammaria.microapp30.facade.Facade;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
+import com.giordanogiammaria.microapp30.manage_contact.Contact;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +27,6 @@ import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 public class CallContactFragment extends ComponentFragment{
     View view;
     TextView nameContact;
-    Facade facade;
     String number;
     Contact values;
     ImageView imageViewContact;
@@ -66,9 +65,8 @@ public class CallContactFragment extends ComponentFragment{
         view = inflater.inflate(R.layout.contactpreview, container, false);
         nameContact=view.findViewById(R.id.txNome);
         imageViewContact=view.findViewById(R.id.photoContact);
-        facade=new Facade(view.getContext());
         number =values.getNumberContact();
-        nameContact.setText(facade.getContactName(number,view.getContext()));
+        nameContact.setText(Contact.getContactName(number,view.getContext()));
         call(number);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String data = prefs.getString("imagePreference", "no id");

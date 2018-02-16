@@ -1,7 +1,6 @@
 package com.giordanogiammaria.microapp30.parsing;
 
 import com.giordanogiammaria.microapp30.MicroAppActivity;
-import com.giordanogiammaria.microapp30.facade.Facade;
 
 import org.junit.After;
 import org.junit.Before;

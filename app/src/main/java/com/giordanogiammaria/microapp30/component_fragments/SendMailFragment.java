@@ -20,6 +20,7 @@ import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
+import com.giordanogiammaria.microapp30.manage_contact.Contact;
 
 import java.io.File;
 import java.util.ArrayList;

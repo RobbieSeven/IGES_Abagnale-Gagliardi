@@ -1,6 +1,10 @@
-package com.giordanogiammaria.microapp30.component_fragments;
+package com.giordanogiammaria.microapp30.manage_contact;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 
 
@@ -15,7 +19,7 @@ public class Contact implements Comparable<Contact>{
         this.photoContact = photoContact;
     }
 
-    Contact() {
+    public Contact() {
 
     }
 
@@ -23,7 +27,7 @@ public class Contact implements Comparable<Contact>{
         return nameContact;
     }
 
-    void setNameContact(String nameContact) {
+    public void setNameContact(String nameContact) {
         this.nameContact = nameContact;
     }
 
@@ -31,7 +35,7 @@ public class Contact implements Comparable<Contact>{
         return numberContact;
     }
 
-    void setNumberContact(String numberContact) {
+    public void setNumberContact(String numberContact) {
         this.numberContact = numberContact;
     }
 
@@ -39,7 +43,7 @@ public class Contact implements Comparable<Contact>{
         return emailContact;
     }
 
-    void setEmailContact(String emailContact) {
+    public void setEmailContact(String emailContact) {
         this.emailContact = emailContact;
     }
 
@@ -56,5 +60,21 @@ public class Contact implements Comparable<Contact>{
         String name1=this.getNameContact().toLowerCase();
         String name2=contact.getNameContact().toLowerCase();
         return name1.compareTo(name2);
+    }
+    public static String getContactName(final String phoneNumber, Context context) {
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI,Uri.encode(phoneNumber));
+
+        String[] projection = new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME};
+
+        String contactName = "";
+        Cursor cursor = context.getContentResolver().query(uri,projection,null,null,null);
+
+        if (cursor != null) {
+            if(cursor.moveToFirst()) {
+                contactName = cursor.getString(0);
+            }
+            cursor.close();
+        }
+        return contactName;
     }
 }
