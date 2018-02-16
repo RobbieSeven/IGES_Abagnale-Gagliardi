@@ -6,7 +6,7 @@ package com.giordanogiammaria.microapp30.Subsystem;
 
 public class MissingAttributeException extends ParsingException {
 
-    public MissingAttributeException(String attr, String tag) {
+    public MissingAttributeException(String tag, String attr) {
         super("Missing attribute " + attr + " for tag \"" + tag + "\"");
     }
 
