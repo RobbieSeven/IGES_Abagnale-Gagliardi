@@ -116,14 +116,14 @@ public class DeployParser {
                                 throw new MissingComponentException(id, sendId);
                             component.addInputSender(sendId, dataName);
                             inputNames.add(dataName);
-                           // components.get(sendId).addOutputReceiver(component.getId());
-                        }else if (childNode.getTagName().equals("output")) {
+                            components.get(sendId).addOutputReceiver(component.getId());
+                        }/* else if (childNode.getTagName().equals("output")) {
                             String destId = childNode.getAttribute("id");
                             if (components.containsKey(destId))
                                 component.addOutputReceiver(destId);
                             else
                                 throw new MissingComponentException(id, destId);
-                        }
+                        }*/
                     }
                 }
                 for (String dataName : component.getInputTypes().keySet())
@@ -136,16 +136,6 @@ public class DeployParser {
         printComponents(componentList);
         return componentList;
     }
-
-    /*private void checkComponents(ArrayList<Component> components) {
-        for (Component component : components) {
-            for (String sendId : component.getInputSenders().keySet())
-                for (Component comp : components) {
-                    if (component.getId().equals(sendId))
-                        break;
-                }
-        }
-    }*/
 
     private static File createXMLFile() {
         File file = new File("my.xml");
