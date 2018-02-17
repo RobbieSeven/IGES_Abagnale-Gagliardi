@@ -7,12 +7,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by Giordano Giammaria on 08/01/2018.
- */
 
 public class ManageFile {
-    Context context;
+
+    private Context context;
     public ManageFile(Context context){
         this.context=context;
     }
@@ -25,7 +23,7 @@ public class ManageFile {
             System.exit(-1);//memory end
         return path.getPath();
     }
-    ArrayList<File> readDir(String path) {
+    private ArrayList<File> readDir(String path) {
         ArrayList<File> listOfFile;
         listOfFile= new ArrayList<>();
         File f = new File(path);
@@ -35,29 +33,25 @@ public class ManageFile {
         return listOfFile;
     }
 
-    private boolean compareExt(File file,String ext){
+    private boolean compareExt(File file){
         String currentExt = android.webkit.MimeTypeMap.getFileExtensionFromUrl(file.getName());
-        return currentExt.equalsIgnoreCase(ext);
+        return currentExt.equalsIgnoreCase("xml");
     }
 
-    File getLocalPath(Context context){
+    private File getLocalPath(Context context){
         String nameApp= (String) context.getApplicationContext().getApplicationInfo().
                 loadLabel(context.getApplicationContext().getPackageManager());
         return new File(Environment.getExternalStorageDirectory() +
                 File.separator +nameApp);
     }
 
-    ArrayList<String> filter(ArrayList<File> listFile, String ext) {
+    private ArrayList<String> filter(ArrayList<File> listFile) {
         ArrayList<String>toReturn=new ArrayList<>();
         for (File file:listFile){
-            if (compareExt(file,ext))
+            if (compareExt(file))
                 toReturn.add(file.getName());
         }
         return toReturn;
-    }
-    public String getLocalPath(){
-        File f = this.getLocalPath(context);
-        return f.getPath();
     }
     public ArrayList<String>getListFile(){
         ArrayList<String>toReturn;
@@ -65,8 +59,11 @@ public class ManageFile {
         File localPath = this.getLocalPath(context);
         String path = this.createDir(localPath);
         app = this.readDir(path);
-        toReturn = this.filter(app,"xml");
+        toReturn = this.filter(app);
         return toReturn;
     }
-
+    public String getLocalPath(){
+        File f = this.getLocalPath(context);
+        return f.getPath();
+    }
 }

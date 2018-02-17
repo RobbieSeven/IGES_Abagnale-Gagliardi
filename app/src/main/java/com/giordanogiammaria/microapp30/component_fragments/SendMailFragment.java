@@ -17,11 +17,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.giordanogiammaria.microapp30.CodeDecode;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 import com.giordanogiammaria.microapp30.manage_contact.Contact;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,12 +33,13 @@ import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 
 public class SendMailFragment extends ComponentFragment{
     View view;
-    Contact contact;
+    Contact values;
     EditText subject,body;
     Button send;
     TextView to;
     ImageView image;
-    Bitmap imageBitmap;
+    Bitmap bitmap;
+    Location loc;
 
     @Override
     protected ComponentType setType() {
@@ -62,10 +65,10 @@ public class SendMailFragment extends ComponentFragment{
     public void setInputsData(HashMap<String, GenericData> dataCollection) {
         GenericData<Location> location= dataCollection.get("location");
         GenericData<Contact> nameContact=dataCollection.get("contact");
-        GenericData<Bitmap> image= dataCollection.get("image");
-        contact=nameContact.getData().get(0);
-        imageBitmap=image.getData().get(0);
-
+        GenericData<Bitmap> bitmapGenericData=dataCollection.get("image");
+        values=nameContact.getData().get(0);
+        bitmap=bitmapGenericData.getData().get(0);
+        loc=location.getData().get(0);
     }
 
     @Override
@@ -82,7 +85,7 @@ public class SendMailFragment extends ComponentFragment{
         send=view.findViewById(R.id.sendButton);
         to=view.findViewById(R.id.toTextView);
         image=view.findViewById(R.id.imageViewContact);
-        to.setText(String.format("%s %s", to.getText(), contact.getEmailContact()));
+        to.setText(String.format("%s %s", to.getText(), values.getEmailContact()));
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
         String data = prefs.getString("imagePreference", "no id");
         image.setImageBitmap(decodeBase64(data));
@@ -91,26 +94,18 @@ public class SendMailFragment extends ComponentFragment{
             public void onClick(View view) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {contact.getEmailContact()});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {values.getEmailContact()});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject.getText().toString());
-                emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
-                String sPhoto=getUriPhoto();
-                if (!sPhoto.equalsIgnoreCase("no id")) {
-                    Uri uri = Uri.fromFile(new File(sPhoto));
+                emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString()+ " \nlat:"+loc.getLatitude()+" loc:"+loc.getLongitude());
+                //String sPhoto=getUriPhoto();
+               /* if (!sPhoto.equalsIgnoreCase("no id")) {
+                    Uri uri = Uri.fromFile(new File(sPhoto));*/
+                    Uri uri= CodeDecode.getImageUri(view.getContext(),bitmap);
                     emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                }
+                //}
                 startActivity(Intent.createChooser(emailIntent, "Pick an email provider"));
             }
         });
         return view;
     }
-
-    private String getUriPhoto() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-        String data = prefs.getString("fname", "no id"); //no id: default value
-        String photoPath = Environment.getExternalStorageDirectory()+"/"+data;
-        Log.d("photoPath",photoPath);
-        return photoPath;
-    }
-
 }

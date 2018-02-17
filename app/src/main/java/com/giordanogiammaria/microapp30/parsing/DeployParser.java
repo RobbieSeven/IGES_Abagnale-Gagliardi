@@ -39,9 +39,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
+
 
 public class DeployParser {
 
@@ -70,7 +68,7 @@ public class DeployParser {
 
     public ArrayList<Component> getComponents() throws ParsingException {
         NodeList componentNodes = document.getElementsByTagName("component");
-        HashMap<String, Component> components = new HashMap<String, Component>();
+        HashMap<String, Component> components = new HashMap<>();
         int compsLength = componentNodes.getLength();
         for (int i = 0; i < compsLength; i++) {
             // crea componente dal tag component

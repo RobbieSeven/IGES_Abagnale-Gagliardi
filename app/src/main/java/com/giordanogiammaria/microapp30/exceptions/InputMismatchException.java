@@ -1,9 +1,5 @@
 package com.giordanogiammaria.microapp30.exceptions;
 
-/**
- * Created by Utente on 13/02/2018.
- */
-
 public class InputMismatchException extends DataMismatchException {
 
     public InputMismatchException(String sendId, String destId, String dataName) {

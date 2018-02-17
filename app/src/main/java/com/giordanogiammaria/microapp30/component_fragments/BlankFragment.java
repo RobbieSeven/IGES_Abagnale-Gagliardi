@@ -33,9 +33,8 @@ public class BlankFragment extends ComponentFragment {
 
     @Override
     protected ArrayList<DataType> setOutputTypes() {
-        ArrayList<DataType>outputTypes = new ArrayList<>();
         // outputTypes.add(DataType.STRING);
-        return outputTypes;
+        return new ArrayList<>();
     }
 
     @Override

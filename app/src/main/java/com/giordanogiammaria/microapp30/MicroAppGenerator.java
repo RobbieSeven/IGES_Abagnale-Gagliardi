@@ -17,18 +17,18 @@ import com.giordanogiammaria.microapp30.sorting.ComponentSorting;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MicroAppGenerator {
+class MicroAppGenerator {
 
     private ArrayList<Component> components;
     private int currentIndex;
 
-    public MicroAppGenerator(String filePath) throws DeployFileException, ParsingException {
+    MicroAppGenerator(String filePath) throws DeployFileException, ParsingException {
         DeployParser parser = new DeployParser(filePath);
         components = ComponentSorting.sortComponents(parser.getComponents());
         currentIndex = 0;
     }
 
-    public Fragment prevCompFragment() throws NoPrevComponentException {
+    Fragment prevCompFragment() throws NoPrevComponentException {
         if (currentIndex > 0) {
             currentIndex -= 1;
             return components.get(currentIndex).getFragment();
@@ -36,7 +36,7 @@ public class MicroAppGenerator {
             throw new NoPrevComponentException();
     }
 
-    public Fragment nextCompFragment() throws NoNextComponentException, MissingDataException, DataMismatchException, ParsingException {
+    Fragment nextCompFragment() throws NoNextComponentException, MissingDataException, DataMismatchException, ParsingException {
         if (currentIndex < components.size() - 1) {
             Component currentComp = components.get(currentIndex);
             HashMap<DataType, GenericData> dataCollection = currentComp.getOutput();
@@ -58,7 +58,7 @@ public class MicroAppGenerator {
             throw new NoNextComponentException();
     }
 
-    public ComponentFragment getStartComponent() throws NoNextComponentException {
+    ComponentFragment getStartComponent() throws NoNextComponentException {
         Component component = components.get(0);
         if (component != null)
             return components.get(0).getFragment();
