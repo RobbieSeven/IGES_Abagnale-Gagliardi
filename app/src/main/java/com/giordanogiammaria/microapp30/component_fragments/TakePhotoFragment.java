@@ -3,8 +3,6 @@ package com.giordanogiammaria.microapp30.component_fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +12,12 @@ import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 
 public class TakePhotoFragment extends ComponentFragment {
@@ -74,30 +73,17 @@ public class TakePhotoFragment extends ComponentFragment {
         return view;
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            image = (Bitmap) data.getExtras().get("data");
-            ImageView imageview =  view.findViewById(R.id.pre_img);
-            imageview.setImageBitmap(image);
-            saveImage(image,"photo");
-        }
-    }
-    private String saveImage(Bitmap finalBitmap, String image_name) {
-       String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root);
-        myDir.mkdirs();
-        String fname = "Image-" + image_name+ ".jpg";
-        File file = new File(myDir, fname);
-        if (file.exists()) file.delete();
-        Log.i("LOAD", root + fname);
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return fname;
-    }
+     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+         if (requestCode == 1) {
+             image = (Bitmap) data.getExtras().get("data");
+             ImageView imageview =  view.findViewById(R.id.pre_img);
+             imageview.setImageBitmap(image);
+             try {
+                 ManageFile.saveImageToExternal("photo",image,view.getContext());
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+         }
+     }
+
 }

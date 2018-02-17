@@ -1,14 +1,10 @@
 package com.giordanogiammaria.microapp30.component_fragments;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +19,8 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 import com.giordanogiammaria.microapp30.manage_contact.Contact;
-import com.giordanogiammaria.microapp30.manage_file.ManageFile;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static com.giordanogiammaria.microapp30.CodeDecode.decodeBase64;
 
 public class SendMailFragment extends ComponentFragment{
     View view;
@@ -86,9 +77,6 @@ public class SendMailFragment extends ComponentFragment{
         to=view.findViewById(R.id.toTextView);
         image=view.findViewById(R.id.imageViewContact);
         to.setText(String.format("%s %s", to.getText(), values.getEmailContact()));
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-        String data = prefs.getString("imagePreference", "no id");
-        image.setImageBitmap(decodeBase64(data));
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,13 +84,9 @@ public class SendMailFragment extends ComponentFragment{
                 emailIntent.setType("text/plain");
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {values.getEmailContact()});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject.getText().toString());
-                emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString()+ " \nlat:"+loc.getLatitude()+" loc:"+loc.getLongitude());
-                //String sPhoto=getUriPhoto();
-               /* if (!sPhoto.equalsIgnoreCase("no id")) {
-                    Uri uri = Uri.fromFile(new File(sPhoto));*/
-                    Uri uri= CodeDecode.getImageUri(view.getContext(),bitmap);
-                    emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                //}
+                emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString()+ " \nI am currently here:\nlat:"+loc.getLatitude()+" loc:"+loc.getLongitude());
+                Uri uri= CodeDecode.getImageUri(view.getContext(),bitmap);
+                emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
                 startActivity(Intent.createChooser(emailIntent, "Pick an email provider"));
             }
         });
