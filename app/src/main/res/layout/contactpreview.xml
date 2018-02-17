@@ -1,45 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical" >
-
-    <ImageButton
-        android:id="@+id/CallButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/image"
-        android:src="@drawable/ic_contact_picture" />
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photoContact"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="300sp"
+        android:layout_height="300sp"
+        android:src="@drawable/ic_contact_picture"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
 
     <TextView
         android:id="@+id/txNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empty"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textIsSelectable="false" />
+        android:layout_below="@id/photoContact"
+        android:layout_marginTop="20sp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+</RelativeLayout>
 
-    <TextView
-        android:id="@+id/txMail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:lines="3"
-        android:text="@string/empty"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textIsSelectable="false" />
-
-    <TextView
-        android:id="@+id/txNumero"
-        android:layout_width="wrap_content"
-        android:layout_height="0dip"
-        android:layout_weight="0.10"
-        android:lines="3"
-        android:text="@string/empty"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textIsSelectable="false" />
-
-    <include layout="@layout/microapp" />
-
-</LinearLayout>
+</RelativeLayout>

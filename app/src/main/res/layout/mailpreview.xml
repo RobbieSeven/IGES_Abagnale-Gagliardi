@@ -4,127 +4,66 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/mtextView2"
+        android:id="@+id/sendEmailTextView"
+        android:text="@string/sendEmail"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewContact"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="20sp"
+        android:src="@drawable/user"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
+
+    <TextView
+        android:id="@+id/toTextView"
+        android:text="@string/to"
+        android:paddingLeft="5sp"
+        android:layout_below="@id/imageViewContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="match_parent"
+        android:layout_below="@id/imageViewContact"
+        android:layout_marginTop="20sp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:text="@string/sendmail"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:id="@+id/firstFloat">
+    <EditText
+        android:id="@+id/subjectEditText"
+        android:hint="@string/subject"
+        android:paddingTop="20sp"
+        android:paddingLeft="5sp"
+        android:layout_below="@id/toTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+        android:layout_width="match_parent"
+        android:layout_below="@id/firstFloat"
+        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/bodyEditText"
+        android:hint="@string/body"
+        android:paddingLeft="5sp"
+        android:layout_below="@id/subjectEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+
 
     <Button
-        android:id="@+id/SendButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:text="@string/sendmail"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/mtextView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/mtextView2"
-        android:layout_marginTop="14dp"
-        android:layout_toRightOf="@+id/mimageView1"
-        android:text="@string/to" />
-
-    <TextView
-        android:id="@+id/emailaddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mtextView1"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/mtextView1"
-        android:text="" />
-
-    <TextView
-        android:id="@+id/mtextView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mtextView1"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/emailaddress"
-        android:layout_marginTop="14dp"
-        android:text="@string/attach" />
-
-    <TextView
-        android:id="@+id/txallegati"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/mtextView3"
-        android:layout_toRightOf="@+id/mimageView1"
-        android:text="" />
-
-    <ScrollView
-        android:id="@+id/mscrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/SendButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/txallegati"
-        android:layout_marginTop="5dp" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/mtextView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="@string/subject" />
-
-            <EditText
-                android:id="@+id/mailsubject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/subject" >
-				
-                <requestFocus />
-            </EditText>
-
-            <TextView
-                android:id="@+id/mtextView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="@string/body" />
-
-            <EditText
-                android:id="@+id/mailbody"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:lines="7" />
-        </LinearLayout>
-    </ScrollView>
-
-    <ImageView
-        android:id="@+id/mimageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mtextView1"
-        android:layout_alignParentLeft="true"
-        android:contentDescription="@string/image"
-        android:src="@drawable/user" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/mtextView3"
-        android:layout_toLeftOf="@+id/mtextView3"
-        android:contentDescription="@string/image"
-        android:src="@drawable/attach" />
+    android:id="@+id/sendButton"
+    android:text="@string/send"
+    android:layout_width="match_parent"
+    android:layout_alignParentBottom="true"
+    android:layout_height="wrap_content" />
 
 </RelativeLayout>

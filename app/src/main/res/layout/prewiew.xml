@@ -13,14 +13,16 @@
         android:text="@string/imageTook"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/pre_img"
         android:layout_width="300dp"
         android:layout_height="350dp"
         android:src="@android:drawable/ic_menu_camera" 
         android:contentDescription="@string/image"/>
+    </FrameLayout>
 
-    <include
-        layout="@layout/microapp" />
 
 </LinearLayout>

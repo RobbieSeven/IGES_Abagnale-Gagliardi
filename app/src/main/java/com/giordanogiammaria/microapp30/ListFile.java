@@ -1,8 +1,6 @@
 package com.giordanogiammaria.microapp30;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,18 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.giordanogiammaria.microapp30.Facade.Facade;
-import com.giordanogiammaria.microapp30.Facade.IFacade;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 import com.michaelgarnerdev.materialsearchview.MaterialSearchView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class ListFile extends AppCompatActivity implements MaterialSearchView.SearchViewSearchListener  {
     /*la classe mostra la lista  dei file xml*/
     private ArrayAdapter<String> adapter;
     MaterialSearchView materialSearchView;
-    IFacade facade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +28,9 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
         ListView listFile;
         listFile = findViewById(R.id.list);
         materialSearchView=findViewById(R.id.material_search_view);
-
-        facade= new Facade(getApplicationContext());
-        ArrayList<String> namesOfFile = facade.getListFile();
+        ManageFile manageFile = new ManageFile(getApplicationContext());
+        ArrayList<String> namesOfFile;
+        namesOfFile = manageFile.getListFile();
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, namesOfFile);
         listFile.setAdapter(adapter);
@@ -44,6 +39,9 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String result = adapterView.getItemAtPosition(i).toString();
                 setData(result);
+                Intent intent=new Intent(getApplicationContext(),MicroAppActivity.class);
+                intent.putExtra("filePath",result);
+                startActivity(intent);
             }
         });
     }
@@ -56,15 +54,15 @@ public class ListFile extends AppCompatActivity implements MaterialSearchView.Se
     public void onBackPressed() {
         if (!materialSearchView.onBackPressed()) {
             super.onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         }
     }
 
-
     private void setData(String result) {
-        Intent returnIntent = new Intent(result);
-        returnIntent.putExtra("result",result);
-        setResult(Activity.RESULT_OK,returnIntent);
-        finish();
+        Intent returnIntent = new Intent(this,MicroAppActivity.class);
+        returnIntent.putExtra("filePath",result);
+        startActivity(returnIntent);
     }
 
     @Override

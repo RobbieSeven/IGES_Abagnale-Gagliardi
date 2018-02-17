@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="160dp"
         android:contentDescription="@string/image"
-        android:src="@drawable/attach" />
+        android:src="@drawable/logo_micro_app" />
 
     <TextView
         android:id="@+id/namefile"
@@ -76,9 +76,8 @@
             android:onClick="browseOnClick"
             android:drawableLeft="@android:drawable/ic_menu_search"
             android:state_enabled="true"
+            android:background="@drawable/border_text_view"
             android:text="@string/run_from_XML" />
-
-
     </LinearLayout>
 
 </LinearLayout>
