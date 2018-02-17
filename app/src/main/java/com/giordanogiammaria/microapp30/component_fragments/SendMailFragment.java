@@ -17,11 +17,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.giordanogiammaria.microapp30.CodeDecode;
 import com.giordanogiammaria.microapp30.enumerators.ComponentType;
 import com.giordanogiammaria.microapp30.enumerators.DataType;
 import com.giordanogiammaria.microapp30.GenericData;
 import com.giordanogiammaria.microapp30.R;
 import com.giordanogiammaria.microapp30.manage_contact.Contact;
+import com.giordanogiammaria.microapp30.manage_file.ManageFile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class SendMailFragment extends ComponentFragment{
     Button send;
     TextView to;
     ImageView image;
+    Bitmap bitmap;
+    Location loc;
 
     @Override
     protected ComponentType setType() {
@@ -63,6 +67,8 @@ public class SendMailFragment extends ComponentFragment{
         GenericData<Contact> nameContact=dataCollection.get("contact");
         GenericData<Bitmap> bitmapGenericData=dataCollection.get("image");
         values=nameContact.getData().get(0);
+        bitmap=bitmapGenericData.getData().get(0);
+        loc=location.getData().get(0);
     }
 
     @Override
@@ -90,24 +96,16 @@ public class SendMailFragment extends ComponentFragment{
                 emailIntent.setType("text/plain");
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {values.getEmailContact()});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject.getText().toString());
-                emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString());
-                String sPhoto=getUriPhoto();
-                if (!sPhoto.equalsIgnoreCase("no id")) {
-                    Uri uri = Uri.fromFile(new File(sPhoto));
+                emailIntent.putExtra(Intent.EXTRA_TEXT, body.getText().toString()+ " \nlat:"+loc.getLatitude()+" loc:"+loc.getLongitude());
+                //String sPhoto=getUriPhoto();
+               /* if (!sPhoto.equalsIgnoreCase("no id")) {
+                    Uri uri = Uri.fromFile(new File(sPhoto));*/
+                    Uri uri= CodeDecode.getImageUri(view.getContext(),bitmap);
                     emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                }
+                //}
                 startActivity(Intent.createChooser(emailIntent, "Pick an email provider"));
             }
         });
         return view;
     }
-
-    private String getUriPhoto() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-        String data = prefs.getString("fname", "no id"); //no id: default value
-        String photoPath = Environment.getExternalStorageDirectory()+"/"+data;
-        Log.d("photoPath",photoPath);
-        return photoPath;
-    }
-
 }

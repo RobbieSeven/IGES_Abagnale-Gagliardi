@@ -1,9 +1,5 @@
 package com.giordanogiammaria.microapp30.exceptions;
 
-/**
- * Created by Utente on 13/02/2018.
- */
-
 public class OutputNotFoundException extends DataMismatchException {
 
     public OutputNotFoundException(String sendId, String destId, String dataName, String dataType) {

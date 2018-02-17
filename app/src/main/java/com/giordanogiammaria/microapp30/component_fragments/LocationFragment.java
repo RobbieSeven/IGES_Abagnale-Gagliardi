@@ -86,6 +86,7 @@ public class LocationFragment extends ComponentFragment{
     }
     private Location getLastKnownLocation() {
         mLocationManager = (LocationManager)view.getContext().getApplicationContext().getSystemService(LOCATION_SERVICE);
+        assert mLocationManager != null;
         List<String> providers = mLocationManager.getProviders(true);
         Location bestLocation = null;
         for (String provider : providers) {

@@ -1,11 +1,9 @@
 package com.giordanogiammaria.microapp30.component_fragments;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,12 +79,7 @@ public class TakePhotoFragment extends ComponentFragment {
             image = (Bitmap) data.getExtras().get("data");
             ImageView imageview =  view.findViewById(R.id.pre_img);
             imageview.setImageBitmap(image);
-            String name=saveImage(image,"fname");
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("fname", name);
-            Log.d("fname:",name);
-            editor.apply();
+            saveImage(image,"photo");
         }
     }
     private String saveImage(Bitmap finalBitmap, String image_name) {

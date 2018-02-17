@@ -17,7 +17,7 @@ public class BlankStartFragment extends ComponentFragment {
 
     @Override
     protected HashMap<String, DataType> setInputTypes() {
-        return new HashMap<String, DataType>();
+        return new HashMap<>();
     }
 
     @Override

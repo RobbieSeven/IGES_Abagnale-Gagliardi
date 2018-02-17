@@ -16,9 +16,6 @@ import com.giordanogiammaria.microapp30.enumerators.DataType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Roberto on 15/01/2018.
- */
 
 public class Component {
 

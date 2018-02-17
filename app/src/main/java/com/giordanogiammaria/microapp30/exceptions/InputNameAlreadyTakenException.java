@@ -1,9 +1,5 @@
 package com.giordanogiammaria.microapp30.exceptions;
 
-/**
- * Created by Utente on 15/02/2018.
- */
-
 public class InputNameAlreadyTakenException extends ParsingException {
 
     public InputNameAlreadyTakenException(String id, String dataName) {

@@ -115,11 +115,11 @@ public class ListContactFragment extends ComponentFragment {
                                     Uri.parse(image_uri));
 
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         }
+        phones.close();
         return  bp;
     }
 

@@ -2,7 +2,6 @@ package com.giordanogiammaria.microapp30.manage_contact;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -11,12 +10,11 @@ import android.support.annotation.NonNull;
 
 public class Contact implements Comparable<Contact>{
     private String nameContact,numberContact,emailContact;
-    private Bitmap photoContact;
-    public Contact(String nameContact, String numberContact, String emailContact,Bitmap photoContact ) {
+
+    public Contact(String nameContact, String numberContact, String emailContact ) {
         this.nameContact = nameContact;
         this.numberContact = numberContact;
         this.emailContact = emailContact;
-        this.photoContact = photoContact;
     }
 
     public Contact() {
@@ -61,14 +59,6 @@ public class Contact implements Comparable<Contact>{
 
     public void setEmailContact(String emailContact) {
         this.emailContact = emailContact;
-    }
-
-    public Bitmap getPhotoContact() {
-        return photoContact;
-    }
-
-    public void setPhotoContact(Bitmap photoContact) {
-        this.photoContact = photoContact;
     }
 
     @Override
